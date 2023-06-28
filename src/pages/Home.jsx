@@ -29,7 +29,9 @@ function Home() {
         <div>
           {filteredData.map((dat) => (
             <div className="chapter" key={dat.id}>
-              {dat.chapter_title}
+              <p className="number">{dat.chapter_number.slice(3, dat.chapter_number.length)}</p>
+              <p className="titre">{dat.chapter_title}</p>
+              <p className="description">{dat.chapter_description}</p>
             </div>
           ))}
         </div>
