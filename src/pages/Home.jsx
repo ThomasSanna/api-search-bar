@@ -13,8 +13,8 @@ function Home() {
       });
   }, []);
 
-  const handleSearch = (event) => {
-    const searchText = event.target.value.toLowerCase();
+  const handleSearch = (e) => {
+    const searchText = e.target.value.toLowerCase();
     const filtered = data.filter(
       (dat) =>
         dat.chapter_title.toLowerCase().includes(searchText)
