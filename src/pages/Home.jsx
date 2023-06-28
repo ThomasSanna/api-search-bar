@@ -1,24 +1,41 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 function Home() {
-    const [data, setData] = React.useState(null);
-    useEffect(() => {
-        fetch("https://api.api-onepiece.com/chapters")
-            .then((res) => res.json())
-            .then((data) => setData(data));
-    }, []);
+  const [data, setData] = useState(null);
+  const [filteredData, setFilteredData] = useState(null);
 
-    useEffect(() => {
-        const Titres = data? data.map((sousdata) => {return sousdata.chapter_title}) : "no data"
+  useEffect(() => {
+    fetch("https://api.api-onepiece.com/chapters")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+        setFilteredData(data);
+      });
+  }, []);
 
-    })
+  const handleSearch = (event) => {
+    const searchText = event.target.value.toLowerCase();
+    const filtered = data.filter(
+      (dat) =>
+        dat.chapter_title.toLowerCase().includes(searchText)
+    );
+    setFilteredData(filtered);
+  };
 
   return (
     <div>
-        <h1>Home</h1>
-        <p>One Piece</p>
+      <input type="text" className="searchbar" onChange={handleSearch} />
+      {filteredData && (
+        <div>
+          {filteredData.map((dat) => (
+            <div className="chapter" key={dat.id}>
+              {dat.chapter_title}
+            </div>
+          ))}
+        </div>
+      )}
     </div>
-    );
+  );
 }
 
 export default Home;
