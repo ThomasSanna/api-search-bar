@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/Home.css";
+import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
 
 function Home() {
@@ -34,19 +35,22 @@ function Home() {
       withnumber.checked = true;
       withnumber.classList.add("filter-checked");
     }
-    
+
     updateFilteredData(data);
-  }
+  };
 
   const reverseNum = () => {
-    document.querySelector(".reverse-back").checked = !document.querySelector(".reverse-back").checked
+    document.querySelector(".reverse-back").checked =
+      !document.querySelector(".reverse-back").checked;
     if (document.querySelector(".reverse-back").checked) {
       document.querySelector(".reverse-back").classList.add("reverse-checked");
     } else {
-      document.querySelector(".reverse-back").classList.remove("reverse-checked");
+      document
+        .querySelector(".reverse-back")
+        .classList.remove("reverse-checked");
     }
     updateFilteredData(data);
-  }
+  };
 
   const updateFilteredData = (data) => {
     const withnumber = document.getElementById("withnumber");
@@ -57,15 +61,32 @@ function Home() {
 
     const filtered = data.filter(
       (dat) =>
-        (withtitle.checked && dat.chapter_title.toLowerCase().includes(searchText)) ||
-        (dat.chapter_description && withdescription.checked &&
+        (withtitle.checked &&
+          dat.chapter_title.toLowerCase().includes(searchText)) ||
+        (dat.chapter_description &&
+          withdescription.checked &&
           dat.chapter_description.toLowerCase().includes(searchText)) ||
-        (withnumber.checked && dat.chapter_number
-          .slice(4, dat.chapter_number.length)
-          .includes(searchText))
+        (withnumber.checked &&
+          dat.chapter_number
+            .slice(3, dat.chapter_number.length)
+            .includes(searchText))
     );
     setFilteredData(reversed ? filtered.reverse() : filtered);
-  }
+  };
+
+  const iframeOpen = (e) => {
+    document.querySelector(".iframe-chap").src =
+      "https://littlexgarden.com/one-piece/" + e.target.id + "/1";
+    document.querySelector(".iframe-container").style.display = "flex";
+    const chapterContainer = document.querySelector(".chapter-container");
+    chapterContainer.style.width = "calc(100% - 500px)";
+  };
+
+  const closeIframe = () => {
+    document.querySelector(".iframe-container").style.display = "none";
+    const chapterContainer = document.querySelector(".chapter-container");
+    chapterContainer.style.width = "100%";
+  };
 
   return (
     <div>
@@ -76,56 +97,118 @@ function Home() {
         rel="stylesheet"
       />
 
-
       <div className="header-container">
         <span className="header-search">
           <span className="cont-searchbar">
-            <input type="text" className="searchbar" onChange={handleSearch} placeholder="Numéro, Titre ou Description du chapitre.." />
+            <input
+              type="text"
+              className="searchbar"
+              onChange={handleSearch}
+              placeholder="Numéro, Titre ou Description du chapitre.."
+            />
             <span onClick={reverseNum} className="reverse-back">
-              <img className="button-reverse" src={reverseImage} alt="bouton reverse" title="Trier par ordre décroissant"/>
+              <img
+                className="button-reverse"
+                src={reverseImage}
+                alt="bouton reverse"
+                title="Trier par ordre décroissant"
+              />
             </span>
           </span>
-          <h5 className="nb-result">{filteredData? filteredData.length === 1? '1 résultat trouvé.' : filteredData.length + ' résultats trouvés.' : null}</h5>
+          <h5 className="nb-result">
+            {filteredData
+              ? filteredData.length === 1
+                ? "1 résultat trouvé."
+                : filteredData.length + " résultats trouvés."
+              : null}
+          </h5>
         </span>
         <span className="header-checkbox">
           <div className="sme">Trier par :</div>
-          <div checked onClick={clickChangeFilter} className="sme check filter-checked" id="withnumber">Numéros</div>
-          <div checked onClick={clickChangeFilter} className="sme check filter-checked" id="withtitle">Titres</div>
-          <div checked onClick={clickChangeFilter} className="sme check filter-checked" id="withdescription">Descritpions</div>
+          <div
+            checked
+            onClick={clickChangeFilter}
+            className="sme check filter-checked"
+            id="withnumber"
+          >
+            Numéros
+          </div>
+          <div
+            checked
+            onClick={clickChangeFilter}
+            className="sme check filter-checked"
+            id="withtitle"
+          >
+            Titres
+          </div>
+          <div
+            checked
+            onClick={clickChangeFilter}
+            className="sme check filter-checked"
+            id="withdescription"
+          >
+            Descritpions
+          </div>
         </span>
       </div>
 
-      <div>
+      <div className="main-container">
         {filteredData && (
           <div className="chapter-container">
             {filteredData.map((dat) => (
-              <a
-                href={"https://littlexgarden.com/one-piece/" + dat.id + "/1"}
-                rel="noreferrer"
-                target="_blank"
-                className="chapter-link"
-                key={dat.id}
-              >
-                <img className="backImage" src="https://www.glenat.com/sites/default/files/images/livres/couv/9782723488525-T.jpg" alt="background" />
+              <div onClick={iframeOpen} className="chapter-link">
+                <img
+                  className="backImage"
+                  src="https://www.glenat.com/sites/default/files/images/livres/couv/9782723488525-T.jpg"
+                  alt="background"
+                />
                 <p className="chapter-number">
                   {dat.chapter_number.slice(3, dat.chapter_number.length)}
                 </p>
                 <p className="chapter-title">{dat.chapter_title}</p>
-                <p className="chapter-description">
+                <p
+                  id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                  className="chapter-description"
+                >
                   {dat.chapter_description
                     ? dat.chapter_description
                     : "Ce chapitre n'a pas de description."}
                   <span className="aall-link">
-                    <a className="alink color-link" rel="noreferrer" target="_blank" href={"https://littlexgarden.com/one-piece/" + dat.id + "/1"}>Lire en couleur (VF).</a>
-                    <a className="alink nb-link" rel="noreferrer" target="_blank" href={"https://esj.tn/manga/one-piece-chapter-" + dat.id + "/"}>Lire en noir et blanc (VA).</a>
+                    <a
+                      className="alink color-link"
+                      rel="noreferrer"
+                      target="_blank"
+                      href={
+                        "https://littlexgarden.com/one-piece/" + dat.id + "/1"
+                      }
+                    >
+                      Lire en couleur (VF).
+                    </a>
+                    <a
+                      className="alink nb-link"
+                      rel="noreferrer"
+                      target="_blank"
+                      href={
+                        "https://esj.tn/manga/one-piece-chapter-" + dat.id + "/"
+                      }
+                    >
+                      Lire en noir et blanc (VA).
+                    </a>
                   </span>
                 </p>
-              </a>
+              </div>
             ))}
           </div>
         )}
         <div className="iframe-container">
-          <iframe className="iframe-chap" src="https://littlexgarden.com/one-piece/1086/1" title="LittleXGarden.com"></iframe>
+          <picture onClick={closeIframe} className="close-iframe">
+            <img src={croixSVG} className="close-iframe-img" alt="croix" />
+          </picture>
+          <iframe
+            className="iframe-chap"
+            src=""
+            title="LittleXGarden.com"
+          ></iframe>
         </div>
       </div>
     </div>

@@ -4,6 +4,11 @@
     padding: 0;
 }
 
+*::selection {
+    background-color: #55738f;
+    color: rgb(252, 252, 252);
+}
+
 body {
     color: white;
     background-color: rgb(235, 235, 235);
@@ -28,7 +33,7 @@ body {
     flex-direction: row;
     justify-content: space-between;
     z-index: 1000;
-    border-bottom: 5px solid rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 /* HEADER SEARCH */
@@ -135,6 +140,8 @@ body {
 /* CHAPTERS CONTAINER */
 
 .chapter-container{
+    user-select: none;
+    -webkit-user-select: none;
     margin-top: 5rem;
     width: 100vw;
     height: auto;
@@ -158,6 +165,7 @@ body {
 }
 
 .chapter-link{
+    cursor: pointer;
     text-decoration: none;
     color: rgb(255, 255, 255);
     border-radius: 0.5rem;
@@ -166,12 +174,13 @@ body {
     z-index: 1;
     overflow: hidden;
     margin-bottom: 2rem;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     border: 0px solid rgba(15, 28, 46, 0.692);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
 }
 
 .chapter-link:hover{
@@ -252,4 +261,67 @@ body {
 
 .nb-link{
     margin-top: 5px;
+}
+
+.main-container{
+    display: flex;
+}
+
+.iframe-container{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    width: 450px;
+    z-index: 20;
+    display: none;
+    justify-content: center;
+    align-items: end;
+
+}
+
+.iframe-chap{
+    width: 100%;
+    height: calc(100vh);
+    border: none;
+    outline: none;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+
+.close-iframe{
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    outline: none;
+    position: absolute;
+    top: 120px;
+    right: 20px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.486);
+    color: rgb(255, 255, 255);
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 21;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(199, 222, 255, 0.678);
+    border: white 2px solid;
+}
+
+.close-iframe-img{
+    height: 20px;
+    width: 20px;
+    filter: invert(10%);
+}
+
+.close-iframe:hover{
+    border: rgba(0, 0, 0, 0.486) 2px solid;
+    background-color: rgba(86, 100, 119, 0.411);
+}
+
+.close-iframe:hover .close-iframe-img{
+    filter: invert(20%);
 }
