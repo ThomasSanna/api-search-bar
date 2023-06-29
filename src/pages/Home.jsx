@@ -3,6 +3,7 @@ import "../styles/Home.css";
 import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
+import resetImage from "../assets/images/reset.svg";
 
 function Home() {
   const [data, setData] = useState(null);
@@ -17,12 +18,12 @@ function Home() {
       });
   }, []);
 
-  const restartSearch = () => {
+  const resetSearch = () => {
     document.querySelector(".searchbar").value = "";
     updateFilteredData(data);
   }
 
-  const handleSearch = (e) => {
+  const handleSearch = () => {
     updateFilteredData(data);
   };
 
@@ -152,13 +153,23 @@ function Home() {
               onChange={handleSearch}
               placeholder="Numéro, Titre ou Description du chapitre.."
             />
-            <span onClick={reverseNum} className="reverse-back">
-              <img
-                className="button-reverse"
-                src={reverseImage}
-                alt="bouton reverse"
-                title="Trier par ordre décroissant"
-              />
+            <span className="buttons-search">
+              <span onClick={reverseNum} className="reverse-back">
+                <img
+                  className="button-reverse"
+                  src={reverseImage}
+                  alt="bouton reverse"
+                  title="Trier par ordre décroissant"
+                />
+              </span>
+              <span onClick={resetSearch} className="reverse-back">
+                <img
+                  className="button-reverse"
+                  src={resetImage}
+                  alt="bouton reset"
+                  title="Réinitialiser la recherche"
+                />
+              </span>
             </span>
           </span>
           <h5 className="nb-result">

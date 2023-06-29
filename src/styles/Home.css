@@ -59,6 +59,9 @@ body {
     border-radius: 0.5rem;
     background-color: rgb(75, 85, 100);
     transition: all 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .reverse-checked{
@@ -73,10 +76,18 @@ body {
     filter: invert(22%) sepia(11%) saturate(1597%) hue-rotate(159deg) brightness(98%) contrast(86%) !important;
 }
 
+.buttons-search{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
 .button-reverse{
     transition: all 0.2s ease-in-out;
-    width: 50px;
-    height: 50px;
+    width: 47px;
+    height: 47px;
     border: none;
     outline: none;
     padding: 0.5rem;
@@ -420,6 +431,7 @@ body {
     align-items: center;
     background-color: rgba(199, 222, 255, 0.678);
     border: white 2px solid;
+    transition: all 0.1s ease-in-out;
 }
 
 .close-iframe-img{
@@ -429,10 +441,10 @@ body {
 }
 
 .close-iframe:hover{
-    border: rgba(0, 0, 0, 0.486) 2px solid;
+    border: rgba(141, 141, 141, 0.486) 2px solid;
     background-color: rgba(86, 100, 119, 0.411);
 }
 
 .close-iframe:hover .close-iframe-img{
-    filter: invert(20%);
+    filter: invert(50%);
 }
