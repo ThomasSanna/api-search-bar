@@ -124,8 +124,8 @@ function Home() {
             ))}
           </div>
         )}
-        <div>
-          <iframe src="https://littlexgarden.com/one-piece/1086/1" title="description"></iframe>
+        <div className="iframe-container">
+          <iframe className="iframe-chap" src="https://littlexgarden.com/one-piece/1086/1" title="LittleXGarden.com"></iframe>
         </div>
       </div>
     </div>
