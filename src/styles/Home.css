@@ -6,7 +6,7 @@
 
 body {
     color: white;
-    background-color: rgb(226, 226, 226);
+    background-color: rgb(235, 235, 235);
     font-family: 'Rubik', serif;
     font-weight: 400;
     width: 100vw;
@@ -153,7 +153,8 @@ body {
     position: absolute;
     z-index: -1;
     border-radius: 0.5rem;
-
+    object-fit: cover;
+    object-position: 75% 25%;
 }
 
 .chapter-link{
@@ -247,4 +248,8 @@ body {
     color: rgb(171, 224, 255);
     display: flex;
     flex-direction: column;
+}
+
+.nb-link{
+    margin-top: 5px;
 }

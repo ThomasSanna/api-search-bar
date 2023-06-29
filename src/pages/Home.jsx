@@ -95,35 +95,39 @@ function Home() {
         </span>
       </div>
 
-
-      {filteredData && (
-        <div className="chapter-container">
-          {filteredData.map((dat) => (
-            <a
-              href={"https://littlexgarden.com/one-piece/" + dat.id + "/1"}
-              rel="noreferrer"
-              target="_blank"
-              className="chapter-link"
-              key={dat.id}
-            >
-              <img className="backImage" src="https://www.slashfilm.com/img/gallery/one-piece-film-red-showcases-luffys-new-transformation-for-the-first-time/l-intro-1667316814.jpg" alt="background" />
-              <p className="chapter-number">
-                {dat.chapter_number.slice(3, dat.chapter_number.length)}
-              </p>
-              <p className="chapter-title">{dat.chapter_title}</p>
-              <p className="chapter-description">
-                {dat.chapter_description
-                  ? dat.chapter_description
-                  : "Ce chapitre n'a pas de description."}
-                <span className="aall-link">
-                  <a className="alink color-link" rel="noreferrer" target="_blank" href={"https://littlexgarden.com/one-piece/" + dat.id + "/1"}>Lire en couleur (VF).</a>
-                  <a className="alink nb-link" rel="noreferrer" target="_blank" href={"https://esj.tn/manga/one-piece-chapter-" + dat.id + "/"}>Lire en noir et blanc (VA).</a>
-                </span>
-              </p>
-            </a>
-          ))}
+      <div>
+        {filteredData && (
+          <div className="chapter-container">
+            {filteredData.map((dat) => (
+              <a
+                href={"https://littlexgarden.com/one-piece/" + dat.id + "/1"}
+                rel="noreferrer"
+                target="_blank"
+                className="chapter-link"
+                key={dat.id}
+              >
+                <img className="backImage" src="https://www.glenat.com/sites/default/files/images/livres/couv/9782723488525-T.jpg" alt="background" />
+                <p className="chapter-number">
+                  {dat.chapter_number.slice(3, dat.chapter_number.length)}
+                </p>
+                <p className="chapter-title">{dat.chapter_title}</p>
+                <p className="chapter-description">
+                  {dat.chapter_description
+                    ? dat.chapter_description
+                    : "Ce chapitre n'a pas de description."}
+                  <span className="aall-link">
+                    <a className="alink color-link" rel="noreferrer" target="_blank" href={"https://littlexgarden.com/one-piece/" + dat.id + "/1"}>Lire en couleur (VF).</a>
+                    <a className="alink nb-link" rel="noreferrer" target="_blank" href={"https://esj.tn/manga/one-piece-chapter-" + dat.id + "/"}>Lire en noir et blanc (VA).</a>
+                  </span>
+                </p>
+              </a>
+            ))}
+          </div>
+        )}
+        <div>
+          <iframe src="https://littlexgarden.com/one-piece/1086/1" title="description"></iframe>
         </div>
-      )}
+      </div>
     </div>
   );
 }
