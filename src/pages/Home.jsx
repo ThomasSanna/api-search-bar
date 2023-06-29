@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../styles/Home.css";
 import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
+import arrowDown from "../assets/images/down.png";
 
 function Home() {
   const [data, setData] = useState(null);
@@ -150,8 +151,16 @@ function Home() {
             Descritpions
           </div>
         </span>
-        <span>
-          <span>Trier par Tome <img src="" alt="" /> </span>
+        <span className="header-tome-tri-container">
+          <span className="header-tome-tri">
+            <span>
+              Trier par Tome
+            </span> 
+              <img className="arrow-down" src={arrowDown} alt="flèche vers le bas" /> 
+          </span>
+          <div className="tome-select-container">
+              
+          </div>
         </span>
       </div>
 
