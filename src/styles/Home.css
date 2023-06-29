@@ -5,7 +5,8 @@
 }
 
 body {
-    background-color: rgb(231, 231, 231);
+    color: white;
+    background-color: rgb(226, 226, 226);
     font-family: 'Rubik', serif;
     font-weight: 400;
     width: 100vw;
@@ -17,7 +18,57 @@ body {
 /* HEADER */
 
 .header-container{
+    position: fixed;
+    top: 0;
     width: 100vw;
+    height: 90px;
+    background: linear-gradient(90deg, rgba(46, 67, 87, 0.678) 0%, rgba(53, 89, 94, 0.678) 100%);
+    display: flex;
+    padding: 10px 50px;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1000;
+    border-bottom: 5px solid rgb(255, 255, 255);
+}
+
+/* HEADER SEARCH */
+
+.header-search{
+    padding-top: 3px;
+}
+
+.reverse-back{
+    margin-left: 3px;
+    border-radius: 0.5rem;
+    background-color: rgb(75, 85, 100);
+    transition: all 0.2s ease-in-out;
+}
+
+.reverse-checked{
+    background-color: rgb(245, 245, 245) !important;
+}
+
+.reverse-checked .button-reverse{
+    filter: invert(22%) sepia(11%) saturate(1597%) hue-rotate(159deg) brightness(98%) contrast(86%) !important;
+}
+
+.button-reverse{
+    transition: all 0.2s ease-in-out;
+    width: 50px;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    filter: invert(100%) sepia(1%) saturate(6313%) hue-rotate(173deg) brightness(95%) contrast(96%);
+
+}
+
+.cont-searchbar{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
 }
 
 .searchbar {
@@ -31,9 +82,54 @@ body {
 }
 
 .searchbar:focus {
-    border: 1px solid rgb(138, 138, 138);
+    border: 3px solid #3e5766;
 }
 
+.searchbar:focus::placeholder  {
+    color: rgb(187, 187, 187);
+}
+
+.nb-result{
+    user-select: none;
+    -webkit-user-select: none;
+    color: rgb(255, 255, 255);
+    font-size: .8rem;
+    font-weight: 500;
+    margin-top: 2px;
+    padding-right: 10px;
+    text-align: end;
+}
+
+/* HEADER CHECKBOX FILTER */
+
+.header-checkbox{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.sme{
+    margin-right: 5px;
+    font-size: 1.2rem;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.filter-checked {
+    background-color: rgb(229, 235, 235) !important;
+    color: #304755 !important;
+}
+
+.check {
+    border-radius: 5px;
+    background-color: rgb(75, 85, 100);
+    color: rgb(231, 235, 238);
+    padding: 2px 7px;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
 
 
 /* CHAPTERS CONTAINER */
@@ -51,13 +147,18 @@ body {
     
 }
 
+.backImage {
+    height: 290px;
+    width: 450px;
+    position: absolute;
+    z-index: -1;
+    border-radius: 0.5rem;
+
+}
+
 .chapter-link{
     text-decoration: none;
     color: rgb(255, 255, 255);
-    background-image: url('https://www.slashfilm.com/img/gallery/one-piece-film-red-showcases-luffys-new-transformation-for-the-first-time/l-intro-1667316814.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     border-radius: 0.5rem;
     height: 300px;
     width: 450px;
@@ -69,7 +170,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 3px solid rgba(15, 28, 46, 0.692);
+    border: 0px solid rgba(15, 28, 46, 0.692);
 }
 
 .chapter-link:hover{
@@ -105,7 +206,8 @@ body {
 }
 
 .chapter-link:hover .chapter-description{
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 0;
     left: 0;
@@ -115,10 +217,34 @@ body {
     -webkit-backdrop-filter: blur(3px);
     background-color: rgba(15, 28, 46, 0.623);
     color: rgb(255, 255, 255);
-    font-size: 1.5rem;  
+    font-size: 1.1rem;  
     font-weight: 500;
     padding: 0.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.aall-link{
+    width: 100%;
+    color: rgb(171, 224, 255);
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.color-link:hover, .nb-link:hover{
+    color: rgb(255, 255, 255);
+}
+
+.color-link, .nb-link {
+    font-size: 1.2rem;
+    color: rgb(171, 224, 255);
+    display: flex;
+    flex-direction: column;
 }
