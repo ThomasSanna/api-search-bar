@@ -150,6 +150,9 @@ function Home() {
             Descritpions
           </div>
         </span>
+        <span>
+          <span>Trier par Tome <img src="" alt="" /> </span>
+        </span>
       </div>
 
       <div className="main-container">
