@@ -196,7 +196,7 @@ body {
 }
 
 .arc-checked .arrow-down{
-    rotate: 180deg;
+    transform: rotate(180deg);
     transition: all 0.2s ease-in-out;
 }
 
@@ -294,7 +294,7 @@ body {
     border-radius: 0.5rem;
     object-fit: cover;
     object-position: 50% 50%;
-    scale: 0.998;
+    transform: scale(0.998);
 }
 
 .chapter-link{
@@ -328,8 +328,8 @@ body {
     padding: 0.5rem;
     background-color: rgba(15, 28, 46, 0.692);
     padding: 9px 0;
-    backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 .chapter-title{
@@ -340,8 +340,8 @@ body {
     padding: 0.5rem;
     background-color: rgba(15, 28, 46, 0.678);
     padding: 9px 5px;
-    backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
 }
 
 .chapter-description{
@@ -356,8 +356,8 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     background-color: rgba(15, 28, 46, 0.623);
     color: rgb(255, 255, 255);
     font-size: 1.1rem;  
@@ -446,7 +446,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(199, 222, 255, 0.678);
+    background-color: rgba(35, 53, 80, 0.678);
     border: white 2px solid;
     transition: all 0.1s ease-in-out;
 }
@@ -454,7 +454,7 @@ body {
 .close-iframe-img{
     height: 20px;
     width: 20px;
-    filter: invert(10%);
+    filter: invert(100%);
 }
 
 .close-iframe:hover{
@@ -465,6 +465,40 @@ body {
 .close-iframe:hover .close-iframe-img{
     filter: invert(50%);
 }
+
+.arrows-iframe{
+    position:absolute;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: auto;
+    padding: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.557);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-radius: 2px;
+    border: #304755 2px solid;
+}
+
+.arrow-tri{
+    height: 50px;
+    width: auto;
+    object-fit: cover;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+    filter: invert(22%) sepia(11%) saturate(1597%) hue-rotate(159deg) brightness(98%) contrast(86%) !important;
+}
+
+.arrow-tri:hover{
+    filter: invert(15%) sepia(0%) saturate(749%) hue-rotate(0deg) brightness(100%) contrast(100%) !important;
+}
+
+.arrow-suivant{
+    transform: rotate(180deg);
+}
+
 
 /* MORE INFO MENU --------------------------------------------------*/
 
@@ -503,8 +537,8 @@ body {
     background-color: #454b59cc;
     padding: 1rem;
     border-radius: 5px;
-    backdrop-filter: blur(3px);
-    -webkit-backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
     border: #d5d6d6 1px solid;
     z-index: 10000;
     font-size: .95rem;

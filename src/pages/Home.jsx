@@ -4,12 +4,14 @@ import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
 import resetImage from "../assets/images/reset.svg";
+import arrowTriangle from "../assets/images/arrowTriangle.svg";
 import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
 
 function Home() {
   const [data, setData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
+  const [currentId, setCurrentId] = useState(null);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/chapters")
@@ -70,27 +72,25 @@ function Home() {
     const withnumber = document.getElementById("withnumber");
     const withtitle = document.getElementById("withtitle");
     const withdescription = document.getElementById("withdescription");
-    const searchText = document.querySelector(".searchbar").value.toLowerCase();
+    const searchText = document.querySelector(".searchbar").value.toLowerCase().split(" ");
     const reversed = document.querySelector(".reverse-back").checked;
-
-    const filtered = data.filter(
-      (dat) =>
-        (withtitle.checked &&
-          dat.chapter_title.toLowerCase().includes(searchText)) ||
-        (dat.chapter_description &&
-          withdescription.checked &&
-          dat.chapter_description.toLowerCase().includes(searchText)) ||
-        (withnumber.checked &&
-          dat.chapter_number
-            .slice(3, dat.chapter_number.length)
-            .includes(searchText))
-    );
+  
+    const filtered = data.filter((dat) => {
+      const titleKeywords = withtitle.checked && searchText.every(keyword => dat.chapter_title.toLowerCase().includes(keyword));
+      const descriptionKeywords = dat.chapter_description && withdescription.checked && searchText.every(keyword => dat.chapter_description.toLowerCase().includes(keyword));
+      const numberKeywords = withnumber.checked && searchText.every(keyword => dat.chapter_number.slice(3, dat.chapter_number.length).includes(keyword));
+  
+      return titleKeywords || descriptionKeywords || numberKeywords;
+    });
+  
     setFilteredData(reversed ? filtered.reverse() : filtered);
   };
+  
 
   const iframeOpen = (e) => {
-    document.querySelector(".iframe-chap").src =
-      "https://littlexgarden.com/one-piece/" + e.target.id + "/1";
+    // document.querySelector(".iframe-chap").src =
+    //   "https://littlexgarden.com/one-piece/" + e.target.id + "/1";
+    setCurrentId(e.target.id);
     document.querySelector(".iframe-container").style.display = "flex";
     const chapterContainer = document.querySelector(".chapter-container");
     chapterContainer.style.width = "calc(100% - 500px)";
@@ -359,9 +359,13 @@ function Home() {
           </picture>
           <iframe
             className="iframe-chap"
-            src=""
+            src={currentId? "https://littlexgarden.com/one-piece/" + currentId + "/1" : ""}
             title="LittleXGarden.com"
           ></iframe>
+          <div className="arrows-iframe">
+            <img className="arrow-tri arrow-precedent" onClick={() => setCurrentId((parseInt(currentId) - 1).toString())} title={"Aller au chapitre " + (parseInt(currentId) - 1).toString()} src={arrowTriangle} alt="Flèche Chapitre précédent" />
+            <img className="arrow-tri arrow-suivant" onClick={() => setCurrentId((parseInt(currentId) + 1).toString())} title={"Aller au chapitre " + (parseInt(currentId) + 1).toString()} src={arrowTriangle} alt="Flèche Chapitre suivant" />
+          </div>
         </div>
       </main>
       <footer>
