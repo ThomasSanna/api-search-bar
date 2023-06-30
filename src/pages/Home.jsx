@@ -5,6 +5,7 @@ import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
 import resetImage from "../assets/images/reset.svg";
 import { coverArray } from "../scripts/coverChap.jsx";
+import Footer from "../components/Footer";
 
 function Home() {
   const [data, setData] = useState(null);
@@ -141,6 +142,29 @@ function Home() {
     }
   }
 
+  const countAnnee = (anneefirst) =>{
+    if (anneefirst){
+      let annee = parseInt(anneefirst.slice(0, 4))
+      let anneeactuelle = new Date().getFullYear()
+      return - annee + parseInt(anneeactuelle)
+    } else {
+      return "XX"
+    }
+  }
+
+  const moreInfoTabAppear = (e) => {
+    e.target.nextElementSibling.style.display = "flex";
+  }
+
+  const moreInfoTabDisappear = (e) => {
+    e.target.nextElementSibling.style.display = "none";
+  }
+
+  
+
+
+  // ----°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°------------------------------------------------------------------
+
   return (
     <div>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -149,8 +173,9 @@ function Home() {
         href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,300&family=Rubik:wght@400;500;700&display=swap"
         rel="stylesheet"
       />
+      {/* polices : Noto Serif, Rubik */}
 
-      <div className="header-container">
+      <header className="header-container">
         <span className="header-search">
           <span className="cont-searchbar">
             <input
@@ -257,17 +282,19 @@ function Home() {
               </ul>
           </div>
         </span>
-      </div>
+      </header>
 
-      <div className="main-container">
+      {/* CHAPTER VISUAL ---------------------------------------------------- */}
+
+      <main className="main-container">
         {filteredData && (
-          <div className="chapter-container">
+          <ul className="chapter-container">
             {filteredData.map((dat) => (
-              <div onClick={iframeOpen} className="chapter-link">
+              <li onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
                   src={coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))]? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"}
-                  alt="background"
+                  alt={"One Piece chapitre n°" + dat.id.toString()}
                   loading={dat.id<100||dat.id>1000? "eager" : "lazy"}
                 />
                 <p className="chapter-number">
@@ -276,8 +303,24 @@ function Home() {
                 <p className="chapter-title">{dat.chapter_title}</p>
                 <p
                   id={dat.chapter_number.slice(3, dat.chapter_number.length)}
-                  className="chapter-description"
-                >
+                  className="chapter-description">
+
+                  <div className="more-info-container">
+                    <p className="more-info-button" id={dat.chapter_number.slice(3, dat.chapter_number.length)} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>
+                    <div className="more-info-tab" id={dat.chapter_number.slice(3, dat.chapter_number.length)} >
+                      <p className="more-info-title">
+                        "<i>{dat.chapter_title}</i>", Ch. n°{dat.chapter_number.slice(3, dat.chapter_number.length)}
+                      </p>
+                      <p className="more-info-tome">
+                        Tome n°{dat.tome.id}: "<i>{dat.tome.tome_title}</i>"
+                      </p>
+                      <p className="more-info-sortie">
+                        <div>Sortie Japon: {dat.tome.tome_japan_date_publish} (il y a {countAnnee(dat.tome.tome_japan_date_publish)} ans) </div>
+                        <div>Sortie France: {dat.tome.tome_french_date_publish} (il y a {countAnnee(dat.tome.tome_french_date_publish)} ans) </div>
+                      </p>
+                    </div>
+                  </div>
+
                   {dat.chapter_description
                     ? dat.chapter_description
                     : "Ce chapitre n'a pas de description."}
@@ -289,6 +332,7 @@ function Home() {
                       href={
                         "https://littlexgarden.com/one-piece/" + dat.id + "/1"
                       }
+                      id={dat.chapter_number.slice(3, dat.chapter_number.length)}
                     >
                       Lire en couleur (VF).
                     </a>
@@ -299,14 +343,15 @@ function Home() {
                       href={
                         "https://esj.tn/manga/one-piece-chapter-" + dat.id + "/"
                       }
+                      id={dat.chapter_number.slice(3, dat.chapter_number.length)}
                     >
                       Lire en noir et blanc (VA).
                     </a>
                   </span>
                 </p>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
         <div className="iframe-container">
           <picture onClick={closeIframe} className="close-iframe">
@@ -318,7 +363,10 @@ function Home() {
             title="LittleXGarden.com"
           ></iframe>
         </div>
-      </div>
+      </main>
+      <footer>
+        <Footer  />
+      </footer>
     </div>
   );
 }

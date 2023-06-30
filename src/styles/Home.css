@@ -9,21 +9,33 @@
     color: rgb(252, 252, 252);
 }
 
+*::-moz-selection {
+    background-color: #55738f;
+    color: rgb(252, 252, 252);
+}
+
+*::-webkit-selection {
+    background-color: #55738f;
+    color: rgb(252, 252, 252);
+}
+
 *::-webkit-scrollbar {
-    width: 10px;
+    width: 15px;
     background-color: rgb(255, 255, 255);
     border-radius: 0.rem;
 }
 
 *::-webkit-scrollbar-thumb {
     background-color: rgb(75, 85, 100);
+    border: 1px solid rgb(41, 47, 55);
     border-radius: 0.1rem;
     height: 50px;
 }
+/* Don't work on Firefox */
 
 body {
     color: white;
-    background-color: rgb(235, 235, 235);
+    background-color: #ebebeb;
     font-family: 'Rubik', serif;
     font-weight: 400;
     width: 100vw;
@@ -32,7 +44,7 @@ body {
 
 
 
-/* HEADER */
+/* HEADER----------------------------------------------------------  */
 
 .header-container{
     position: fixed;
@@ -48,7 +60,7 @@ body {
     border-bottom: 1px solid rgb(255, 255, 255);
 }
 
-/* HEADER SEARCH */
+/* HEADER SEARCH----------------------------------------------------------  */
 
 .header-search{
     padding-top: 3px;
@@ -132,7 +144,7 @@ body {
     text-align: end;
 }
 
-/* HEADER CHECKBOX FILTER */
+/* HEADER CHECKBOX FILTER----------------------------------------------------------  */
 
 .header-checkbox{
     display: flex;
@@ -170,7 +182,7 @@ body {
 }
 
 
-/* HEADER TOME */
+/* HEADER TOME----------------------------------------------------------  */
 
 .header-tome-tri-container{
     height: 100%;
@@ -208,10 +220,12 @@ body {
     transition: all 0.2s ease-in-out;
 }
 
-/* HEADER TOME SELECT */
+/* HEADER TOME SELECT---------------------------------------------------------- */
 
 
 .tome-select-container{
+    border-left: white 1px solid;
+    border-top: white 1px solid;
     -webkit-user-select: none;
     user-select: none;
     width: 380px;
@@ -255,7 +269,7 @@ body {
     background-color: rgba(255, 255, 255, 0.96);
 }
 
-/* CHAPTERS CONTAINER */
+/* CHAPTERS CONTAINER------------------------------------------------------- */
 
 .chapter-container{
     -webkit-user-select: none;
@@ -280,6 +294,7 @@ body {
     border-radius: 0.5rem;
     object-fit: cover;
     object-position: 50% 50%;
+    scale: 0.998;
 }
 
 .chapter-link{
@@ -383,6 +398,7 @@ body {
 }
 
 .main-container{
+    min-height: calc(100vh - 116px);
     display: flex;
     justify-content: flex-end;
 }
@@ -448,4 +464,57 @@ body {
 
 .close-iframe:hover .close-iframe-img{
     filter: invert(50%);
+}
+
+/* MORE INFO MENU --------------------------------------------------*/
+
+.more-info-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    z-index: 10;
+}
+
+.more-info-button{
+    height: 30px;
+    width: 30px;
+    font-family: 'Noto Serif', serif;
+    border-radius: 10px;
+    border: #d5d6d6 2px solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    color: #d5d6d6;
+}
+
+.more-info-button:hover{
+    background-color: #5064708c;
+    border: #e9eef28c 2px solid;
+}
+
+.more-info-tab{
+    top: 50px;
+    position: absolute;
+    height: 190px;
+    width: 400px;
+    background-color: #454b59cc;
+    padding: 1rem;
+    border-radius: 5px;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: #d5d6d6 1px solid;
+    z-index: 10000;
+    font-size: .95rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align:justify;
+    align-items: flex-start;
+}
+
+.more-info-tab *{
+    color: #d5d6d6;
 }

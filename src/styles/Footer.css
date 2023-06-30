@@ -1,0 +1,44 @@
+.credit-all {
+    height: 100px;
+    width: 100vw;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #fff;
+    background-color: #3f4654;
+    margin-top: 1rem;
+    box-shadow: 0 0 0.5rem #000;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.credit-all *::selection {
+    background-color: #ffffff;
+    color: #363636;
+}
+
+.credit-all *::-moz-selection {
+    background-color: #ffffff;
+    color: #363636;
+}
+
+.credit-all *::-webkit-selection {
+    background-color: #ffffff;
+    color: #363636;
+}
+
+.credit-website{
+    position: absolute;
+    right: 0;
+    padding-top: 70px;
+    padding-right: 5px;
+    font-size: .8rem;
+}
+
+.credit-link{
+    color: #fff;
+    text-decoration: underline;
+    transition: color 0.5s ease-in-out;
+}
