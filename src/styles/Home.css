@@ -279,7 +279,7 @@ body {
     z-index: -1;
     border-radius: 0.5rem;
     object-fit: cover;
-    object-position: 75% 25%;
+    object-position: 50% 50%;
 }
 
 .chapter-link{

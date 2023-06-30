@@ -4,6 +4,7 @@ import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
 import resetImage from "../assets/images/reset.svg";
+import { coverArray } from "../scripts/coverChap.jsx";
 
 function Home() {
   const [data, setData] = useState(null);
@@ -16,6 +17,10 @@ function Home() {
         setData(data);
         setFilteredData(data);
       });
+  }, []);
+
+  useEffect(() => {
+    document.title = "One Piece - Chapitres";
   }, []);
 
   const resetSearch = () => {
@@ -60,6 +65,7 @@ function Home() {
   };
 
   const updateFilteredData = (data) => {
+    console.log(coverArray);
     const withnumber = document.getElementById("withnumber");
     const withtitle = document.getElementById("withtitle");
     const withdescription = document.getElementById("withdescription");
@@ -260,8 +266,9 @@ function Home() {
               <div onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
-                  src="https://www.glenat.com/sites/default/files/images/livres/couv/9782723488525-T.jpg"
+                  src={coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))]? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"}
                   alt="background"
+                  loading="lazy"
                 />
                 <p className="chapter-number">
                   {dat.chapter_number.slice(3, dat.chapter_number.length)}
