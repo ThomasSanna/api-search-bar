@@ -268,7 +268,7 @@ function Home() {
                   className="backImage"
                   src={coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))]? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"}
                   alt="background"
-                  loading="lazy"
+                  loading={dat.id<100||dat.id>1000? "eager" : "lazy"}
                 />
                 <p className="chapter-number">
                   {dat.chapter_number.slice(3, dat.chapter_number.length)}
