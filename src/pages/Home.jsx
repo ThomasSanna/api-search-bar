@@ -23,6 +23,10 @@ function Home() {
   }, []);
 
   useEffect(() => {
+    const html = document.querySelector("html");
+    const body = document.querySelector("body");
+    html.classList.add("night-html");
+    body.classList.add('night')
     document.title = "One Piece - Chapitres";
   }, []);
 
@@ -96,7 +100,7 @@ function Home() {
     setCurrentId(e.target.id.toString());
     document.querySelector(".iframe-container").style.display = "flex";
     const chapterContainer = document.querySelector(".chapter-container");
-    chapterContainer.style.width = "calc(100% - 500px)";
+    window.innerWidth <= 1000? chapterContainer.style.width = '100vw' : chapterContainer.style.width = "calc(100% - 500px)";
     const currId = e.target.id.toString();
     verifArrowOnClick(currId);
   };
@@ -224,6 +228,8 @@ function Home() {
     }
   }
 
+  
+
 
   // ----°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-----------------------------------------------------------------
   return (
@@ -273,7 +279,7 @@ function Home() {
           </h5>
         </span>
         <span className="header-checkbox">
-          <div className="sme">Trier par :</div>
+          <div className="sme tri-par">Trier par :</div>
           <div
             checked
             onClick={clickChangeFilter}
@@ -358,10 +364,10 @@ function Home() {
                   alt={"One Piece chapitre n°" + dat.id.toString()}
                   loading="lazy"
                 />
-                <p className="chapter-number">
+                <p className="chapter-number chapter-night">
                   {dat.chapter_number.slice(3, dat.chapter_number.length)}
                 </p>
-                <p className="chapter-title">{dat.chapter_title}</p>
+                <p className="chapter-title chapter-night">{dat.chapter_title}</p>
                 <p
                   id={dat.chapter_number.slice(3, dat.chapter_number.length)}
                   className="chapter-description">
