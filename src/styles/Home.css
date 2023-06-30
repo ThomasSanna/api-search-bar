@@ -1,3 +1,11 @@
+html{
+    background-color: #f8f8f8;
+}
+
+.night-html {
+    background-color: #1f242d;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -35,7 +43,7 @@
 
 body {
     color: white;
-    background-color: #ebebeb;
+    background: linear-gradient(200deg, #ebebeb, #ffff);
     font-family: 'Rubik', serif;
     font-weight: 400;
     width: 100vw;
@@ -43,8 +51,8 @@ body {
     transition: all 0.1s ease-in-out;
 }
 
-.night-mode-background {
-    background-color: #1B1C21;
+.night {
+    background: linear-gradient(200deg, #1f242d, #0a0d0e);
 }
 
 
@@ -56,7 +64,7 @@ body {
     top: 0;
     width: 100vw;
     height: 90px;
-    background: linear-gradient(90deg, rgba(46, 67, 87, 0.678) 0%, rgba(53, 89, 94, 0.678) 100%);
+    background: linear-gradient(90deg, rgba(46, 67, 87, 0.678) 0%,  rgba(53, 89, 94, 0.678) 100%);
     display: flex;
     padding: 10px 50px;
     flex-direction: row;
@@ -318,7 +326,8 @@ body {
     justify-content: space-between;
     align-items: center;
     border: 0px solid rgba(15, 28, 46, 0.692);
-    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+    /* box-shadow: 0px 0px 2px 2px rgba(172, 223, 255, 0.459); */
+    box-shadow: 10px 10px 0px -5px #d7dbdf;
 }
 
 .chapter-link:hover{
@@ -348,6 +357,7 @@ body {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
+
 
 .chapter-description{
     display: none;
@@ -513,6 +523,8 @@ body {
     left: 0;
     padding: 1rem;
     z-index: 10;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .more-info-button{
@@ -556,4 +568,67 @@ body {
 
 .more-info-tab *{
     color: #d5d6d6;
+}
+
+/* RESPONSIVE -°-°-°-°-°-°-°-°-°°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-° */
+
+@media screen and (max-width: 1000px){
+    *{
+        font-size: 1rem;
+        max-width: 100vw;
+    }
+    body{
+        width: 100vw;
+        overflow-x: hidden !important;
+    }
+    
+    .searchbar{
+        width: 300px;
+        height: 40px;
+    }
+    .searchbar::placeholder{
+        font-size: 1rem;
+    }
+    .searchbar:focus::placeholder{
+        color: transparent;
+    }
+    .nb-result{
+        padding-right: 20px;
+        width: 300px;
+    }
+    .header-checkbox *{
+        font-size: 1rem;
+    }
+    .reverse-back{
+        padding: none;
+        margin: 2px;
+
+    }
+    .button-reverse{
+        height: 30px;
+        width: 30px;
+    }
+    .iframe-container{
+        min-width: none;
+        width: 100vw;
+        height: auto;
+        z-index: 2000;
+        overflow: hidden;
+        resize: none;
+    }
+    .iframe-chap{
+        width: 100vw;
+        height: 100vh;
+    }
+
+}
+
+@media screen and (max-width: 650px){
+    .header-tome-tri-container{
+        display: none;
+    }
+    .nb-result{
+        display: none;
+    }
+    
 }
