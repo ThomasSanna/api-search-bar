@@ -651,10 +651,10 @@ body {
     .nb-result{
         display: none;
     }
-    .header-checkbox *{
-        font-size: .8rem;
-    }
     .tri-par{
+        display: none;
+    }
+    .header-checkbox{
         display: none;
     }
     .iframe-container{
@@ -666,9 +666,7 @@ body {
 }
 
 @media screen and (max-width: 450px){
-    .header-checkbox{
-        display: none;
-    }
+
     .searchbar{
         width: 100%;
         height: 40px;

@@ -1,0 +1,19 @@
+.header-container{
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 90px;
+    background: linear-gradient(90deg, rgba(46, 67, 87, 0.678) 0%,  rgba(53, 89, 94, 0.678) 100%);
+    display: flex;
+    padding: 10px 50px;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1000;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.main-container{
+    min-height: calc(100vh - 116px);
+    display: flex;
+    justify-content: flex-end;
+}

@@ -7,6 +7,8 @@ import resetImage from "../assets/images/reset.svg";
 import arrowTriangle from "../assets/images/arrowTriangle.svg";
 import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
+import Menu from "../components/Menu";
+
 
 function Home() {
   const [data, setData] = useState(null);
@@ -349,6 +351,7 @@ function Home() {
             </ul>
           </div>
         </span>
+        <Menu />
       </header>
 
       {/* CHAPTER VISUAL ---------------------------------------------------- */}
