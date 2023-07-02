@@ -1,8 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../styles/Footer.css'
 import moon from '../assets/images/moon.svg'
 
 function Footer() {
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    const body = document.querySelector("body");
+    html.classList.add("night-html");
+    body.classList.add('night')
+  }, [])
 
   const setNightTheme = () => {
     const creditAll = document.querySelector('.credit-all')

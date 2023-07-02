@@ -5,6 +5,8 @@ import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
 import resetImage from "../assets/images/reset.svg";
 import arrowTriangle from "../assets/images/arrowTriangle.svg";
+import fullScreenIcon from "../assets/images/fullscreen.svg";
+import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
 import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
@@ -14,6 +16,7 @@ function Home() {
   const [data, setData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [currentId, setCurrentId] = useState(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/chapters")
@@ -25,10 +28,6 @@ function Home() {
   }, []);
 
   useEffect(() => {
-    const html = document.querySelector("html");
-    const body = document.querySelector("body");
-    html.classList.add("night-html");
-    body.classList.add('night')
     document.title = "One Piece - Chapitres";
   }, []);
 
@@ -230,6 +229,16 @@ function Home() {
     }
   }
 
+  const fullScreenScript = () => {
+    setIsFullScreen(!isFullScreen);
+    const iframeContainer = document.querySelector(".iframe-container");
+    if (!isFullScreen){
+      iframeContainer.classList.add("iframe-fullscreen");
+    } else {
+      iframeContainer.classList.remove("iframe-fullscreen");
+    }
+  };
+
   
 
 
@@ -372,6 +381,7 @@ function Home() {
                 </p>
                 <p className="chapter-title chapter-night">{dat.chapter_title}</p>
                 <p
+
                   id={dat.chapter_number.slice(3, dat.chapter_number.length)}
                   className="chapter-description">
 
@@ -381,6 +391,7 @@ function Home() {
                       <p className="more-info-title">
                         "<i>{dat.chapter_title}</i>", Ch. n°{dat.chapter_number.slice(3, dat.chapter_number.length)}
                       </p>
+
                       <p className="more-info-tome">
                         Tome n°{dat.tome.id}: "<i>{dat.tome.tome_title}</i>"
                       </p>
@@ -391,9 +402,13 @@ function Home() {
                     </div>
                   </div>
 
-                  {dat.chapter_description
-                    ? dat.chapter_description
-                    : "Ce chapitre n'a pas de description."}
+                  <p title={dat.description
+                      ? dat.description
+                      : "Ce chapitre n'a pas de description."}>
+                    {dat.description
+                      ? dat.description.slice(0, 300) + "..."
+                      : "Ce chapitre n'a pas de description."}
+                  </p>
                   <span className="aall-link">
                     <a
                       className="alink color-link"
@@ -435,6 +450,9 @@ function Home() {
           <div className="arrows-iframe">
             <img className="arrow-tri arrow-precedent" onClick={goChapSP} title={"Aller au chapitre " + (parseInt(currentId) - 1).toString()} src={arrowTriangle} alt="Flèche Chapitre précédent" />
             <img className="arrow-tri arrow-suivant" onClick={goChapSP} title={"Aller au chapitre " + (parseInt(currentId) + 1).toString()} src={arrowTriangle} alt="Flèche Chapitre suivant" />
+          </div>
+          <div className="full-screen-iframe">
+            <img className="full-screen-icon" onClick={fullScreenScript} src={isFullScreen? fullScreenExitIcon : fullScreenIcon} alt="Passer en plein écran" title="Plein écran"  />
           </div>
         </div>
       </main>

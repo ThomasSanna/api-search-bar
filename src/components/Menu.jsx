@@ -17,15 +17,13 @@ const Menu = () => {
       menu.style.borderRadius = '0 0 0 0';
       menu.style.pointerEvents = 'all';
       menu.style.opacity = '1';
-      menu.style.overflow = 'hidden';
     } else{
       menuIcon.style.rotate = '0deg';
       menu.style.height = '0';
       menu.style.width = '0';
-      menu.style.borderRadius = '100% 0 100% 100%';
+      menu.style.borderRadius = '0 0 0 100%';
       menu.style.pointerEvents = 'none';
       menu.style.opacity = '0';
-      menu.style.overflow = 'auto';
     }
   }
 
