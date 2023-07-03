@@ -8,6 +8,7 @@ import resetImage from "../assets/images/reset.svg";
 import arrowTriangle from "../assets/images/arrowTriangle.svg";
 import fullScreenIcon from "../assets/images/fullscreen.svg";
 import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
+import lowBatteryIcon from "../assets/images/lowbattery.svg";
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 
@@ -23,6 +24,21 @@ function Episode() {
   const [filteredData, setFilteredData] = useState(null);
   const [currentId, setCurrentId] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isLowBattery, setIsLowBattery] = useState(false);
+  const [countOpen, setCountOpen] = useState(0);
+  const [dataArc, setDataArc] = useState(null);
+  const [countdown, setCountdown] = useState(30);
+
+  useEffect(() => {
+    fetch("https://api.api-onepiece.com/arcs")
+      .then((res) => res.json())
+      .then((data) => {
+        setDataArc(data);
+      }
+    );
+  }, [])
+
+
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/episodes")
@@ -98,6 +114,11 @@ function Episode() {
     setFilteredData(reversed ? filtered.reverse() : filtered);
   };
 
+  const closePopup = () => {
+    document.querySelector(".attention-player").style.display = "none";
+    document.querySelector(".attention-player").style.width = "0px";
+  }
+
 
   const iframeOpen = (e) => {
     setCurrentId(e.target.id.toString());
@@ -106,6 +127,20 @@ function Episode() {
     window.innerWidth <= 1000? chapterContainer.style.width = '100vw' : chapterContainer.style.width = "calc(100% - 500px)";
     const currId = e.target.id.toString();
     verifArrowOnClick(currId);
+
+    const attentionPlayer = document.querySelector(".attention-player");
+    setCountOpen(countOpen + 1);
+    if (!countOpen) {
+      attentionPlayer.style.display = "flex";
+      attentionPlayer.style.width = "500px";
+      setTimeout(() => {
+        attentionPlayer.style.display = "none";
+        attentionPlayer.style.width = "0px";
+      }, 30000);
+      setInterval(() => {
+        setCountdown(countdown => countdown - 1);
+      }, 1000);
+    }
   };
 
   const closeIframe = () => {
@@ -116,27 +151,10 @@ function Episode() {
 
   const arcFilter = (e) => {
     const reversed = document.querySelector(".reverse-back").checked;
-    const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-    let tab = []
-    let count = 0
-    const arc = e.target.id + e.target.parentElement.id; // Pour éviter le bug du clic sur le b (bold)
-
-    for (let i = 0; i < arc.length; i++) {
-      if (numbers.includes(arc[i])) {
-        count++
-        if (count === 1) {
-          tab.push(arc[i])
-        } else {
-          tab[tab.length - 1] += arc[i]
-        }
-      } else {
-        count = 0
-      }
-    };
-
+    const arcF = parseInt(e.target.id + e.target.parentElement.id)
     const filtered = data.filter((dat) => {
-      return tab.includes(dat.tome.id.toString())
-    });
+      return dat.arc_id === arcF
+    })
     setFilteredData(reversed ? filtered.reverse() : filtered);
   };
 
@@ -205,6 +223,7 @@ function Episode() {
       arrowPrecedent.style.pointerEvents = "auto";
       arrowSuivant.style.pointerEvents = "auto";
     }
+    document.querySelector(".iframe-chap").focus();
   }
 
   const verifArrowOnClick = (id) => {
@@ -229,6 +248,8 @@ function Episode() {
       arrowPrecedent.style.pointerEvents = "auto";
       arrowSuivant.style.pointerEvents = "auto";
     }
+    document.querySelector(".iframe-chap").focus();
+
   }
 
   const fullScreenScript = () => {
@@ -239,11 +260,22 @@ function Episode() {
     } else {
       iframeContainer.classList.remove("iframe-fullscreen");
     }
+    document.querySelector(".iframe-chap").focus();
   };
 
   
-
-
+  const lowBatteryFunc = () => {
+    let hBattery = document.querySelector('.header-battery')
+    let BatImage = document.querySelector('.image-battery')
+    setIsLowBattery(!isLowBattery);
+    if (!isLowBattery){
+      hBattery.classList.add("header-battery-active");
+      BatImage.classList.add("battery-image-active");
+    } else {
+      hBattery.classList.remove("header-battery-active");
+      BatImage.classList.remove("battery-image-active");
+    }
+  }
 
   // ----°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-----------------------------------------------------------------
   return (
@@ -257,13 +289,16 @@ function Episode() {
       {/* polices : Noto Serif, Rubik */}
 
       <header className="header-container">
+        <span onClick={lowBatteryFunc} className="header-battery">
+          <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
+        </span>
         <span className="header-search">
           <span className="cont-searchbar">
             <input
               type="text"
               className="searchbar"
               onChange={handleSearch}
-              placeholder="Numéro, Titre ou Description du chapitre.."
+              placeholder="Numéro, Titre ou Description du de l'épisode.."
             />
             <span className="buttons-search">
               <span onClick={reverseNum} className="reverse-back">
@@ -328,38 +363,13 @@ function Episode() {
           </span>
           <div className="tome-select-container">
             <ul className="liste-tome">
-              <li onClick={arcFilter} id="1" title="Romance Dawn: Volume 1"><b>Romance Dawn</b></li>
-              <li onClick={arcFilter} id="2" title="Orange Town: Volume 2-3"><b>Orange Town</b></li>
-              <li onClick={arcFilter} id="3" title="Syrup Village: Volume 4-5"><b>Syrup Village</b></li>
-              <li onClick={arcFilter} id="4" title="Baratie: Volume 6-8"><b>Baratie</b></li>
-              <li onClick={arcFilter} id="5" title="Arlong Park: Volume 8-11"><b>Arlong Park</b></li>
-              <li onClick={arcFilter} id="6" title="Loguetown: Volume 11-12"><b>Loguetown</b></li>
-              <li onClick={arcFilter} id="7" title="Reverse Mountain: Volume 12"><b>Reverse Mountain</b></li>
-              <li onClick={arcFilter} id="8" title="Whiskey Peak: Volume 12-13"><b>Whiskey Peak</b></li>
-              <li onClick={arcFilter} id="9" title="Little Garden: Volume 13-15"><b>Little Garden</b></li>
-              <li onClick={arcFilter} id="10" title="Drum Island: Volume 15-17"><b>Drum Island</b></li>
-              <li onClick={arcFilter} id="11" title="Alabasta: Volume 18-24"><b>Alabasta</b></li>
-              <li onClick={arcFilter} id="12" title="Jaya: Volume 24-25"><b>Jaya</b></li>
-              <li onClick={arcFilter} id="13" title="Skypiea: Volume 26-32"><b>Skypiea</b></li>
-              <li onClick={arcFilter} id="14" title="Long Ring Long Land: Volume 32-34"><b>Long Ring Long Land</b></li>
-              <li onClick={arcFilter} id="15" title="Water Seven: Volume 34-39"><b>Water Seven</b></li>
-              <li onClick={arcFilter} id="16" title="Enies Lobby: Volume 39-44"><b>Enies Lobby</b></li>
-              <li onClick={arcFilter} id="17" title="Post-Enies Lobby: Volume 45-46"><b>Post-Enies Lobby</b></li>
-              <li onClick={arcFilter} id="18" title="Thriller Bark: Volume 46-50"><b>Thriller Bark</b></li>
-              <li onClick={arcFilter} id="19" title="Archipel des Sabaody: Volume 50-53"><b>Archipel des Sabaody</b></li>
-              <li onClick={arcFilter} id="20" title="Amazon Lily: Volume 53-54"><b>Amazon Lily</b></li>
-              <li onClick={arcFilter} id="21" title="Impel Down: Volume 54-56"><b>Impel Down</b></li>
-              <li onClick={arcFilter} id="22" title="Marineford: Volume 56-61"><b>Marineford</b></li>
-              <li onClick={arcFilter} id="23" title="Post-War: Volume 61"><b>Post-War</b></li>
-              <li onClick={arcFilter} id="24" title="Retour à Sabaody: Volume 61"><b>Retour à Sabaody</b></li>
-              <li onClick={arcFilter} id="25" title="Fishman Island: Volume 61-66"><b>Fishman Island</b></li>
-              <li onClick={arcFilter} id="26" title="Punk Hazard: Volume 66-70"><b>Punk Hazard</b></li>
-              <li onClick={arcFilter} id="27" title="Dressrosa: Volume 70-80"><b>Dressrosa</b></li>
-              <li onClick={arcFilter} id="28" title="Zou: Volume 80-82"><b>Zou</b></li>
-              <li onClick={arcFilter} id="29" title="Whole Cake Island: Volume 82-90"><b>Whole Cake Island</b></li>
-              <li onClick={arcFilter} id="30" title="Reverie: Volume 90"><b>Reverie</b></li>
-              <li onClick={arcFilter} id="31" title="Wano Country: Volume 90-107"><b>Wano Country</b></li>
-              <li onClick={arcFilter} id="32" title="Egg Head: Volume 106-107"><b>Egg Head</b></li>
+              {
+                dataArc && dataArc.filter((arc) => {return arc.arc_title!=='Arc Roi acide carbonique'}).map((arc) => {
+                  return (
+                    <li onClick={arcFilter} id={arc.id} title={arc.arc_title + " : " + arc.arc_description}><b>{arc.arc_title}</b></li>
+                  )
+                })
+              }
             </ul>
           </div>
         </span>
@@ -369,15 +379,24 @@ function Episode() {
       {/* CHAPTER VISUAL ---------------------------------------------------- */}
 
       <main className="main-container">
+        <div className='attention-player'>
+          <img onClick={closePopup} className='img-croix-popup' src={croixSVG} alt='fermer le popup' />
+          <p>Attention ! Pour lancer l'épisode, cliquez sur le faux bouton player pour passer le test Captcha du site !</p>
+          <p>Vous pourrez mettre la vidéo en plein écran seulement si votre fenêtre est assez grande</p>
+          <p>F11 pour sortir du plein écran.</p>
+          <p>Mettez un <a className='link-adblock' href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" title='uBlock Origin extension'>Ad Blocker</a> ! </p>
+          <p>Fermeture automatique dans {countdown} secondes</p>
+        </div>
         {filteredData && (
           <ul className="chapter-container">
             {filteredData.map((dat) => (
               <li onClick={iframeOpen} className="chapter-link">
+
                 <img
                   className="backImage"
-                  src="https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"
-                  alt={"One Piece épisode n°" + dat.id.toString()}
-                  loading="lazy"
+                  src={isLowBattery? 'https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png' : "https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg"}
+                  alt={"One Piece episode n°" + dat.id.toString()}
+                  loading={isLowBattery? "eager":"lazy"}
                 />
                 <p className="chapter-number chapter-night">
                   {dat.number.slice(2, dat.number.length)}
@@ -395,14 +414,16 @@ function Episode() {
                       </p>
                     </div>
                   </div>
-                  <p title={dat.description
+                  <p 
+                  id={dat.number.slice(2, dat.number.length)}
+                  title={dat.description
                       ? dat.description
-                      : "Ce chapitre n'a pas de description."}>
-                    {dat.description
-                      ? dat.description.slice(0, 300) + "..."
-                      : "Ce chapitre n'a pas de description."}
+                      : "Cet épisode n'a pas de description."}>
+                    {dat.description ? dat.description.length <300? dat.description : dat.description.slice(0, 300) + "..." : "Cet épisode n'a pas de description."}
                   </p>
-                  <span className="aall-link">
+                  <span 
+                  id={dat.number.slice(2, dat.number.length)}
+                  className="aall-link">
                     <a
                       className="alink color-link"
                       rel="noreferrer"
@@ -436,13 +457,16 @@ function Episode() {
             <img src={croixSVG} className="close-iframe-img" alt="croix" />
           </picture>
           <iframe
-            className="iframe-chap"
+            className="iframe-chap iframe-video"
             src={currentId ? "https://www.onepiecestreaming.tv/one-piece-episode-" + currentId + "-streaming-vostfr" : ""}
-            title="LittleXGarden.com"
+            title="OnePieceStreaming.tv"
+            allowFullScreen
+            mozallowfullscreen="true"
+            webkitallowfullscreen="true"
           ></iframe>
           <div className="arrows-iframe">
-            <img className="arrow-tri arrow-precedent" onClick={goChapSP} title={"Aller au chapitre " + (parseInt(currentId) - 1).toString()} src={arrowTriangle} alt="Flèche Chapitre précédent" />
-            <img className="arrow-tri arrow-suivant" onClick={goChapSP} title={"Aller au chapitre " + (parseInt(currentId) + 1).toString()} src={arrowTriangle} alt="Flèche Chapitre suivant" />
+            <img className="arrow-tri arrow-precedent" onClick={goChapSP} title={"Aller à l'épisode " + (parseInt(currentId) - 1).toString()} src={arrowTriangle} alt="Flèche Episode précédent" />
+            <img className="arrow-tri arrow-suivant" onClick={goChapSP} title={"Aller à l'épisode " + (parseInt(currentId) + 1).toString()} src={arrowTriangle} alt="Flèche Episode suivant" />
           </div>
           <div className="full-screen-iframe">
             <img className="full-screen-icon" onClick={fullScreenScript} src={isFullScreen? fullScreenExitIcon : fullScreenIcon} alt="Passer en plein écran" title="Plein écran"  />

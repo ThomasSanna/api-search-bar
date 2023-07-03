@@ -6,6 +6,7 @@ import arrowDown from "../assets/images/down.png";
 import resetImage from "../assets/images/reset.svg";
 import arrowTriangle from "../assets/images/arrowTriangle.svg";
 import fullScreenIcon from "../assets/images/fullscreen.svg";
+import lowBatteryIcon from "../assets/images/lowbattery.svg";
 import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
 import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
@@ -17,6 +18,7 @@ function Home() {
   const [filteredData, setFilteredData] = useState(null);
   const [currentId, setCurrentId] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isLowBattery, setIsLowBattery] = useState(false);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/chapters")
@@ -175,6 +177,8 @@ function Home() {
     let arrowPrecedent = document.querySelector(".arrow-precedent");
     let arrowSuivant = document.querySelector(".arrow-suivant");
 
+
+
     if (e.target === arrowPrecedent) {
       setCurrentId((parseInt(currentId) - 1).toString());
     }
@@ -203,6 +207,7 @@ function Home() {
       arrowPrecedent.style.pointerEvents = "auto";
       arrowSuivant.style.pointerEvents = "auto";
     }
+    document.querySelector(".iframe-chap").focus();
   }
 
   const verifArrowOnClick = (id) => {
@@ -227,6 +232,7 @@ function Home() {
       arrowPrecedent.style.pointerEvents = "auto";
       arrowSuivant.style.pointerEvents = "auto";
     }
+    document.querySelector(".iframe-chap").focus();
   }
 
   const fullScreenScript = () => {
@@ -237,7 +243,21 @@ function Home() {
     } else {
       iframeContainer.classList.remove("iframe-fullscreen");
     }
+    document.querySelector(".iframe-chap").focus();
   };
+
+  const lowBatteryFunc = () => {
+    let hBattery = document.querySelector('.header-battery')
+    let BatImage = document.querySelector('.image-battery')
+    setIsLowBattery(!isLowBattery);
+    if (!isLowBattery){
+      hBattery.classList.add("header-battery-active");
+      BatImage.classList.add("battery-image-active");
+    } else {
+      hBattery.classList.remove("header-battery-active");
+      BatImage.classList.remove("battery-image-active");
+    }
+  }
 
   
 
@@ -254,6 +274,9 @@ function Home() {
       {/* polices : Noto Serif, Rubik */}
 
       <header className="header-container">
+        <span onClick={lowBatteryFunc} className="header-battery">
+          <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
+        </span>
         <span className="header-search">
           <span className="cont-searchbar">
             <input
@@ -372,9 +395,9 @@ function Home() {
               <li onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
-                  src={coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] ? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"}
+                  src={isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] ? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"}
                   alt={"One Piece chapitre n°" + dat.id.toString()}
-                  loading="lazy"
+                  loading={isLowBattery? "eager":"lazy"}
                 />
                 <p className="chapter-number chapter-night">
                   {dat.chapter_number.slice(3, dat.chapter_number.length)}
@@ -402,14 +425,16 @@ function Home() {
                     </div>
                   </div>
 
-                  <p title={dat.description
-                      ? dat.description
-                      : "Ce chapitre n'a pas de description."}>
-                    {dat.description
-                      ? dat.description.slice(0, 300) + "..."
-                      : "Ce chapitre n'a pas de description."}
+                  <p 
+                    id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                    title={dat.chapter_description
+                        ? dat.chapter_description
+                        : "Ce chapitre n'a pas de description."}>
+                      {dat.chapter_description ? dat.chapter_description.length <300? dat.chapter_description : dat.chapter_description.slice(0, 300) + "..." : "Ce chapitre n'a pas de description."}
                   </p>
-                  <span className="aall-link">
+                  <span
+                  id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                  className="aall-link">
                     <a
                       className="alink color-link"
                       rel="noreferrer"
