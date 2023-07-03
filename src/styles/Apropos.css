@@ -1,0 +1,42 @@
+body{
+    width: 100vw;
+}
+
+h1{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.apropos-cont{
+    justify-content: center;
+    padding: 4rem;
+    width: 100vw;
+    min-height: calc(100vh - 120px);
+    display: flex;
+    flex-direction: column;
+}
+
+.apropos-cont *{
+    text-align: justify;
+}
+
+.apropos-cont p{
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+a{
+    color: #fff;
+}
+
+.invers-p{
+    text-align: end;
+}
+
+@media screen and (max-width: 1000px) {
+    .apropos-cont{
+        padding-top: 160px;
+    }
+}

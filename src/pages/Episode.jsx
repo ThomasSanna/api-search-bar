@@ -11,6 +11,7 @@ import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
 import lowBatteryIcon from "../assets/images/lowbattery.svg";
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
+import numLink from '../scripts/numbersLink';
 
 function Episode() {
 
@@ -41,6 +42,7 @@ function Episode() {
 
 
   useEffect(() => {
+    console.log(numLink);
     fetch("https://api.api-onepiece.com/episodes")
       .then((res) => res.json())
       .then((data) => {
@@ -277,6 +279,12 @@ function Episode() {
     }
   }
 
+  const toNumberString = (st) => {
+    const regex = /([0-9]+)/g;
+    const found = st.match(regex);
+    return found? found.join(", ") : "inconnu";
+  }
+
   // ----°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-----------------------------------------------------------------
   return (
     <div>
@@ -381,9 +389,6 @@ function Episode() {
       <main className="main-container">
         <div className='attention-player'>
           <img onClick={closePopup} className='img-croix-popup' src={croixSVG} alt='fermer le popup' />
-          <p>Attention ! Pour lancer l'épisode, cliquez sur le faux bouton player pour passer le test Captcha du site !</p>
-          <p>Vous pourrez mettre la vidéo en plein écran seulement si votre fenêtre est assez grande</p>
-          <p>F11 pour sortir du plein écran.</p>
           <p>Mettez un <a className='link-adblock' href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" title='uBlock Origin extension'>Ad Blocker</a> ! </p>
           <p>Fermeture automatique dans {countdown} secondes</p>
         </div>
@@ -412,6 +417,17 @@ function Episode() {
                       <p className="more-info-title">
                         "<i>{dat.title}</i>", Ep. n°{dat.number.slice(2, dat.number.length)}
                       </p>
+                      <p className='more-info-title'>
+                        {dat.saga_id && <div>Saga n°{dat.saga.saga_number} : "<i>{dat.saga.saga_title}</i>" </div>}
+                      </p>
+                      <p className='more-info-title'>
+                        Sortie le {dat.release_date} il y a {dat.release_date ? Math.floor((new Date() - new Date(dat.release_date)) / (1000 * 60 * 60 * 24 * 30 * 12)) : null} ans.
+                      </p>
+                      <p className='more-info-title'>
+                        Adapte le/les chapitre(s) n° {toNumberString(dat.chapter)} .
+                      </p>
+                      <p className='more-info-title'></p>
+
                     </div>
                   </div>
                   <p 
@@ -429,7 +445,7 @@ function Episode() {
                       rel="noreferrer"
                       target="_blank"
                       href={
-                        "https://www.onepiecestreaming.tv/one-piece-episode-" + dat.id + "-streaming-vostfr"
+                        "https://v4.voiranime.com/anime/one-piece/one-piece-" + numLink[dat.id].toString() + "-vostfr/"
                       }
                       id={dat.number.slice(2, dat.number.length)}
                     >
@@ -458,7 +474,7 @@ function Episode() {
           </picture>
           <iframe
             className="iframe-chap iframe-video"
-            src={currentId ? "https://www.onepiecestreaming.tv/one-piece-episode-" + currentId + "-streaming-vostfr" : ""}
+            src={currentId ? "https://v4.voiranime.com/anime/one-piece/one-piece-" + numLink[currentId].toString() + "-vostfr/" : ""}
             title="OnePieceStreaming.tv"
             allowFullScreen
             mozallowfullscreen="true"

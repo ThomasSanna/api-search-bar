@@ -1,0 +1,36 @@
+.logo-monsite{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo-one-piece{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-logo-one-piece{
+    text-decoration: none;
+    font-size: 1.5rem;
+}
+
+.one-piec-container{
+    text-decoration: none;
+    padding: .5rem;
+    border-bottom-left-radius: .3rem;
+    border-bottom-right-radius: .3rem;
+    background-color: rgba(106, 208, 255, 0.116);
+    box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.5);
+    border: white solid 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

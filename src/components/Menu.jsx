@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import iconMenu from "../assets/images/iconMenu.svg";
 import "../styles/Menu.css";
 import { NavLink } from "react-router-dom";
+import Logo from '../components/Logo'
+
 
 const Menu = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
@@ -39,6 +41,7 @@ const Menu = () => {
         <img className="menu-icon" onClick={menuOpenClose} src={iconMenu} alt="iconMenu" />
       </picture>
       <div className="menu-container">
+        <Logo />
         <ul className="menu-center">
           <NavLink onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">Rechercher des chapitres</NavLink>
           <NavLink onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">Rechercher des épisodes</NavLink>
@@ -47,6 +50,7 @@ const Menu = () => {
           <li className='menu-c-o'>© Eiichiro Oda - One Piece</li>
           <li className='menu-c-w'>Site internet créé par <a className='credit-link' title='https://twitter.com/wadeekt' href='https://twitter.com/wadeekt'>WadeeKT</a> en colaboration avec <a className='credit-link' title='https://littlexgarden.com' href="https://littlexgarden.com">Little Garden</a>.</li>
         </ul>
+        <NavLink className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</NavLink>
       </div> 
     </div>
   );
