@@ -272,7 +272,7 @@ function Home() {
         rel="stylesheet"
       />
       {/* polices : Noto Serif, Rubik */}
-
+      <p className="backupannonce">Back-ups de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.github.io" target="_blank" rel="noreferrer">onepiecechapitres.github.io</a>, <a href="https://wadeekt.github.io" target="_blank" rel="noreferrer">wadeekt.github.io</a> et <a href="https://wadeect.github.io" target="_blank" rel="noreferrer">wadeect.github.io</a></p>
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery">
           <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
@@ -419,8 +419,9 @@ function Home() {
                         Tome n°{dat.tome.id}: "<i>{dat.tome.tome_title}</i>"
                       </p>
                       <p className="more-info-sortie">
-                        <div>Sortie Japon: {dat.tome.tome_japan_date_publish} (il y a {countAnnee(dat.tome.tome_japan_date_publish)} ans) </div>
-                        <div>Sortie France: {dat.tome.tome_french_date_publish} (il y a {countAnnee(dat.tome.tome_french_date_publish)} ans) </div>
+                        <div>Sortie du Tome :</div>
+                        <div>&nbsp;&nbsp;- Japon: {dat.tome.tome_japan_date_publish} (il y a {countAnnee(dat.tome.tome_japan_date_publish)} ans) </div>
+                        <div>&nbsp;&nbsp;- France: {dat.tome.tome_french_date_publish} (il y a {countAnnee(dat.tome.tome_french_date_publish)} ans) </div>
                       </p>
                     </div>
                   </div>

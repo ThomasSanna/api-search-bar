@@ -295,7 +295,8 @@ function Episode() {
         rel="stylesheet"
       />
       {/* polices : Noto Serif, Rubik */}
-
+      <p className="backupannonce">Back-ups de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.github.io" target="_blank" rel="noreferrer">onepiecechapitres.github.io</a>, <a href="https://wadeekt.github.io" target="_blank" rel="noreferrer">wadeekt.github.io</a> et <a href="https://wadeect.github.io" target="_blank" rel="noreferrer">wadeect.github.io</a>.</p>
+      <p className='backupannonce note-backup'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery">
           <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
@@ -399,7 +400,7 @@ function Episode() {
 
                 <img
                   className="backImage"
-                  src={isLowBattery? 'https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png' : "https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg"}
+                  src={isLowBattery? 'https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png' : "https://i.imgur.com/U8Uo4co.png"}
                   alt={"One Piece episode n°" + dat.id.toString()}
                   loading={isLowBattery? "eager":"lazy"}
                 />

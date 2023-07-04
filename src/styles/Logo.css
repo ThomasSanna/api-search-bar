@@ -1,5 +1,5 @@
 .logo-monsite{
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -19,6 +19,7 @@
 
 .link-logo-one-piece{
     text-decoration: none;
+    color: rgb(255, 255, 255);
     font-size: 1.5rem;
 }
 
@@ -27,7 +28,7 @@
     padding: .5rem;
     border-bottom-left-radius: .3rem;
     border-bottom-right-radius: .3rem;
-    background-color: rgba(106, 208, 255, 0.116);
+    background-color: rgba(205, 244, 255, 0.429);
     box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.5);
     border: white solid 1px;
     display: flex;

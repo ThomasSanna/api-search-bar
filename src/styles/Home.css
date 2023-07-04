@@ -357,7 +357,7 @@ body {
     width: 450px;
     z-index: 1;
     overflow: hidden;
-    margin-bottom: 2rem;
+    margin: 0rem 0.3rem 2rem 0.3rem;
     transition: all 0.1s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -754,4 +754,17 @@ body {
     .reverse-back{
         display: none;
     }
+}
+
+.backupannonce{
+    position: fixed;
+    top: 3px;
+    right: 8px;
+    z-index: 2000;
+    opacity: 0.8;
+    font-size: 0.7rem;
+}
+
+.note-backup{
+    margin-top: 13px;
 }

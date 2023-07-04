@@ -48,7 +48,7 @@ const Menu = () => {
         </ul>
         <ul className="menu-foot">
           <li className='menu-c-o'>© Eiichiro Oda - One Piece</li>
-          <li className='menu-c-w'>Site internet créé par <a className='credit-link' title='https://twitter.com/wadeekt' href='https://twitter.com/wadeekt'>WadeeKT</a> en colaboration avec <a className='credit-link' title='https://littlexgarden.com' href="https://littlexgarden.com">Little Garden</a>.</li>
+          <li className='menu-c-w'>Site internet créé par <a className='credit-link' title='https://twitter.com/wadeekt' href='https://twitter.com/wadeekt'>WadeeKT</a>. <a href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</li>
         </ul>
         <NavLink className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</NavLink>
       </div> 
