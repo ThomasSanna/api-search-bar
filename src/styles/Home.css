@@ -713,6 +713,12 @@ body {
 }
 
 @media screen and (max-width: 650px){
+    .backupannonce{
+        display: none;
+    }
+    .note-backup{
+        display: none;
+    }
     .header-tome-tri-container{
         display: none;
     }
@@ -780,3 +786,4 @@ body {
     -webkit-user-select: none;
     user-select: none; 
 }
+
