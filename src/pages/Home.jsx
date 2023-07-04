@@ -348,38 +348,38 @@ function Home() {
           </span>
           <div className="tome-select-container">
             <ul className="liste-tome">
-              <li onClick={arcFilter} id="[1]" title="Romance Dawn: Volume 1"><b>Romance Dawn</b>: Volume 1</li>
-              <li onClick={arcFilter} id="[2,3]" title="Orange Town: Volume 2-3"><b>Orange Town</b>: Volume 2-3</li>
-              <li onClick={arcFilter} id="[4,5]" title="Syrup Village: Volume 4-5"><b>Syrup Village</b>: Volume 4-5</li>
-              <li onClick={arcFilter} id="[6,7,8]" title="Baratie: Volume 6-8"><b>Baratie</b>: Volume 6-8</li>
-              <li onClick={arcFilter} id="[8,9,10,11]" title="Arlong Park: Volume 8-11"><b>Arlong Park</b>: Volume 8-11</li>
-              <li onClick={arcFilter} id="[11,12]" title="Loguetown: Volume 11-12"><b>Loguetown</b>: Volume 11-12</li>
-              <li onClick={arcFilter} id="[12]" title="Reverse Mountain: Volume 12"><b>Reverse Mountain</b>: Volume 12</li>
-              <li onClick={arcFilter} id="[12,13]" title="Whiskey Peak: Volume 12-13"><b>Whiskey Peak</b>: Volume 12-13</li>
-              <li onClick={arcFilter} id="[13,14,15]" title="Little Garden: Volume 13-15"><b>Little Garden</b>: Volume 13-15</li>
-              <li onClick={arcFilter} id="[15,16,17]" title="Drum Island: Volume 15-17"><b>Drum Island</b>: Volume 15-17</li>
-              <li onClick={arcFilter} id="[18,19,20,21,22,23,24]" title="Alabasta: Volume 18-24"><b>Alabasta</b>: Volume 18-24</li>
-              <li onClick={arcFilter} id="[24,25]" title="Jaya: Volume 24-25"><b>Jaya</b>: Volume 24-25</li>
-              <li onClick={arcFilter} id="[26,27,28,29,30,31,32]" title="Skypiea: Volume 26-32"><b>Skypiea</b>: Volume 26-32</li>
-              <li onClick={arcFilter} id="[32,33,34]" title="Long Ring Long Land: Volume 32-34"><b>Long Ring Long Land</b>: Volume 32-34</li>
-              <li onClick={arcFilter} id="[34,35,36,37,38,39]" title="Water Seven: Volume 34-39"><b>Water Seven</b>: Volume 34-39</li>
-              <li onClick={arcFilter} id="[39,40,41,42,43,44]" title="Enies Lobby: Volume 39-44"><b>Enies Lobby</b>: Volume 39-44</li>
-              <li onClick={arcFilter} id="[45,46]" title="Post-Enies Lobby: Volume 45-46"><b>Post-Enies Lobby</b>: Volume 45-46</li>
-              <li onClick={arcFilter} id="[46,47,48,49,50]" title="Thriller Bark: Volume 46-50"><b>Thriller Bark</b>: Volume 46-50</li>
-              <li onClick={arcFilter} id="[50,51,52,53]" title="Archipel des Sabaody: Volume 50-53"><b>Archipel des Sabaody</b>: Volume 50-53</li>
-              <li onClick={arcFilter} id="[53,54]" title="Amazon Lily: Volume 53-54"><b>Amazon Lily</b>: Volume 53-54</li>
-              <li onClick={arcFilter} id="[54,55,56]" title="Impel Down: Volume 54-56"><b>Impel Down</b>: Volume 54-56</li>
-              <li onClick={arcFilter} id="[56,57,58,59,60,61]" title="Marineford: Volume 56-61"><b>Marineford</b>: Volume 56-61</li>
-              <li onClick={arcFilter} id="[61]" title="Post-War: Volume 61"><b>Post-War</b>: Volume 61</li>
-              <li onClick={arcFilter} id="[61]" title="Retour à Sabaody: Volume 61"><b>Retour à Sabaody</b>: Volume 61</li>
-              <li onClick={arcFilter} id="[61,62,63,64,65,66]" title="Fishman Island: Volume 61-66"><b>Fishman Island</b>: Volume 61-66</li>
-              <li onClick={arcFilter} id="[66,67,68,69,70]" title="Punk Hazard: Volume 66-70"><b>Punk Hazard</b>: Volume 66-70</li>
-              <li onClick={arcFilter} id="[70,71,72,73,74,75,76,77,78,79,80]" title="Dressrosa: Volume 70-80"><b>Dressrosa</b>: Volume 70-80</li>
-              <li onClick={arcFilter} id="[80,81,82]" title="Zou: Volume 80-82"><b>Zou</b>: Volume 80-82</li>
-              <li onClick={arcFilter} id="[82,83,84,85,86,87,88,89,90]" title="Whole Cake Island: Volume 82-90"><b>Whole Cake Island</b>: Volume 82-90</li>
-              <li onClick={arcFilter} id="[90]" title="Reverie: Volume 90"><b>Reverie</b>: Volume 90</li>
-              <li onClick={arcFilter} id="[90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106]" title="Wano Country: Volume 90-107"><b>Wano Country</b>: Volume 90-107</li>
-              <li onClick={arcFilter} id="[106,107]" title="Egg Head: Volume 106-107"><b>Egg Head</b>: Volume 106-107</li>
+              <li onClick={arcFilter} id="[1]" title="Romance Dawn: Volumes 1"><b>Romance Dawn</b>: Volume 1</li>
+              <li onClick={arcFilter} id="[2,3]" title="Orange Town: Volumes 2-3"><b>Orange Town</b>: Volumes 2-3</li>
+              <li onClick={arcFilter} id="[4,5]" title="Syrup Village: Volumes 4-5"><b>Syrup Village</b>: Volumes 4-5</li>
+              <li onClick={arcFilter} id="[6,7,8]" title="Baratie: Volumes 6-8"><b>Baratie</b>: Volumes 6-8</li>
+              <li onClick={arcFilter} id="[8,9,10,11]" title="Arlong Park: Volumes 8-11"><b>Arlong Park</b>: Volumes 8-11</li>
+              <li onClick={arcFilter} id="[11,12]" title="Loguetown: Volumes 11-12"><b>Loguetown</b>: Volumes 11-12</li>
+              <li onClick={arcFilter} id="[12]" title="Reverse Mountain: Volumes 12"><b>Reverse Mountain</b>: Volumes 12</li>
+              <li onClick={arcFilter} id="[12,13]" title="Whiskey Peak: Volumes 12-13"><b>Whiskey Peak</b>: Volumes 12-13</li>
+              <li onClick={arcFilter} id="[13,14,15]" title="Little Garden: Volumes 13-15"><b>Little Garden</b>: Volumes 13-15</li>
+              <li onClick={arcFilter} id="[15,16,17]" title="Drum Island: Volumes 15-17"><b>Drum Island</b>: Volumes 15-17</li>
+              <li onClick={arcFilter} id="[18,19,20,21,22,23,24]" title="Alabasta: Volumes 18-24"><b>Alabasta</b>: Volumes 18-24</li>
+              <li onClick={arcFilter} id="[24,25]" title="Jaya: Volumes 24-25"><b>Jaya</b>: Volumes 24-25</li>
+              <li onClick={arcFilter} id="[26,27,28,29,30,31,32]" title="Skypiea: Volumes 26-32"><b>Skypiea</b>: Volumes 26-32</li>
+              <li onClick={arcFilter} id="[32,33,34]" title="Long Ring Long Land: Volumes 32-34"><b>Long Ring Long Land</b>: Volumes 32-34</li>
+              <li onClick={arcFilter} id="[34,35,36,37,38,39]" title="Water Seven: Volumes 34-39"><b>Water Seven</b>: Volumes 34-39</li>
+              <li onClick={arcFilter} id="[39,40,41,42,43,44]" title="Enies Lobby: Volumes 39-44"><b>Enies Lobby</b>: Volumes 39-44</li>
+              <li onClick={arcFilter} id="[45,46]" title="Post-Enies Lobby: Volumes 45-46"><b>Post-Enies Lobby</b>: Volumes 45-46</li>
+              <li onClick={arcFilter} id="[46,47,48,49,50]" title="Thriller Bark: Volumes 46-50"><b>Thriller Bark</b>: Volumes 46-50</li>
+              <li onClick={arcFilter} id="[50,51,52,53]" title="Archipel des Sabaody: Volumes 50-53"><b>Archipel des Sabaody</b>: Volumes 50-53</li>
+              <li onClick={arcFilter} id="[53,54]" title="Amazon Lily: Volumes 53-54"><b>Amazon Lily</b>: Volumes 53-54</li>
+              <li onClick={arcFilter} id="[54,55,56]" title="Impel Down: Volumes 54-56"><b>Impel Down</b>: Volumes 54-56</li>
+              <li onClick={arcFilter} id="[56,57,58,59,60,61]" title="Marineford: Volumes 56-61"><b>Marineford</b>: Volumes 56-61</li>
+              <li onClick={arcFilter} id="[61]" title="Post-War: Volumes 61"><b>Post-War</b>: Volumes 61</li>
+              <li onClick={arcFilter} id="[61]" title="Retour à Sabaody: Volumes 61"><b>Retour à Sabaody</b>: Volumes 61</li>
+              <li onClick={arcFilter} id="[61,62,63,64,65,66]" title="Fishman Island: Volumes 61-66"><b>Fishman Island</b>: Volumes 61-66</li>
+              <li onClick={arcFilter} id="[66,67,68,69,70]" title="Punk Hazard: Volumes 66-70"><b>Punk Hazard</b>: Volumes 66-70</li>
+              <li onClick={arcFilter} id="[70,71,72,73,74,75,76,77,78,79,80]" title="Dressrosa: Volumes 70-80"><b>Dressrosa</b>: Volumes 70-80</li>
+              <li onClick={arcFilter} id="[80,81,82]" title="Zou: Volumes 80-82"><b>Zou</b>: Volumes 80-82</li>
+              <li onClick={arcFilter} id="[82,83,84,85,86,87,88,89,90]" title="Whole Cake Island: Volumes 82-90"><b>Whole Cake Island</b>: Volumes 82-90</li>
+              <li onClick={arcFilter} id="[90]" title="Reverie: Volumes 90"><b>Reverie</b>: Volumes 90</li>
+              <li onClick={arcFilter} id="[90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106]" title="Wano Country: Volumes 90-107"><b>Wano Country</b>: Volumes 90-107</li>
+              <li onClick={arcFilter} id="[106,107]" title="Egg Head: Volumes 106-107"><b>Egg Head</b>: Volumes 106-107</li>
             </ul>
           </div>
         </span>

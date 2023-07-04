@@ -768,3 +768,15 @@ body {
 .note-backup{
     margin-top: 13px;
 }
+
+.info-beta{
+    font-size: 1rem;
+    top: 29px;
+    left: 18px;
+    transform: rotate(270deg);
+    position: fixed;
+    z-index: 2000;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none; 
+}

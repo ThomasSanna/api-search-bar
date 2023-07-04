@@ -13,6 +13,7 @@ import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 import numLink from '../scripts/numbersLink';
 import linksFR from '../scripts/linksFranime';
+import linksVF from '../scripts/linksfranimevf';
 
 function Episode() {
 
@@ -29,7 +30,7 @@ function Episode() {
   const [isLowBattery, setIsLowBattery] = useState(false);
   const [countOpen, setCountOpen] = useState(0);
   const [dataArc, setDataArc] = useState(null);
-  const [countdown, setCountdown] = useState(30);
+  const [countdown, setCountdown] = useState(60);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/arcs")
@@ -139,7 +140,7 @@ function Episode() {
       setTimeout(() => {
         attentionPlayer.style.display = "none";
         attentionPlayer.style.width = "0px";
-      }, 30000);
+      }, 60000);
       setInterval(() => {
         setCountdown(countdown => countdown - 1);
       }, 1000);
@@ -296,6 +297,7 @@ function Episode() {
         rel="stylesheet"
       />
       {/* polices : Noto Serif, Rubik */}
+      <p className='info-beta'>Beta</p>
       <p className="backupannonce">Back-ups de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.github.io" target="_blank" rel="noreferrer">onepiecechapitres.github.io</a>, <a href="https://wadeekt.github.io" target="_blank" rel="noreferrer">wadeekt.github.io</a> et <a href="https://wadeect.github.io" target="_blank" rel="noreferrer">wadeect.github.io</a>.</p>
       <p className='backupannonce note-backup'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
       <header className="header-container">
@@ -392,6 +394,7 @@ function Episode() {
         <div className='attention-player'>
           <img onClick={closePopup} className='img-croix-popup' src={croixSVG} alt='fermer le popup' />
           <p>Mettez un <a className='link-adblock' href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" title='uBlock Origin extension'>Ad Blocker</a> ! </p>
+          <p>Attention ! Si vous vous trouvez dans un des sites en .github.io, vous ne pourrez pas rafraichir votre page depuis le menu épisodes. Cela vous marqueras une erreur 404 ; il faudra simplement aller de nouveau dans le site principal (c'est à dire onepiecechapitres.github.io/, wadeekt.github.io/ et non pas onepiecechapitres.github.io/episodes,... . Merci!)</p>
           <p>Fermeture automatique dans {countdown} secondes</p>
         </div>
         {filteredData && (
@@ -447,18 +450,18 @@ function Episode() {
                       rel="noreferrer"
                       target="_blank"
                       href={
-                        "https://v4.voiranime.com/anime/one-piece/one-piece-" + numLink[dat.id].toString() + "-vostfr/"
+                        linksFR[dat.id]
                       }
                       id={dat.number.slice(2, dat.number.length)}
                     >
-                      Voir l'épisode en VostFR.
+                      Voir l'épisode en VOSTFR.
                     </a>
                     <a
                       className="alink nb-link"
                       rel="noreferrer"
                       target="_blank"
                       href={
-                        "https://www.streamenvf.com/anime/one-piece-vf/episode-" + dat.id
+                        linksVF[dat.id]
                       }
                       id={dat.number.slice(2, dat.number.length)}
                     >
@@ -476,7 +479,7 @@ function Episode() {
           </picture>
           <iframe
             className="iframe-chap iframe-video"
-            src={currentId ? "https://v4.voiranime.com/anime/one-piece/one-piece-" + numLink[currentId].toString() + "-vostfr/" : ""}
+            src={currentId ? linksFR[currentId] : ""}
             title="OnePieceStreaming.tv"
             allowFullScreen
             mozallowfullscreen="true"
