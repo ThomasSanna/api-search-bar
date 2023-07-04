@@ -12,6 +12,7 @@ import lowBatteryIcon from "../assets/images/lowbattery.svg";
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
 import numLink from '../scripts/numbersLink';
+import linksFR from '../scripts/linksFranime';
 
 function Episode() {
 
