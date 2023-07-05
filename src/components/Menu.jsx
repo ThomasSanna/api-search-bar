@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import iconMenu from "../assets/images/iconMenu.svg";
 import "../styles/Menu.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import Logo from '../components/Logo'
 
 
@@ -43,12 +43,12 @@ const Menu = () => {
       <div className="menu-container">
         <Logo />
         <ul className="menu-center">
-          <NavLink onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">Rechercher des chapitres</NavLink>
-          <NavLink onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">Rechercher des épisodes</NavLink>
+          <Link onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">Rechercher des chapitres</Link>
+          <Link onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">Rechercher des épisodes</Link>
         </ul>
         <ul className="menu-foot">
           <li className='menu-c-o'>© Eiichiro Oda - One Piece</li>
-          <li className='menu-c-w'>Site internet créé par <a className='credit-link' title='https://twitter.com/wadeekt' href='https://twitter.com/wadeekt'>WadeeKT</a>. <a href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</li>
+          <li className='menu-c-w'><a href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</li>
         </ul>
         <NavLink className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</NavLink>
       </div> 
