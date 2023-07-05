@@ -272,8 +272,8 @@ function Home() {
       />
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
-      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : et <a href="https;//opfilter.netlify.app">https;//opfilter.netlify.app</a></p>
-      <p className="backupannonce note-backup">Pour le déploiement, je n'ai pas d'images par chapitres pour économiser les données : ajout plus tard !</p>
+      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.onrender.com">onepiecechapitres.onrender.com</a> et <a href="https://opfilter.netlify.app">opfilter.netlify.app</a></p>
+      <p className="backupannonce note-backup">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p>
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery header-battery-active">
           <img className="image-battery battery-image-active" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
@@ -337,7 +337,7 @@ function Home() {
             className="sme check filter-checked"
             id="withdescription"
           >
-            Descritpions
+            Descriptions
           </div>
         </span>
         <span className="header-tome-tri-container">

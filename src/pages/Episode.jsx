@@ -288,7 +288,7 @@ function Episode() {
       />
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
-      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : et <a href="https;//opfilter.netlify.app">https;//opfilter.netlify.app</a></p>
+      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.onrender.com">onepiecechapitres.onrender.com</a> et <a href="https://opfilter.netlify.app">opfilter.netlify.app</a></p>
       <p className='backupannonce note-backup'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery">
@@ -353,7 +353,7 @@ function Episode() {
             className="sme check filter-checked"
             id="withdescription"
           >
-            Descritpions
+            Descriptions
           </div>
         </span>
         <span className="header-tome-tri-container">
