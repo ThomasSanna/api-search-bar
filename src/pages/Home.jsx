@@ -379,7 +379,7 @@ function Home() {
               <li onClick={arcFilter} id="[80,81,82]" title="Zou: Volumes 80-82"><b>Zou</b>: Volumes 80-82</li>
               <li onClick={arcFilter} id="[82,83,84,85,86,87,88,89,90]" title="Whole Cake Island: Volumes 82-90"><b>Whole Cake Island</b>: Volumes 82-90</li>
               <li onClick={arcFilter} id="[90]" title="Reverie: Volumes 90"><b>Reverie</b>: Volumes 90</li>
-              <li onClick={arcFilter} id="[90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106]" title="Wano Country: Volumes 90-107"><b>Wano Country</b>: Volumes 90-107</li>
+              <li onClick={arcFilter} id="[90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105]" title="Wano Country: Volumes 90-105"><b>Wano Country</b>: Volumes 90-105</li>
               <li onClick={arcFilter} id="[106,107]" title="Egg Head: Volumes 106-107"><b>Egg Head</b>: Volumes 106-107</li>
             </ul>
           </div>
