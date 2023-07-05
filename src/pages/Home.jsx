@@ -12,13 +12,12 @@ import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 
-
 function Home() {
   const [data, setData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [currentId, setCurrentId] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isLowBattery, setIsLowBattery] = useState(false);
+  const [isLowBattery, setIsLowBattery] = useState(true);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/chapters")
@@ -273,10 +272,11 @@ function Home() {
       />
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
-      <p className="backupannonce">Back-ups de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.github.io" target="_blank" rel="noreferrer">onepiecechapitres.github.io</a> et <a href="https;//opfilter.netlify.app">https;//opfilter.netlify.app</a></p>
+      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : et <a href="https;//opfilter.netlify.app">https;//opfilter.netlify.app</a></p>
+      <p className="backupannonce note-backup">Pour le déploiement, je n'ai pas d'images par chapitres pour économiser les données : ajout plus tard !</p>
       <header className="header-container">
-        <span onClick={lowBatteryFunc} className="header-battery">
-          <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
+        <span onClick={lowBatteryFunc} className="header-battery header-battery-active">
+          <img className="image-battery battery-image-active" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
         </span>
         <span className="header-search">
           <span className="cont-searchbar">
@@ -396,7 +396,8 @@ function Home() {
               <li onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
-                  src={isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] ? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"}
+                  // isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] ? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"
+                  src={isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg'}
                   alt={"One Piece chapitre n°" + dat.id.toString()}
                   loading={isLowBattery? "eager":"lazy"}
                 />

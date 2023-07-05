@@ -176,16 +176,6 @@ function Episode() {
     }
   }
 
-  const countAnnee = (anneefirst) => {
-    if (anneefirst) {
-      let annee = parseInt(anneefirst.slice(0, 4))
-      let anneeactuelle = new Date().getFullYear()
-      return - annee + parseInt(anneeactuelle)
-    } else {
-      return "XX"
-    }
-  }
-
   const moreInfoTabAppear = (e) => {
     e.target.nextElementSibling.style.display = "flex";
   }
@@ -298,7 +288,7 @@ function Episode() {
       />
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
-      <p className="backupannonce">Back-ups de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.github.io" target="_blank" rel="noreferrer">onepiecechapitres.github.io</a> et <a href="https;//opfilter.netlify.app">https;//opfilter.netlify.app</a></p>
+      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : et <a href="https;//opfilter.netlify.app">https;//opfilter.netlify.app</a></p>
       <p className='backupannonce note-backup'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery">
@@ -394,7 +384,7 @@ function Episode() {
         <div className='attention-player'>
           <img onClick={closePopup} className='img-croix-popup' src={croixSVG} alt='fermer le popup' />
           <p>Mettez un <a className='link-adblock' href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" title='uBlock Origin extension'>Ad Blocker</a> ! </p>
-          <p>Attention ! Si votre navigateur n'autorise pas la fenêtre, <a target="_blank" rel="noreferrer" href="https://twitter.com/messages/compose?recipient_id=1676561327903457281&text=La%20fenêtre%20ne%20marche%20pas,%20Je%20suis%20sur%[navigateur%20et%20informations%20sur%20l'appareil].">faites le moi savoir</a> !</p>
+          <p>Attention ! Si votre navigateur n'autorise pas la fenêtre, <a target="_blank" rel="noreferrer" href="https://twitter.com/messages/compose?recipient_id=1676561327903457281&text=La%20fenêtre%20d'épisodes%20ne%20marche%20pas,%20Je%20suis%20sur..">faites le moi savoir</a> !</p>
           <p>Fermeture automatique dans {countdown} secondes</p>
         </div>
         {filteredData && (
