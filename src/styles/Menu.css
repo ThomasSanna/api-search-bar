@@ -10,7 +10,7 @@
     filter: invert(100%);
     transition: all 0.1s ease-in-out;
     cursor: pointer;
-    z-index: 10000;
+    z-index: 1000000;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;

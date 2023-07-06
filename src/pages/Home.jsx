@@ -38,12 +38,19 @@ function Home() {
   });
   
 
-  const resetSearch = () => {
+  const resetSearch = (e) => {
+    e.target.style.display = "none";
     document.querySelector(".searchbar").value = "";
     updateFilteredData(data);
   }
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    let croix = document.querySelector(".croix-croix");
+    if (e.target.value === "") {
+      croix.style.display = "none";
+    } else {
+      croix.style.display = "block";
+    }
     updateFilteredData(data);
   };
 
@@ -286,6 +293,9 @@ function Home() {
               onChange={handleSearch}
               placeholder="Numéro, Titre ou Description du chapitre.."
             />
+            <span className="croix-search">
+              <div onClick={resetSearch} className="croix-croix">x</div>
+            </span>
             <span className="buttons-search">
               <span onClick={reverseNum} className="reverse-back">
                 <img
@@ -293,14 +303,6 @@ function Home() {
                   src={reverseImage}
                   alt="bouton reverse"
                   title="Trier par ordre décroissant"
-                />
-              </span>
-              <span onClick={resetSearch} className="reverse-back">
-                <img
-                  className="button-reverse"
-                  src={resetImage}
-                  alt="bouton reset"
-                  title="Réinitialiser la recherche"
                 />
               </span>
             </span>
