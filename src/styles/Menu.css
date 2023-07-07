@@ -5,7 +5,7 @@
 
 .menu-icon{
     position: fixed;
-    top: 30px;
+    top: 35px;
     right: 30px;
     filter: invert(100%);
     transition: all 0.1s ease-in-out;
@@ -108,5 +108,12 @@
     .menu-c-w *, .menu-c-w{
         font-size: 1rem !important;
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 450px){
+
+    .menu-icon{
+        right: 10px;
     }
 }
