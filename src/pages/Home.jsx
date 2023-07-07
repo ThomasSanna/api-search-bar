@@ -153,10 +153,14 @@ function Home() {
     if (headerTome.checked) {
       headerTome.classList.add("arc-checked");
       tomeContainer.style.height = "calc(100vh - 90px)";
+      tomeContainer.style.border = "1px solid #fff";
+      tomeContainer.style.paddingBottom = "50px";
     }
     else {
       headerTome.classList.remove("arc-checked");
       tomeContainer.style.height = "0";
+      tomeContainer.style.border = "none";
+      tomeContainer.style.padding = "0";
     }
   }
 
@@ -265,6 +269,23 @@ function Home() {
     }
   }
 
+  const openFuncTab = () => {
+    let telFilterContainer = document.querySelector('.tel-filter-container')
+    let arrowTelFilter = document.querySelector('.arrow-tel-filter')
+    let telFilter = document.querySelector('.tel-filter')
+    
+    arrowTelFilter.checked = !arrowTelFilter.checked;
+    if (arrowTelFilter.checked) {
+      telFilterContainer.style.height = "53px";
+      telFilter.style.display = "flex";
+      arrowTelFilter.style.transform = "rotate(180deg)";
+    } else {
+      telFilterContainer.style.height = "0";
+      telFilter.style.display = "none";
+      arrowTelFilter.style.transform = "rotate(0deg)";
+    }
+  }
+
   
 
 
@@ -343,7 +364,7 @@ function Home() {
           </div>
         </span>
         <span className="header-tome-tri-container">
-          <span onClick={openArcTab} className="header-tome-tri">
+          <span onClick={openArcTab} className="header-tome-tri header-tome-tri-pc">
             <span>
               Trier par Arc
             </span>
@@ -351,7 +372,7 @@ function Home() {
           </span>
           <div className="tome-select-container">
             <ul className="liste-tome">
-              <li onClick={arcFilter} id="[1]" title="Romance Dawn: Volumes 1"><b>Romance Dawn</b>: Volume 1</li>
+              <li onClick={arcFilter} id="[1]" title="Romance Dawn: Volume 1"><b>Romance Dawn</b>: Volume 1</li>
               <li onClick={arcFilter} id="[2,3]" title="Orange Town: Volumes 2-3"><b>Orange Town</b>: Volumes 2-3</li>
               <li onClick={arcFilter} id="[4,5]" title="Syrup Village: Volumes 4-5"><b>Syrup Village</b>: Volumes 4-5</li>
               <li onClick={arcFilter} id="[6,7,8]" title="Baratie: Volumes 6-8"><b>Baratie</b>: Volumes 6-8</li>
@@ -373,21 +394,41 @@ function Home() {
               <li onClick={arcFilter} id="[53,54]" title="Amazon Lily: Volumes 53-54"><b>Amazon Lily</b>: Volumes 53-54</li>
               <li onClick={arcFilter} id="[54,55,56]" title="Impel Down: Volumes 54-56"><b>Impel Down</b>: Volumes 54-56</li>
               <li onClick={arcFilter} id="[56,57,58,59,60,61]" title="Marineford: Volumes 56-61"><b>Marineford</b>: Volumes 56-61</li>
-              <li onClick={arcFilter} id="[61]" title="Post-War: Volumes 61"><b>Post-War</b>: Volumes 61</li>
+              <li onClick={arcFilter} id="[61]" title="Post-War: Volume 61"><b>Post-War</b>: Volume 61</li>
               <li onClick={arcFilter} id="[61]" title="Retour à Sabaody: Volumes 61"><b>Retour à Sabaody</b>: Volumes 61</li>
               <li onClick={arcFilter} id="[61,62,63,64,65,66]" title="Fishman Island: Volumes 61-66"><b>Fishman Island</b>: Volumes 61-66</li>
               <li onClick={arcFilter} id="[66,67,68,69,70]" title="Punk Hazard: Volumes 66-70"><b>Punk Hazard</b>: Volumes 66-70</li>
               <li onClick={arcFilter} id="[70,71,72,73,74,75,76,77,78,79,80]" title="Dressrosa: Volumes 70-80"><b>Dressrosa</b>: Volumes 70-80</li>
               <li onClick={arcFilter} id="[80,81,82]" title="Zou: Volumes 80-82"><b>Zou</b>: Volumes 80-82</li>
               <li onClick={arcFilter} id="[82,83,84,85,86,87,88,89,90]" title="Whole Cake Island: Volumes 82-90"><b>Whole Cake Island</b>: Volumes 82-90</li>
-              <li onClick={arcFilter} id="[90]" title="Reverie: Volumes 90"><b>Reverie</b>: Volumes 90</li>
+              <li onClick={arcFilter} id="[90]" title="Reverie: Volume 90"><b>Reverie</b>: Volume 90</li>
               <li onClick={arcFilter} id="[90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105]" title="Wano Country: Volumes 90-105"><b>Wano Country</b>: Volumes 90-105</li>
               <li onClick={arcFilter} id="[106,107]" title="Egg Head: Volumes 106-107"><b>Egg Head</b>: Volumes 106-107</li>
             </ul>
           </div>
         </span>
-        <Menu />
       </header>
+      <Menu />
+
+      <div  className="tel-filter-container">
+        <img onClick={openFuncTab} className="arrow-tel-filter" src={arrowDown} alt="flèche vers le bas" />
+        <div className="tel-filter">
+          <span span onClick={reverseNum} className="reverse-back rb-mobile">
+            <img
+              className="button-reverse br-mobile"
+              src={reverseImage}
+              alt="bouton reverse"
+              title="Trier par ordre décroissant"
+            />
+          </span>
+          <span onClick={openArcTab} className="header-tome-tri htt-tel">
+            <span>
+              Trier par Arc
+            </span>
+            <img className="arrow-down ad-tel" src={arrowDown} alt="flèche vers le bas" />
+          </span>
+        </div>
+      </div>
 
       {/* CHAPTER VISUAL ---------------------------------------------------- */}
 

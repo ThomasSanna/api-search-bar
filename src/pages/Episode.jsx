@@ -59,12 +59,19 @@ function Episode() {
   });
   
 
-  const resetSearch = () => {
+  const resetSearch = (e) => {
+    e.target.style.display = "none";
     document.querySelector(".searchbar").value = "";
     updateFilteredData(data);
   }
 
-  const handleSearch = () => {
+  const handleSearch = (e) => {
+    let croix = document.querySelector(".croix-croix");
+    if (e.target.value === "") {
+      croix.style.display = "none";
+    } else {
+      croix.style.display = "block";
+    }
     updateFilteredData(data);
   };
 
@@ -277,6 +284,23 @@ function Episode() {
     return found? found.join(", ") : "inconnu";
   }
 
+  const openFuncTab = () => {
+    let telFilterContainer = document.querySelector('.tel-filter-container')
+    let arrowTelFilter = document.querySelector('.arrow-tel-filter')
+    let telFilter = document.querySelector('.tel-filter')
+    
+    arrowTelFilter.checked = !arrowTelFilter.checked;
+    if (arrowTelFilter.checked) {
+      telFilterContainer.style.height = "53px";
+      telFilter.style.display = "flex";
+      arrowTelFilter.style.transform = "rotate(180deg)";
+    } else {
+      telFilterContainer.style.height = "0";
+      telFilter.style.display = "none";
+      arrowTelFilter.style.transform = "rotate(0deg)";
+    }
+  }
+
   // ----°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-----------------------------------------------------------------
   return (
     <div>
@@ -302,6 +326,9 @@ function Episode() {
               onChange={handleSearch}
               placeholder="Numéro, Titre ou Description du de l'épisode.."
             />
+            <span className="croix-search">
+              <div onClick={resetSearch} className="croix-croix">x</div>
+            </span>
             <span className="buttons-search">
               <span onClick={reverseNum} className="reverse-back">
                 <img
@@ -309,14 +336,6 @@ function Episode() {
                   src={reverseImage}
                   alt="bouton reverse"
                   title="Trier par ordre décroissant"
-                />
-              </span>
-              <span onClick={resetSearch} className="reverse-back">
-                <img
-                  className="button-reverse"
-                  src={resetImage}
-                  alt="bouton reset"
-                  title="Réinitialiser la recherche"
                 />
               </span>
             </span>
@@ -357,7 +376,7 @@ function Episode() {
           </div>
         </span>
         <span className="header-tome-tri-container">
-          <span onClick={openArcTab} className="header-tome-tri">
+          <span onClick={openArcTab} className="header-tome-tri header-tome-tri-pc">
             <span>
               Trier par Arc
             </span>
@@ -375,8 +394,28 @@ function Episode() {
             </ul>
           </div>
         </span>
-        <Menu />
       </header>
+      <Menu />
+
+      <div  className="tel-filter-container">
+        <img onClick={openFuncTab} className="arrow-tel-filter" src={arrowDown} alt="flèche vers le bas" />
+        <div className="tel-filter">
+          <span span onClick={reverseNum} className="reverse-back rb-mobile">
+            <img
+              className="button-reverse br-mobile"
+              src={reverseImage}
+              alt="bouton reverse"
+              title="Trier par ordre décroissant"
+            />
+          </span>
+          <span onClick={openArcTab} className="header-tome-tri htt-tel">
+            <span>
+              Trier par Arc
+            </span>
+            <img className="arrow-down ad-tel" src={arrowDown} alt="flèche vers le bas" />
+          </span>
+        </div>
+      </div>
 
       {/* CHAPTER VISUAL ---------------------------------------------------- */}
 

@@ -48,7 +48,7 @@ const Menu = () => {
         </ul>
         <ul className="menu-foot">
           <li className='menu-c-o'>© Eiichiro Oda - One Piece</li>
-          <li className='menu-c-w'><a href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</li>
+          <li className='menu-c-w'><a target="_blank" rel='noreferrer' href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</li>
         </ul>
         <Link className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</Link>
       </div> 

@@ -254,6 +254,10 @@ body {
 }
 
 
+.header-battery{
+    display: none;
+}
+
 /* HEADER TOME----------------------------------------------------------  */
 
 .header-tome-tri-container{
@@ -280,6 +284,10 @@ body {
 }
 .header-tome-tri:hover .arrow-down{
     filter: invert(90%);
+}
+
+.header-tome-tri-pc{
+    margin-right: 40px;
 }
 
 .arrow-down{
@@ -755,18 +763,32 @@ body {
 }
 
 @media screen and (max-width: 650px){
+
+    .tel-filter-container{
+        display: flex !important;
+    }
+
     .backupannonce{
         display: none;
     }
     .note-backup{
         display: none;
     }
-    .header-tome-tri-container{
-        display: none;
+    .header-tome-tri-pc{
+        display: none !important;
+    }
+    .tome-select-container{
+        border: none;
+        width: 100vw;
+        right: 0;
+        top: 140px;
+    }
+    .liste-tome *{
+        font-size: 1.3rem !important;
     }
     .searchbar{
         margin-top: 5px;
-        width: 260px;
+        width: calc(100vw - 200px);
         height: 50px;
         font-size: 1rem;
     }
@@ -780,7 +802,7 @@ body {
         margin-top: 5px;
     }
     .reverse-back{
-        margin-top: 5px;
+        display: none;
     }
     .button-reverse{
         height: 50px;
@@ -804,10 +826,23 @@ body {
     .more-info-tab{
         max-width: 300px;
     }
+
+    .tel-filter-container{
+        display: flex;
+    }
+
+    .rb-mobile, .br-mobile{
+        display:flex;
+        height: 40px;
+        width: 40px;
+    }
 }
 
 
 @media screen and (max-width: 450px){
+    .header-tome-tri-pc{
+        display: none !important;
+    }
     .info-beta{
         left: -7px !important;
     }
@@ -830,6 +865,11 @@ body {
     .chapter-container{
         overflow: hidden;
         padding: 0;
+    }
+    .rb-mobile, .br-mobile{
+        display:flex;
+        height: 40px;
+        width: 40px;
     }
 }
 
@@ -864,4 +904,69 @@ body {
 }
 .note-backup *{
     font-size: .7rem !important;
+}
+
+
+/* ---------------- TEL FILTER ----------------------------------------- */
+
+.tel-filter-container{
+    border-bottom: white solid 1px;
+    display: none;
+    position: fixed;
+    top: 89px;
+    width: 100vw;
+    z-index: 1000;
+    align-items: center;
+    height: 0;
+    background: linear-gradient(90deg, rgba(46, 67, 87, 0.774) 0%,  rgba(53, 89, 94, 0.767) 100%);
+}
+
+.tel-filter-container * {
+    transition: all 0.2s ease-in-out;
+}
+
+.rb-mobile{
+    position: absolute;
+    right: 65px;
+    width: 75px;
+    background-color: #192b31d0;
+}
+
+.tel-filter{
+    display: none;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.htt-tel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.htt-tel span{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.ad-tel{
+    top: 1px;
+}
+
+.arrow-tel-filter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: -18px;
+    right: 30px;
+    height: 35px;
+    filter: invert(1);
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: rgb(231, 178, 171);
+    border: rgb(0, 0, 0) solid .5px;
 }

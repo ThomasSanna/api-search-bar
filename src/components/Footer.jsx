@@ -35,7 +35,7 @@ function Footer() {
 
       <footer className='credit-all credit-all-night'>
         <p className='credit-oda'>© Eiichiro Oda - One Piece</p>
-        <p className='credit-website'><a href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</p>
+        <p className='credit-website'><a target="_blank" rel='noreferrer' href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</p>
       </footer>
     </div>
   )

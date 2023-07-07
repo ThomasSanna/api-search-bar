@@ -27,7 +27,7 @@ function Apropos() {
             <p className='invers-p'>Merci d'avoir été si nombreux à me soutenir lors de l'avancement du site, j'espère qu'il vous convient !</p>
             <p className='invers-p'>Un problème de fonctionnement ? <a target='_blank' rel='noreferrer' href="https://twitter.com/messages/compose?recipient_id=1676561327903457281&text=G%20un%20probleme">Contactez-moi sur Twitter</a> </p>
             <p className='invers-p'>Seulement si vous le souhaitez, n'hésitez pas à me soutenir sur <a target='_blank' rel='noreferrer' href="https://ko-fi.com/wadeekt">Ko-Fi</a> ❤️</p>
-            <p className='invers-p'><a href="mailto:onepiecechapitres@gmail.com">Me contacter par mail</a>.</p>
+            <p className='invers-p'><a target="_blank" rel='noreferrer' href="mailto:onepiecechapitres@gmail.com">Me contacter par mail</a>.</p>
         </div>
         <Footer />
     </div>
