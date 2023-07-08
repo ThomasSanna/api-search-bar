@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/Episode.css'
 import '../styles/Menu.css'
 import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
-import resetImage from "../assets/images/reset.svg";
 import arrowTriangle from "../assets/images/arrowTriangle.svg";
 import fullScreenIcon from "../assets/images/fullscreen.svg";
 import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
@@ -161,6 +161,11 @@ function Episode() {
   };
 
   const arcFilter = (e) => {
+    if (window.innerWidth <= 850) {
+      openArcTab()
+      openFuncTab()
+    }
+    
     const reversed = document.querySelector(".reverse-back").checked;
     const arcF = parseInt(e.target.id + e.target.parentElement.id)
     const filtered = data.filter((dat) => {
@@ -319,6 +324,7 @@ function Episode() {
           <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
         </span>
         <span className="header-search">
+        <Link className="sous-search" to="/">Rechercher un chapitre</Link>
           <span className="cont-searchbar">
             <input
               type="text"
@@ -400,6 +406,7 @@ function Episode() {
       <div  className="tel-filter-container">
         <img onClick={openFuncTab} className="arrow-tel-filter" src={arrowDown} alt="flèche vers le bas" />
         <div className="tel-filter">
+        <Link to="/" activeClassName="active" className="go-to-other">Rechercher des chapitres</Link>
           <span span onClick={reverseNum} className="reverse-back rb-mobile">
             <img
               className="button-reverse br-mobile"

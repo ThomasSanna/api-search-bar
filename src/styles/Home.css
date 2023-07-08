@@ -1,5 +1,7 @@
 html{
     background-color: #f8f8f8;
+    overflow-x: hidden;
+    width: 100vw;
 }
 
 .night-html {
@@ -304,6 +306,7 @@ body {
 
 
 .tome-select-container{
+    padding: 0 !important;
     border-left: white 1px solid;
     border-top: white 1px solid;
     -webkit-user-select: none;
@@ -701,6 +704,11 @@ body {
 }
 
 @media screen and (max-width: 1000px){
+    .sous-search{
+        font-size: .9rem;
+        bottom: 3px;
+        left: 5px !important;
+    }
     *{
         font-size: 1rem;
         max-width: 100vw;
@@ -762,7 +770,16 @@ body {
 
 }
 
-@media screen and (max-width: 650px){
+@media screen and (max-width: 850px){
+    .sous-search{
+        display: none;
+    }
+    .liste-tome{
+        padding-bottom: 100px;
+    }
+    .chapter-container{
+        padding: 50px 0px 10px 0 !important;
+    }
 
     .tel-filter-container{
         display: flex !important;
@@ -850,7 +867,7 @@ body {
         padding-left: 20px;
     }
     .searchbar{
-        width: 100%;
+        width: 80%;
         height: 50px;
     }
     .reverse-back{
@@ -864,7 +881,6 @@ body {
     }
     .chapter-container{
         overflow: hidden;
-        padding: 0;
     }
     .rb-mobile, .br-mobile{
         display:flex;
@@ -969,4 +985,18 @@ body {
     border-radius: 50%;
     background-color: rgb(231, 178, 171);
     border: rgb(0, 0, 0) solid .5px;
+}
+
+.go-to-other {
+    text-decoration: none;
+    position: absolute;
+    left: 5px;
+    width: 30%;
+}
+
+.sous-search{
+    text-decoration: none;
+    position: absolute;
+    bottom: 3px;
+    left: 50px;
 }

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Home.css";
 import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
-import resetImage from "../assets/images/reset.svg";
 import arrowTriangle from "../assets/images/arrowTriangle.svg";
 import fullScreenIcon from "../assets/images/fullscreen.svg";
 import lowBatteryIcon from "../assets/images/lowbattery.svg";
@@ -121,6 +121,11 @@ function Home() {
   };
 
   const arcFilter = (e) => {
+    if (window.innerWidth <= 850) {
+      openArcTab()
+      openFuncTab()
+    }
+
     const reversed = document.querySelector(".reverse-back").checked;
     const numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
     let tab = []
@@ -152,7 +157,11 @@ function Home() {
     headerTome.checked = !headerTome.checked;
     if (headerTome.checked) {
       headerTome.classList.add("arc-checked");
-      tomeContainer.style.height = "calc(100vh - 90px)";
+      if (window.innerWidth <= 850) {
+        tomeContainer.style.height = "calc(100vh - 140px)";
+      } else {
+        tomeContainer.style.height = "calc(100vh - 90px)";
+      }
       tomeContainer.style.border = "1px solid #fff";
       tomeContainer.style.paddingBottom = "50px";
     }
@@ -307,6 +316,7 @@ function Home() {
           <img className="image-battery battery-image-active" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
         </span>
         <span className="header-search">
+          <Link className="sous-search" to="/episodes">Rechercher un épisode</Link>
           <span className="cont-searchbar">
             <input
               type="text"
@@ -413,6 +423,7 @@ function Home() {
       <div  className="tel-filter-container">
         <img onClick={openFuncTab} className="arrow-tel-filter" src={arrowDown} alt="flèche vers le bas" />
         <div className="tel-filter">
+        <Link to="/episodes" activeClassName="active" className="go-to-other">Rechercher des épisodes</Link>
           <span span onClick={reverseNum} className="reverse-back rb-mobile">
             <img
               className="button-reverse br-mobile"

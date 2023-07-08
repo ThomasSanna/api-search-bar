@@ -65,7 +65,7 @@
     height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
 
 }
@@ -116,5 +116,15 @@
 
     .menu-icon{
         right: 10px;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .menu-center{
+        margin-bottom: 100px;
+    }
+    .linkapropos{
+        font-size: .9rem !important;
+        margin-bottom: 100px;
     }
 }

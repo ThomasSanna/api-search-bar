@@ -37,6 +37,13 @@ a{
 
 @media screen and (max-width: 1000px) {
     .apropos-cont{
-        padding-top: 160px;
+        padding: 80px 1rem 1rem 1rem;
+    }
+    .apropos-cont p{
+        font-size: .9rem;
+        line-height: 1.2rem;
+    }
+    h1{
+        font-size: 1.5rem;
     }
 }
