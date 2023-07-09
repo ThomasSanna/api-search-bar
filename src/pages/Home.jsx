@@ -11,6 +11,7 @@ import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
 import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
+import descRapide from "../scripts/descRapideChapitres/AUPDATEdescRapideChap"
 
 function Home() {
   const [data, setData] = useState(null);
@@ -20,6 +21,7 @@ function Home() {
   const [isLowBattery, setIsLowBattery] = useState(true);
 
   useEffect(() => {
+    console.log(descRapide.length);
     fetch("https://api.api-onepiece.com/chapters")
       .then((res) => res.json())
       .then((data) => {
@@ -95,7 +97,7 @@ function Home() {
 
     const filtered = data.filter((dat) => {
       const titleKeywords = withtitle.checked && searchText.every(keyword => dat.chapter_title.toLowerCase().includes(keyword));
-      const descriptionKeywords = dat.chapter_description && withdescription.checked && searchText.every(keyword => dat.chapter_description.toLowerCase().includes(keyword));
+      const descriptionKeywords = descRapide[dat.id] && withdescription.checked && searchText.every(keyword => descRapide[dat.id]? descRapide[dat.id].toLowerCase().includes(keyword) : false);
       const numberKeywords = withnumber.checked && searchText.every(keyword => dat.chapter_number.slice(3, dat.chapter_number.length).includes(keyword));
 
       return titleKeywords || descriptionKeywords || numberKeywords;
@@ -483,11 +485,12 @@ function Home() {
                   </div>
 
                   <p 
+                    className="ladescriptionduchapitrebordel"
                     id={dat.chapter_number.slice(3, dat.chapter_number.length)}
-                    title={dat.chapter_description
-                        ? dat.chapter_description
+                    title={descRapide[dat.id]
+                        ? descRapide[dat.id]
                         : "Ce chapitre n'a pas de description."}>
-                      {dat.chapter_description ? dat.chapter_description.length <300? dat.chapter_description : dat.chapter_description.slice(0, 300) + "..." : "Ce chapitre n'a pas de description."}
+                      {descRapide[dat.id] ? descRapide[dat.id].length <300? descRapide[dat.id] : descRapide[dat.id].slice(0, 300) + "..." : "Ce chapitre n'a pas de description."}
                   </p>
                   <span
                   id={dat.chapter_number.slice(3, dat.chapter_number.length)}
