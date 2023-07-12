@@ -11,7 +11,6 @@ import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
 import lowBatteryIcon from "../assets/images/lowbattery.svg";
 import Footer from '../components/Footer'
 import Menu from '../components/Menu'
-import numLink from '../scripts/numbersLink';
 import linksFR from '../scripts/linksFranime';
 import linksVF from '../scripts/linksfranimevf';
 import persosParE from '../scripts/persosParEp/AUPDATEpersosParEp';
@@ -47,7 +46,6 @@ function Episode() {
 
 
   useEffect(() => {
-    console.log(numLink);
     fetch("https://api.api-onepiece.com/episodes")
       .then((res) => res.json())
       .then((data) => {
@@ -86,10 +84,11 @@ function Episode() {
       e.target.classList.remove("filter-checked");
     }
     const withnumber = document.getElementById("withnumber");
+    const withperso = document.getElementById("withperso");
     const withtitle = document.getElementById("withtitle");
     const withdescription = document.getElementById("withdescription");
 
-    if (!withnumber.checked && !withtitle.checked && !withdescription.checked) {
+    if (!withnumber.checked && !withtitle.checked && !withdescription.checked && !withperso.checked) {
       withnumber.checked = true;
       withnumber.classList.add("filter-checked");
     }
@@ -403,8 +402,9 @@ function Episode() {
           </div>
           <div
             title="Trier par personnages présents dans le chapitre"
+            checked
             onClick={clickChangeFilter}
-            className="sme check"
+            className="sme check filter-checked"
             id="withperso"
           >
             Persos
@@ -487,7 +487,7 @@ function Episode() {
                       <ul className="listPerso" id={dat.number.slice(2, dat.number.length)}>
                         {
                           Array.isArray(persosParE[dat.id])
-                          ? persosParE[dat.id].map((perso) => (<li id={dat.number.slice(2, dat.number.length)}>{perso}</li>)) 
+                          ? persosParE[dat.id].sort().map((perso) => (<li id={dat.number.slice(2, dat.number.length)}>{perso}</li>)) 
                           : persosParE[dat.id]
                         }
                       </ul>

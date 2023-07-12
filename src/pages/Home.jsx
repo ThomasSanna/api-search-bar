@@ -68,8 +68,9 @@ function Home() {
     const withnumber = document.getElementById("withnumber");
     const withtitle = document.getElementById("withtitle");
     const withdescription = document.getElementById("withdescription");
+    const withperso = document.getElementById("withperso");
 
-    if (!withnumber.checked && !withtitle.checked && !withdescription.checked) {
+    if (!withnumber.checked && !withtitle.checked && !withdescription.checked && !withperso.checked) {
       withnumber.checked = true;
       withnumber.classList.add("filter-checked");
     }
@@ -396,8 +397,9 @@ function Home() {
           </div>
           <div
             title="Trier par personnages présents dans le chapitre"
+            checked
             onClick={clickChangeFilter}
-            className="sme check"
+            className="sme check filter-checked"
             id="withperso"
           >
             Persos
@@ -500,7 +502,7 @@ function Home() {
                       <ul className="listPerso" id={dat.chapter_number.slice(3, dat.chapter_number.length)}>
                         {
                           Array.isArray(persoParC[dat.id])
-                          ? persoParC[dat.id].map((perso) => (<li id={dat.chapter_number.slice(3, dat.chapter_number.length)}>{perso}</li>)) 
+                          ? persoParC[dat.id].sort().map((perso) => (<li id={dat.chapter_number.slice(3, dat.chapter_number.length)}>{perso}</li>)) 
                           : persoParC[dat.id]
                         }
                       </ul>
