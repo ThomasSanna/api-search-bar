@@ -12,6 +12,9 @@ import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import descRapide from "../scripts/descRapideChapitres/AUPDATEdescRapideChap"
+import persoParC from "../scripts/persosParChap/AUPDATEpersosParChap.jsx"
+import characterIcon from "../assets/images/character.svg";
+
 
 function Home() {
   const [data, setData] = useState(null);
@@ -21,7 +24,6 @@ function Home() {
   const [isLowBattery, setIsLowBattery] = useState(true);
 
   useEffect(() => {
-    console.log(descRapide.length);
     fetch("https://api.api-onepiece.com/chapters")
       .then((res) => res.json())
       .then((data) => {
@@ -92,6 +94,7 @@ function Home() {
     const withnumber = document.getElementById("withnumber");
     const withtitle = document.getElementById("withtitle");
     const withdescription = document.getElementById("withdescription");
+    const withperso = document.getElementById("withperso");
     const searchText = document.querySelector(".searchbar").value.toLowerCase().split(" ");
     const reversed = document.querySelector(".reverse-back").checked;
 
@@ -99,8 +102,9 @@ function Home() {
       const titleKeywords = withtitle.checked && searchText.every(keyword => dat.chapter_title.toLowerCase().includes(keyword));
       const descriptionKeywords = descRapide[dat.id] && withdescription.checked && searchText.every(keyword => descRapide[dat.id]? descRapide[dat.id].toLowerCase().includes(keyword) : false);
       const numberKeywords = withnumber.checked && searchText.every(keyword => dat.chapter_number.slice(3, dat.chapter_number.length).includes(keyword));
+      const persoKeywords = persoParC[dat.id] && withperso.checked && searchText.every(keyword =>   Array.isArray(persoParC[dat.id])? persoParC[dat.id].join(' ').toLowerCase().includes(keyword) : false);
 
-      return titleKeywords || descriptionKeywords || numberKeywords;
+      return titleKeywords || descriptionKeywords ||  numberKeywords || persoKeywords;
     });
 
     setFilteredData(reversed ? filtered.reverse() : filtered);
@@ -108,6 +112,9 @@ function Home() {
 
 
   const iframeOpen = (e) => {
+    if (e.target.classList.contains("mibperso") || e.target.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.pa) {
+      return;
+    }
     setCurrentId(e.target.id.toString());
     document.querySelector(".iframe-container").style.display = "flex";
     const chapterContainer = document.querySelector(".chapter-container");
@@ -191,6 +198,17 @@ function Home() {
 
   const moreInfoTabDisappear = (e) => {
     e.target.nextElementSibling.style.display = "none";
+  }
+
+  const mita = (e) => {
+    e.target.checked = !e.target.checked;
+
+    if (!e.target.checked) {
+      e.target.parentElement.classList.add("mitactive");
+    }
+    else {
+      e.target.parentElement.classList.remove("mitactive");
+    }
   }
 
 
@@ -311,8 +329,7 @@ function Home() {
       />
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
-      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.onrender.com">onepiecechapitres.onrender.com</a> et <a href="https://opfilter.netlify.app">opfilter.netlify.app</a></p>
-      <p className="backupannonce note-backup">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p>
+      <p className="backupannonce">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p>
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery header-battery-active">
           <img className="image-battery battery-image-active" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
@@ -343,14 +360,15 @@ function Home() {
           <h5 className="nb-result">
             {filteredData
               ? filteredData.length === 1
-                ? "1 résultat trouvé."
-                : filteredData.length + " résultats trouvés."
+                ? "1 chapitre trouvé."
+                : filteredData.length + " chapitres trouvés."
               : null}
           </h5>
         </span>
         <span className="header-checkbox">
           <div className="sme tri-par">Trier par :</div>
           <div
+            title="Trier par numéros des chapitres"
             checked
             onClick={clickChangeFilter}
             className="sme check filter-checked"
@@ -359,6 +377,7 @@ function Home() {
             Numéros
           </div>
           <div
+            title="Trier par titres des chapitres"
             checked
             onClick={clickChangeFilter}
             className="sme check filter-checked"
@@ -367,12 +386,21 @@ function Home() {
             Titres
           </div>
           <div
+            title="Trier par descriptions des chapitres"
             checked
             onClick={clickChangeFilter}
             className="sme check filter-checked"
             id="withdescription"
           >
             Descriptions
+          </div>
+          <div
+            title="Trier par personnages présents dans le chapitre"
+            onClick={clickChangeFilter}
+            className="sme check"
+            id="withperso"
+          >
+            Persos
           </div>
         </span>
         <span className="header-tome-tri-container">
@@ -466,6 +494,20 @@ function Home() {
                   id={dat.chapter_number.slice(3, dat.chapter_number.length)}
                   className="chapter-description">
 
+
+                  <div className="more-info-container micperso" id={dat.chapter_number.slice(3, dat.chapter_number.length)}>
+                    <div className="mitperso mitactive" id={dat.chapter_number.slice(3, dat.chapter_number.length)} >
+                      <ul className="listPerso" id={dat.chapter_number.slice(3, dat.chapter_number.length)}>
+                        {
+                          Array.isArray(persoParC[dat.id])
+                          ? persoParC[dat.id].map((perso) => (<li id={dat.chapter_number.slice(3, dat.chapter_number.length)}>{perso}</li>)) 
+                          : persoParC[dat.id]
+                        }
+                      </ul>
+                      <img className="mibperso" onClick={mita} id={dat.chapter_number.slice(3, dat.chapter_number.length)} src={characterIcon} alt="Icone de personnage" />
+                    </div>
+                  </div>
+
                   <div className="more-info-container">
                     <p className="more-info-button" id={dat.chapter_number.slice(3, dat.chapter_number.length)} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>
                     <div className="more-info-tab" id={dat.chapter_number.slice(3, dat.chapter_number.length)} >
@@ -483,6 +525,7 @@ function Home() {
                       </p>
                     </div>
                   </div>
+
 
                   <p 
                     className="ladescriptionduchapitrebordel"

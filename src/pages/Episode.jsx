@@ -14,6 +14,9 @@ import Menu from '../components/Menu'
 import numLink from '../scripts/numbersLink';
 import linksFR from '../scripts/linksFranime';
 import linksVF from '../scripts/linksfranimevf';
+import persosParE from '../scripts/persosParEp/AUPDATEpersosParEp';
+import characterIcon from "../assets/images/character.svg";
+
 
 function Episode() {
 
@@ -111,6 +114,7 @@ function Episode() {
     const withnumber = document.getElementById("withnumber");
     const withtitle = document.getElementById("withtitle");
     const withdescription = document.getElementById("withdescription");
+    const withperso = document.getElementById("withperso");
     const searchText = document.querySelector(".searchbar").value.toLowerCase().split(" ");
     const reversed = document.querySelector(".reverse-back").checked;
 
@@ -118,8 +122,9 @@ function Episode() {
       const titleKeywords = withtitle.checked && searchText.every(keyword => dat.title.toLowerCase().includes(keyword));
       const descriptionKeywords = dat.description && withdescription.checked && searchText.every(keyword => dat.description.toLowerCase().includes(keyword));
       const numberKeywords = withnumber.checked && searchText.every(keyword => dat.number.slice(2, dat.number.length).includes(keyword));
+      const persoKeywords = persosParE[dat.id] && withperso.checked && searchText.every(keyword =>   Array.isArray(persosParE[dat.id])? persosParE[dat.id].join(' ').toLowerCase().includes(keyword) : false);
 
-      return titleKeywords || descriptionKeywords || numberKeywords;
+      return titleKeywords || descriptionKeywords || numberKeywords || persoKeywords;
     });
 
     setFilteredData(reversed ? filtered.reverse() : filtered);
@@ -132,6 +137,9 @@ function Episode() {
 
 
   const iframeOpen = (e) => {
+    if (e.target.classList.contains("mibperso") || e.target.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.pa) {
+      return;
+    }
     setCurrentId(e.target.id.toString());
     document.querySelector(".iframe-container").style.display = "flex";
     const chapterContainer = document.querySelector(".chapter-container");
@@ -194,6 +202,17 @@ function Episode() {
 
   const moreInfoTabDisappear = (e) => {
     e.target.nextElementSibling.style.display = "none";
+  }
+
+  const mita = (e) => {
+    e.target.checked = !e.target.checked;
+
+    if (!e.target.checked) {
+      e.target.parentElement.classList.add("mitactive");
+    }
+    else {
+      e.target.parentElement.classList.remove("mitactive");
+    }
   }
 
 
@@ -317,8 +336,7 @@ function Episode() {
       />
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
-      <p className="backupannonce">Back-up de  <a href="https://onepiecechapitres.fr" target="_blank" rel="noreferrer">onepiecechapitres.fr</a> : <a href="https://onepiecechapitres.onrender.com">onepiecechapitres.onrender.com</a> et <a href="https://opfilter.netlify.app">opfilter.netlify.app</a></p>
-      <p className='backupannonce note-backup'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
+      <p className='backupannonce'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery">
           <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
@@ -349,14 +367,15 @@ function Episode() {
           <h5 className="nb-result">
             {filteredData
               ? filteredData.length === 1
-                ? "1 résultat trouvé."
-                : filteredData.length + " résultats trouvés."
+                ? "1 épisode trouvé."
+                : filteredData.length + " épisodes trouvés."
               : null}
           </h5>
         </span>
         <span className="header-checkbox">
           <div className="sme tri-par">Trier par :</div>
           <div
+            title="Trier par numéros des chapitres"
             checked
             onClick={clickChangeFilter}
             className="sme check filter-checked"
@@ -365,6 +384,7 @@ function Episode() {
             Numéros
           </div>
           <div
+            title='Trier par titres des chapitres'
             checked
             onClick={clickChangeFilter}
             className="sme check filter-checked"
@@ -373,12 +393,21 @@ function Episode() {
             Titres
           </div>
           <div
+            title='Trier par descriptions des chapitres'
             checked
             onClick={clickChangeFilter}
             className="sme check filter-checked"
             id="withdescription"
           >
             Descriptions
+          </div>
+          <div
+            title="Trier par personnages présents dans le chapitre"
+            onClick={clickChangeFilter}
+            className="sme check"
+            id="withperso"
+          >
+            Persos
           </div>
         </span>
         <span className="header-tome-tri-container">
@@ -442,7 +471,7 @@ function Episode() {
                   className="backImage"
                   src={isLowBattery? 'https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png' : "https://i.imgur.com/U8Uo4co.png"}
                   alt={"One Piece episode n°" + dat.id.toString()}
-                  loading={isLowBattery? "eager":"lazy"}
+                  loading={"lazy"}
                 />
                 <p className="chapter-number chapter-night">
                   {dat.number.slice(2, dat.number.length)}
@@ -451,6 +480,21 @@ function Episode() {
                 <p
                   id={dat.number.slice(2, dat.number.length)}
                   className="chapter-description">
+
+                    
+                  <div className="more-info-container micperso" id={dat.number.slice(2, dat.number.length)}>
+                    <div className="mitperso mitactive" id={dat.number.slice(2, dat.number.length)} >
+                      <ul className="listPerso" id={dat.number.slice(2, dat.number.length)}>
+                        {
+                          Array.isArray(persosParE[dat.id])
+                          ? persosParE[dat.id].map((perso) => (<li id={dat.number.slice(2, dat.number.length)}>{perso}</li>)) 
+                          : persosParE[dat.id]
+                        }
+                      </ul>
+                      <img className="mibperso" onClick={mita} id={dat.number.slice(2, dat.number.length)} src={characterIcon} alt="Icone de personnage" />
+                    </div>
+                  </div>
+
 
                   <div className="more-info-container">
                     <p className="more-info-button" id={dat.number.slice(2, dat.number.length)} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>

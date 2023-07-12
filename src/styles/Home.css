@@ -627,6 +627,25 @@ body {
     user-select: none;
 }
 
+.micperso {
+    right: 0 !important;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.micperso *::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgb(46, 53, 66);
+    border-radius: 0.rem;
+}
+
+.micperso *::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+    max-height: 100px;
+}
+
+
+
 .more-info-button{
     height: 30px;
     width: 30px;
@@ -641,9 +660,29 @@ body {
     color: #d5d6d6;
 }
 
+.mibperso {
+    border: #323232 2px solid;
+    border-radius: 10px;
+    filter: invert(1);
+    height: 40px;
+    width: 40px;
+    object-fit: cover;
+    padding: 0.3rem;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer !important;
+}
+
 .more-info-button:hover{
     background-color: #5064708c;
     border: #e9eef28c 2px solid;
+}
+
+.mibperso:hover{
+    border: #3939398c 2px solid;
+    background-color: #dac4b5;
+    filter: invert(90%);
 }
 
 .more-info-tab{
@@ -666,10 +705,44 @@ body {
     align-items: flex-start;
 }
 
+.mitperso{
+    background-color: #2f343fcc;
+    border: #ccdcdc 1px solid;
+    border-radius: 10px;
+    width: 380px;
+    height: 230px;
+    overflow: auto;
+    transition: all 0.2s ease-in-out;
+}
+
+.mitactive{
+    height: 40px;
+    width: 40px;
+    overflow: hidden;
+    border: none;
+    color: rgba(255, 255, 255, 0);
+}
+
+.mitperso * {
+    -moz-user-select :text;
+    -webkit-user-select: text;
+    user-select: text;
+    cursor: auto;
+}
+
 .more-info-tab *{
     color: #d5d6d6;
 }
 
+.listPerso {
+    height: auto;
+    width: 100%;
+    padding: 1rem 2rem;
+    white-space: nowrap;
+}
+.listPerso li {
+    text-align: start;
+}
 
 
 /* RESPONSIVE -°-°-°-°-°-°-°-°-°°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-° */
