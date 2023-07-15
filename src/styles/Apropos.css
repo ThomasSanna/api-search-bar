@@ -16,6 +16,9 @@ h1{
     display: flex;
     flex-direction: column;
 }
+.apropos-cont * {
+    color: #1e2429;
+}
 
 .apropos-cont *{
     text-align: justify;
@@ -33,6 +36,10 @@ a{
 
 .invers-p{
     text-align: end;
+}
+
+.apropos-cont-night *{
+    color: #fff !important;
 }
 
 @media screen and (max-width: 1000px) {

@@ -7,7 +7,7 @@
     position: fixed;
     top: 35px;
     right: 30px;
-    filter: invert(100%);
+    filter: invert(0);
     transition: all 0.1s ease-in-out;
     cursor: pointer;
     z-index: 1000000;
@@ -15,6 +15,11 @@
     -moz-user-select: none;
     user-select: none;
 }
+
+.menu-icon-night{
+    filter: invert(1) !important;
+}
+
 .menu-icon:hover{
     transform: scale(1.1);
 }

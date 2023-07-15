@@ -230,7 +230,7 @@ body {
 
 .sme{
     margin-right: 5px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     -webkit-user-select: none;
     user-select: none;
 
@@ -644,7 +644,20 @@ body {
     max-height: 100px;
 }
 
-
+.info-i{
+    height: 20px;
+    width: 20px;
+    font-family: 'Noto Serif', serif;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem;
+    font-size: auto;
+    color: #d5d6d6;
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+}
 
 .more-info-button{
     height: 30px;
@@ -774,9 +787,15 @@ body {
         height: 40px;
         width: 40px;
     }
+    .sme{
+        font-size: 1.1rem !important;
+    }
 }
 
 @media screen and (max-width: 1000px){
+    .sme{
+        font-size: 1.1rem !important;
+    }
     .sous-search{
         font-size: .9rem;
         bottom: 3px;
@@ -844,6 +863,9 @@ body {
 }
 
 @media screen and (max-width: 850px){
+    .sme{
+        font-size: 1.1rem !important;
+    }
     .sous-search{
         display: none;
     }
@@ -964,11 +986,11 @@ body {
 
 .backupannonce{
     position: fixed;
-    top: 3px;
-    right: 8px;
+    top: .5px;
+    left: 80px;
     z-index: 2000;
     opacity: 0.8;
-    font-size: 0.7rem;
+    font-size: 0.6rem;
 }
 
 .note-backup{

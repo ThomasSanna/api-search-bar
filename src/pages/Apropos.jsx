@@ -18,7 +18,7 @@ function Apropos() {
     <div>
         <Logo />
         <Menu />
-        <div className='apropos-cont'>
+        <div className='apropos-cont apropos-cont-night'>
             <h1>A propos</h1><br />
             <p>Ce site sert principalement à retrouver vos meilleurs chapitres avec la plus grande précision. Celui-ci n'aurait pas pu voir le jour sans l'API extraordinaire de <a target='_blank' rel='noreferrer' href="https://twitter.com/NathDie1">Nathan DIERICKX</a> : <a target='_blank' rel='noreferrer' href="https://api-onepiece.com">api-onepiece.com</a> </p> <br />
             <p><NavLink to="/">onepiecechapitre.fr</NavLink> sera régulièrement mis à jour. Une idée d'ajout ? <a target='_blank' rel='noreferrer' href="https://twitter.com/messages/compose?recipient_id=1676561327903457281&text=G%20une%20idée%20d'ajout">Contactez-moi sur Twitter</a> !</p>

@@ -16,12 +16,33 @@ function Footer() {
     const body = document.querySelector('body')
     const html = document.querySelector('html')
     const lune = document.querySelector('.lune-nuit')
+    const aproposcontenu = document.querySelector('.apropos-cont')
+    const logomonsite = document.querySelector('.logo-monsite')
+    const menuIcon = document.querySelector('.menu-icon')
     if (body.classList.contains('night')) {
+      if(menuIcon && aproposcontenu){
+        menuIcon.classList.remove('menu-icon-night')
+      }
+      if(logomonsite && aproposcontenu){
+        logomonsite.classList.remove('logo-monsite-night')
+      }
+      if (aproposcontenu){
+        aproposcontenu.classList.remove('apropos-cont-night')
+      }
       body.classList.remove('night')
       html.classList.remove('night-html')
       lune.classList.remove('lune-nuit-active')
       creditAll.classList.remove('credit-all-night')
     } else {
+      if(menuIcon){
+        menuIcon.classList.add('menu-icon-night')
+      }
+      if (logomonsite){
+        logomonsite.classList.add('logo-monsite-night')
+      }
+      if (aproposcontenu){
+        aproposcontenu.classList.add('apropos-cont-night')
+      }
       body.classList.add('night')
       html.classList.add('night-html')
       lune.classList.add('lune-nuit-active')

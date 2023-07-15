@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import iconMenu from "../assets/images/iconMenu.svg";
 import "../styles/Menu.css";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logo from '../components/Logo'
 
 
@@ -38,7 +38,7 @@ const Menu = () => {
   return (
     <div>
       <picture className="menu-icon-container">
-        <img className="menu-icon" onClick={menuOpenClose} src={iconMenu} alt="iconMenu" />
+        <img className="menu-icon menu-icon-night" onClick={menuOpenClose} src={iconMenu} alt="iconMenu" />
       </picture>
       <div className="menu-container">
         <Logo />

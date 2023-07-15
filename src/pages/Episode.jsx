@@ -96,6 +96,27 @@ function Episode() {
     updateFilteredData(data);
   };
 
+  const dbclickChangeFilter = (e) => {
+    e.target.checked = true;
+    e.target.classList.add("filter-checked");
+
+    const withnumber = document.getElementById("withnumber");
+    const withtitle = document.getElementById("withtitle");
+    const withdescription = document.getElementById("withdescription");
+    const withperso = document.getElementById("withperso");
+
+    let arr = [withnumber, withtitle, withdescription, withperso];
+
+    arr.forEach((el) => {
+      if (!(e.target===el)) {
+        el.checked = false;
+        el.classList.remove("filter-checked");
+      }
+    });
+
+    updateFilteredData(data);
+  }
+
   const reverseNum = () => {
     document.querySelector(".reverse-back").checked =
       !document.querySelector(".reverse-back").checked;
@@ -376,6 +397,7 @@ function Episode() {
           <div
             title="Trier par numéros des chapitres"
             checked
+            onDoubleClick={dbclickChangeFilter}
             onClick={clickChangeFilter}
             className="sme check filter-checked"
             id="withnumber"
@@ -385,6 +407,7 @@ function Episode() {
           <div
             title='Trier par titres des chapitres'
             checked
+            onDoubleClick={dbclickChangeFilter}
             onClick={clickChangeFilter}
             className="sme check filter-checked"
             id="withtitle"
@@ -394,6 +417,7 @@ function Episode() {
           <div
             title='Trier par descriptions des chapitres'
             checked
+            onDoubleClick={dbclickChangeFilter}
             onClick={clickChangeFilter}
             className="sme check filter-checked"
             id="withdescription"
@@ -403,12 +427,14 @@ function Episode() {
           <div
             title="Trier par personnages présents dans le chapitre"
             checked
+            onDoubleClick={dbclickChangeFilter}
             onClick={clickChangeFilter}
             className="sme check filter-checked"
             id="withperso"
           >
             Persos
           </div>
+          <div title='Double-cliquez sur la catégorie que vous voulez pour selectionner seulement celle-ci.' className='info-i'>i</div>
         </span>
         <span className="header-tome-tri-container">
           <span onClick={openArcTab} className="header-tome-tri header-tome-tri-pc">
