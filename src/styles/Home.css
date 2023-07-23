@@ -410,6 +410,10 @@ body {
     transform: scale(1.02);
 }
 
+.chapter-link:active{
+    transform: scale(0.98);
+}
+
 .chapter-number{
     font-size: 2rem;
     width: 100%;
