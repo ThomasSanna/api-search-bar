@@ -936,9 +936,7 @@ body {
     .header-checkbox{
         display: none;
     }
-    .iframe-container{
-        display: none !important;
-    }
+
     .more-info-tab{
         max-width: 300px;
     }
@@ -985,6 +983,26 @@ body {
         display:flex;
         height: 40px;
         width: 40px;
+    }
+    .arrows-iframe{
+        position: fixed;
+        left: 0px;
+        bottom: 0px;
+    }
+    .close-iframe{
+        position: fixed;
+        top: 80px;
+        right: 10px;
+    }
+    .iframe-container{
+        width: auto;
+    }
+    .iframe-chap{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
     }
 }
 

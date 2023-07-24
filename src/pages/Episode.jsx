@@ -157,7 +157,7 @@ function Episode() {
 
 
   const iframeOpen = (e) => {
-    if (e.target.classList.contains("mibperso") || e.target.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.classList.contains('mitperso') || e.target.parentElement.parentElement.parentElement.parentElement.parentElement.pa) {
+    if ((e.target && e.target.classList.contains("mibperso")) || (e.target.parentElement && e.target.parentElement.classList.contains('mitperso')) || (e.target.parentElement.parentElement && e.target.parentElement.parentElement.classList.contains('mitperso'))) {
       return;
     }
     setCurrentId(e.target.id.toString());
