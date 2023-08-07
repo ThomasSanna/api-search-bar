@@ -6,11 +6,20 @@ import VoirAnimeLogo from '../assets/images/voiranimelogo.png'
 function SwitchViewer() {
 
   useEffect(() => {
-
     let container = document.querySelector('.switchview-container')
-    setTimeout(() => {
-      container.classList.add('adroite')
-    }, 7000);
+  })
+
+  useEffect(() => {
+    if (window.innerWidth > 1000) {
+      let container = document.querySelector('.switchview-container')
+
+      container.addEventListener('mouseover', () => {
+        container.classList.remove('adroite')
+      })
+      container.addEventListener('mouseout', () => {
+        container.classList.add('adroite')
+      })
+    }
   })
 
   const ChangeViewer = (e) => {
@@ -25,15 +34,8 @@ function SwitchViewer() {
       img1.classList.remove('viewerchecked')
     }
   }
-  const adroiteup = () => {
-    let container = document.querySelector('.switchview-container')
-    container.classList.remove('adroite')
-    setTimeout(() => {
-      container.classList.add('adroite')
-    }, 7000);
-  }
   return (
-    <div onMouseOver={adroiteup} className='switchview-container'>
+    <div className='switchview-container'>
       <img className='imgviewer imgviewer1 viewerchecked' src={FrAnimeLogo} alt="Logo FRANIME" onClick={ChangeViewer} title="Mettre FrAnime comme lecteur d'épisodes" />
       <img className='imgviewer imgviewer2' src={VoirAnimeLogo} alt="Logo VOIRANIME" onClick={ChangeViewer} title="Mettre VoirAnime comme lecteur d'épisodes" />
     </div>
