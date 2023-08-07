@@ -15,6 +15,8 @@ import linksFR from '../scripts/linksFranime';
 import linksVF from '../scripts/linksfranimevf';
 import persosParE from '../scripts/persosParEp/AUPDATEpersosParEp';
 import characterIcon from "../assets/images/character.svg";
+import SwitchViewer from '../components/SwitchViewer';
+import numLink from '../scripts/numbersLink';
 
 
 function Episode() {
@@ -179,6 +181,7 @@ function Episode() {
       setInterval(() => {
         setCountdown(countdown => countdown - 1);
       }, 1000);
+      document.querySelector(".iframe-chap").focus();
     }
   };
 
@@ -355,6 +358,7 @@ function Episode() {
         rel="stylesheet"
       />
       {/* polices : Noto Serif, Rubik */}
+      <SwitchViewer />
       <p className='info-beta'>Beta</p>
       <p className='backupannonce'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
       <header className="header-container">
@@ -585,7 +589,8 @@ function Episode() {
           </picture>
           <iframe
             className="iframe-chap iframe-video"
-            src={currentId ? linksFR[currentId] : ""}
+            // src={currentId ? linksFR[currentId] : ""}
+            src={currentId ? document.querySelector('.imgviewer') ? document.querySelector('.imgviewer1').classList.contains('viewerchecked') ? linksFR[currentId] : 'https://v5.voiranime.com/anime/one-piece/one-piece-'+numLink[currentId]+'-vostfr/' : "" : ""}
             title="OnePieceStreaming.tv"
             allowFullScreen
             mozallowfullscreen="true"

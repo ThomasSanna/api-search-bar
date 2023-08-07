@@ -1,0 +1,39 @@
+.switchview-container {
+    z-index: 5000;
+    display: flex;
+    position: fixed;
+    bottom: 25px;
+    right: 0;
+    height: 60px;
+    width: 118px;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid #ffffff;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: all 0.5s ease;
+}
+
+.switchview-container *{
+    transition: all 0.2s ease-in-out;
+}
+
+.adroite{
+    right: -80px;
+}
+
+.viewerchecked {
+    border: 2px solid #ffffff;
+    border-radius: 10px;
+    filter: saturate(1) !important;
+}
+
+.imgviewer {
+    filter: saturate(0);
+    cursor: pointer;
+}
+
+.imgviewer1{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
