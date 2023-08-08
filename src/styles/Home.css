@@ -30,17 +30,27 @@ html{
 }
 
 *::-webkit-scrollbar {
-    width: 15px;
-    background-color: rgb(255, 255, 255);
+    width: 10px;
+    background-color: #1f242d;
     border-radius: 0.rem;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgb(75, 85, 100);
+    background-color: rgb(192, 204, 222);
     border: 1px solid rgb(41, 47, 55);
-    border-radius: 0.1rem;
-    height: 50px;
+    border-radius: 50px;
+    height: 92px;
+    cursor: pointer !important;
 }
+
+*::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(234, 242, 255);
+}
+
+*::-webkit-scrollbar-thumb:active {
+    background-color: rgb(121, 132, 150);
+}
+
 /* Don't work on Firefox */
 
 body {

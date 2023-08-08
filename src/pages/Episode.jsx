@@ -56,10 +56,19 @@ function Episode() {
       });
   }, []);
 
+  useEffect(() => {
+    document.querySelector(".searchbar").focus();
+  }, []);
+
+
   document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector(".searchbar");
     searchInput.focus();
   });
+
+  const clickMauvais = () => {
+    document.querySelector('.searchbar').focus();
+  }
   
 
   const resetSearch = (e) => {
@@ -374,7 +383,7 @@ function Episode() {
               onChange={handleSearch}
               placeholder="Numéro, Titre ou Description du de l'épisode.."
             />
-            <span className="croix-search">
+            <span onClick={clickMauvais} className="croix-search">
               <div onClick={resetSearch} className="croix-croix">x</div>
             </span>
             <span className="buttons-search">

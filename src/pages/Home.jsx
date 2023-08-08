@@ -14,6 +14,7 @@ import Menu from "../components/Menu";
 import descRapide from "../scripts/descRapideChapitres/AUPDATEdescRapideChap"
 import persoParC from "../scripts/persosParChap/AUPDATEpersosParChap.jsx"
 import characterIcon from "../assets/images/character.svg";
+import Music from "../components/Music";
 
 
 function Home() {
@@ -36,6 +37,10 @@ function Home() {
     document.title = "One Piece - Chapitres";
   }, []);
 
+  useEffect(() => {
+    document.querySelector(".searchbar").focus();
+  }, []);
+
   document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector(".searchbar");
     searchInput.focus();
@@ -45,7 +50,12 @@ function Home() {
   const resetSearch = (e) => {
     e.target.style.display = "none";
     document.querySelector(".searchbar").value = "";
+    document.querySelector(".searchbar").focus();
     updateFilteredData(data);
+  }
+
+  const clickMauvais = () => {
+    document.querySelector(".searchbar").focus();
   }
 
   const handleSearch = (e) => {
@@ -53,7 +63,7 @@ function Home() {
     if (e.target.value === "") {
       croix.style.display = "none";
     } else {
-      croix.style.display = "block";
+      croix.style.display = "flex";
     }
     updateFilteredData(data);
   };
@@ -140,7 +150,11 @@ function Home() {
     setCurrentId(e.target.id.toString());
     document.querySelector(".iframe-container").style.display = "flex";
     const chapterContainer = document.querySelector(".chapter-container");
-    window.innerWidth <= 1000? chapterContainer.style.width = '100vw' : chapterContainer.style.width = "calc(100% - 500px)";
+    if (window.innerWidth <= 1000) {
+      chapterContainer.style.width = '100vw'
+    } else {
+      chapterContainer.style.width = "calc(100% - 500px)";
+    }
     const currId = e.target.id.toString();
     verifArrowOnClick(currId);
   };
@@ -149,6 +163,9 @@ function Home() {
     document.querySelector(".iframe-container").style.display = "none";
     const chapterContainer = document.querySelector(".chapter-container");
     chapterContainer.style.width = "100%";
+    if (!(window.innerWidth <= 1000)) {
+
+    }
   };
 
   const arcFilter = (e) => {
@@ -352,6 +369,7 @@ function Home() {
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
       <p className="backupannonce">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p>
+      <Music  />
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery header-battery-active">
           <img className="image-battery battery-image-active" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
@@ -365,8 +383,8 @@ function Home() {
               onChange={handleSearch}
               placeholder="Numéro, Titre ou Description du chapitre.."
             />
-            <span className="croix-search">
-              <div onClick={resetSearch} className="croix-croix">x</div>
+            <span onClick={clickMauvais} className="croix-search">
+              <div onClick={resetSearch} className="croix-croix"><span className="lacroix">x</span></div>
             </span>
             <span className="buttons-search">
               <span onClick={reverseNum} className="reverse-back">
