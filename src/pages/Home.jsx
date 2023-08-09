@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Home.css";
 import croixSVG from "../assets/images/croix.svg";
@@ -23,6 +23,9 @@ function Home() {
   const [currentId, setCurrentId] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isLowBattery, setIsLowBattery] = useState(true);
+
+  const audioRef = useRef(null);
+
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/chapters")
@@ -140,6 +143,10 @@ function Home() {
     });
 
     setFilteredData(reversed ? filtered.reverse() : filtered);
+
+    if(document.querySelector(".searchbar").value.toLowerCase() === "pohnny") {
+      audioRef.current.play();
+    }
   };
 
 
@@ -354,6 +361,7 @@ function Home() {
   
 
 
+
   // ----°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-----------------------------------------------------------------
   return (
     <div>
@@ -363,6 +371,9 @@ function Home() {
         href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,300&family=Rubik:wght@400;500;700&display=swap"
         rel="stylesheet"
       />
+      <audio ref={audioRef}>
+        <source src="/audios/pohnnyeaster.mp3" type="audio/mpeg" />
+      </audio>
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
       <p className="backupannonce">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p>
