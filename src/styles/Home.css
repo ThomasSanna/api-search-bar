@@ -388,6 +388,7 @@ body {
     object-fit: cover;
     object-position: 50% 50%;
     transform: scale(0.998);
+    transition: all 1.2s ease-in-out;
 }
 
 .chapter-link{
@@ -408,6 +409,7 @@ body {
     border: 0px solid rgba(15, 28, 46, 0.692);
     /* box-shadow: 0px 0px 2px 2px rgba(172, 223, 255, 0.459); */
     box-shadow: 10px 10px 0px -5px #d7dbdf;
+    transition: all 1.2s ease-in-out;
 }
 
 .chapter-link, .chapter-link *{

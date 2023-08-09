@@ -29,7 +29,20 @@ function Music() {
             "https://youtu.be/xocnshwEbrM",
             "https://www.youtube.com/watch?v=TgRlX8PK1bY&t=7s"
         ])
-    }, [allMusic, musicTitle])
+    }, [])
+
+    useEffect(() => {
+        if (window.innerWidth > 1024) {
+            document.querySelector('.music-container').addEventListener('mouseover', () => {
+                document.querySelector('.music-container').style.right = '0px'
+            })
+            document.querySelector('.music-container').addEventListener('mouseout', () => {
+                document.querySelector('.music-container').style.right = '-206px'
+            })
+        } else {
+            document.querySelector('.music-container').style.right = '0px'
+        }
+    }, [])
 
     const GoNext = () => {
         if (indexmusic === allMusic.length - 1) {

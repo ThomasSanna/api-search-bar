@@ -163,9 +163,6 @@ function Home() {
     document.querySelector(".iframe-container").style.display = "none";
     const chapterContainer = document.querySelector(".chapter-container");
     chapterContainer.style.width = "100%";
-    if (!(window.innerWidth <= 1000)) {
-
-    }
   };
 
   const arcFilter = (e) => {
