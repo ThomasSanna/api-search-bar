@@ -381,6 +381,12 @@ body {
     color: #c7eaff;
 }
 
+.last-visit-container{
+    position: absolute;
+    top: 92px;
+    right: 20px;
+}
+
 .chapter-container{
     -webkit-user-select: none;
     user-select: none;

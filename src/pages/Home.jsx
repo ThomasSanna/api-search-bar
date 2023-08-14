@@ -24,6 +24,12 @@ function Home() {
   const [isLowBattery, setIsLowBattery] = useState(true);
   const [maxChapter, setMaxChapter] = useState(null);
 
+  useEffect(() => {
+    if (currentId) {
+      localStorage.setItem("currentId", currentId)
+    }
+  }, [currentId]);
+
   const audioRef = useRef(null);
 
   useEffect(() => {
@@ -361,7 +367,13 @@ function Home() {
     }
   }
 
-  
+  const lastVisited = () => {
+    if (localStorage.getItem("currentId", currentId)) {
+      return <div className="last-visit-container">Reprendre votre lecture au chapitre <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentId", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentId", currentId)}</span></div>
+    } else {
+      return ''
+    }
+  }
 
 
 
@@ -533,6 +545,9 @@ function Home() {
       <main className="main-container">
         {maxChapter? <div className="last-chap-container">Les chapitres <span className="lasts-chapters" id={parseInt(maxChapter) + 1} onClick={iframeOpen}>{parseInt(maxChapter) + 1}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 2} onClick={iframeOpen}>{parseInt(maxChapter) + 2}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 3} onClick={iframeOpen}>{parseInt(maxChapter) + 3}</span> sont déjà sortis ?!</div>
         : ""}
+        {
+          lastVisited()
+        }
         {filteredData && (
           <ul className="chapter-container">
             {filteredData.map((dat) => (
