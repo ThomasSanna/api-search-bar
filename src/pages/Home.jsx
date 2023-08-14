@@ -8,7 +8,6 @@ import arrowTriangle from "../assets/images/arrowTriangle.svg";
 import fullScreenIcon from "../assets/images/fullscreen.svg";
 import lowBatteryIcon from "../assets/images/lowbattery.svg";
 import fullScreenExitIcon from "../assets/images/fullscreenexit.svg";
-import { coverArray } from "../scripts/coverChap.jsx";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import descRapide from "../scripts/descRapideChapitres/AUPDATEdescRapideChap"
@@ -23,9 +22,13 @@ function Home() {
   const [currentId, setCurrentId] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isLowBattery, setIsLowBattery] = useState(true);
+  const [maxChapter, setMaxChapter] = useState(null);
 
   const audioRef = useRef(null);
 
+  useEffect(() => {
+    setMaxChapter(data ? data[data.length - 1].id : null);
+  }, [data]);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/chapters")
@@ -279,7 +282,7 @@ function Home() {
       arrowPrecedent.style.opacity = "0";
       arrowPrecedent.style.pointerEvents = "none";
     }
-    else if (e.target === arrowSuivant && currID === coverArray.length - 1) {
+    else if (e.target === arrowSuivant && currID === parseInt(maxChapter) + 1) {
       arrowSuivant.style.opacity = "0";
       arrowSuivant.style.pointerEvents = "none";
     }
@@ -302,7 +305,7 @@ function Home() {
       arrowSuivant.style.opacity = "100%";
       arrowSuivant.style.pointerEvents = "auto";
     }
-    else if (currID === (coverArray.length - 1)) {
+    else if (currID === parseInt(maxChapter) + 3) {
       arrowSuivant.style.opacity = "0";
       arrowSuivant.style.pointerEvents = "none";
       arrowPrecedent.style.opacity = "100%";
@@ -528,6 +531,8 @@ function Home() {
       {/* CHAPTER VISUAL ---------------------------------------------------- */}
 
       <main className="main-container">
+        {maxChapter? <div className="last-chap-container">Les chapitres <span className="lasts-chapters" id={parseInt(maxChapter) + 1} onClick={iframeOpen}>{parseInt(maxChapter) + 1}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 2} onClick={iframeOpen}>{parseInt(maxChapter) + 2}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 3} onClick={iframeOpen}>{parseInt(maxChapter) + 3}</span> sont déjà sortis ?!</div>
+        : ""}
         {filteredData && (
           <ul className="chapter-container">
             {filteredData.map((dat) => (
@@ -626,7 +631,7 @@ function Home() {
           </picture>
           <iframe
             className="iframe-chap"
-            src={currentId ? "https://littlexgarden.com/one-piece/" + currentId + "/1" : ""}
+            src={currentId ? currentId<=parseInt(maxChapter) ? "https://littlexgarden.com/one-piece/" + currentId + "/1" : "https://mangamoins.shaeishu.co/?scan=OP" + currentId : ""}
             title="LittleXGarden.com"
           ></iframe>
           <div className="arrows-iframe">

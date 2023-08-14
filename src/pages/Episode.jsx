@@ -35,6 +35,7 @@ function Episode() {
   const [countOpen, setCountOpen] = useState(0);
   const [dataArc, setDataArc] = useState(null);
   const [countdown, setCountdown] = useState(60);
+  const [maxChapter, setMaxChapter] = useState(null);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/arcs")
@@ -45,7 +46,9 @@ function Episode() {
     );
   }, [])
 
-
+  useEffect(() => {
+    setMaxChapter(data ? data[data.length - 1].id : null);
+  }, [data]);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/episodes")
@@ -270,7 +273,7 @@ function Episode() {
       arrowPrecedent.style.opacity = "0";
       arrowPrecedent.style.pointerEvents = "none";
     }
-    else if (e.target === arrowSuivant && currID === data.length - 1) {
+    else if (e.target === arrowSuivant && currID === parseInt(maxChapter) + 1) {
       arrowSuivant.style.opacity = "0";
       arrowSuivant.style.pointerEvents = "none";
     }
@@ -293,7 +296,7 @@ function Episode() {
       arrowSuivant.style.opacity = "100%";
       arrowSuivant.style.pointerEvents = "auto";
     }
-    else if (currID === (data.length - 1)) {
+    else if (currID === parseInt(maxChapter) + 3) {
       arrowSuivant.style.opacity = "0";
       arrowSuivant.style.pointerEvents = "none";
       arrowPrecedent.style.opacity = "100%";
@@ -501,6 +504,8 @@ function Episode() {
           <p>Attention ! Si votre navigateur n'autorise pas la fenêtre, <a target="_blank" rel="noreferrer" href="https://twitter.com/messages/compose?recipient_id=1676561327903457281&text=La%20fenêtre%20d'épisodes%20ne%20marche%20pas,%20Je%20suis%20sur..">faites le moi savoir</a> !</p>
           <p>Fermeture automatique dans {countdown} secondes</p>
         </div>
+        {maxChapter?<div className="last-chap-container">Les épisodes <span className="lasts-chapters" id={parseInt(maxChapter) + 1} onClick={iframeOpen}>{parseInt(maxChapter) + 1}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 2} onClick={iframeOpen}>{parseInt(maxChapter) + 2}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 3} onClick={iframeOpen}>{parseInt(maxChapter) + 3}</span> sont déjà sortis ?!</div>
+        :""}
         {filteredData && (
           <ul className="chapter-container">
             {filteredData.map((dat) => (

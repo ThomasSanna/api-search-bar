@@ -9,7 +9,7 @@ function Music() {
 
     useEffect(() => {
         setAllMusic([
-            "https://vocaroo.com/embed/15JBXt07FjFL?autoplay=1", // One Piece OST Epic Version
+            "https://vocaroo.com/embed/15JBXt07FjFL?autoplay=0", // One Piece OST Epic Version
             "https://vocaroo.com/embed/1fTcQ63yOvv8?autoplay=1", // One Piece OST Sad Version
             "https://vocaroo.com/embed/1jnfjU1AlWmy?autoplay=1", // Opening One Piece 01-24
             "https://vocaroo.com/embed/1b7CzSphqPJ1?autoplay=1", // Lofi 1
