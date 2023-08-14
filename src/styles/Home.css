@@ -370,21 +370,24 @@ body {
     left: -176px;
     top: 350px;
     transform: rotate(-90deg);
+    color: #a5a5a5;
 }
 
 .lasts-chapters{
-    color: #85d2ff;
+    color: #4c9ac7;
     cursor: pointer;
 }
 
 .lasts-chapters:hover{
-    color: #c7eaff;
+    color: #e3f4ff;
 }
 
 .last-visit-container{
+    font-size: .9rem;
     position: absolute;
     top: 92px;
-    right: 20px;
+    right: 5px;
+    color: #a7a7a7;
 }
 
 .chapter-container{
@@ -901,6 +904,20 @@ body {
 }
 
 @media screen and (max-width: 850px){
+
+    .last-visit-container{
+        position: fixed;
+        top: 70px;
+        font-size: .8rem;
+        left: 50px;
+        right: inherit;
+        z-index: 1000;
+        color: white;
+    }
+    .lasts-chapters{
+        color: #97d9ff;
+    }
+
     .sme{
         font-size: 1.1rem !important;
     }

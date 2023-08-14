@@ -39,7 +39,7 @@ function Episode() {
 
   useEffect(() => {
       if (currentId) {
-        localStorage.setItem("currentId", currentId)
+        localStorage.setItem("currentIdEp", currentId)
       }
     }, [currentId]);
 
@@ -513,7 +513,7 @@ function Episode() {
         {maxChapter?<div className="last-chap-container">Les épisodes <span className="lasts-chapters" id={parseInt(maxChapter) + 1} onClick={iframeOpen}>{parseInt(maxChapter) + 1}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 2} onClick={iframeOpen}>{parseInt(maxChapter) + 2}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 3} onClick={iframeOpen}>{parseInt(maxChapter) + 3}</span> sont déjà sortis ?!</div>
         :""}
         {
-          localStorage.getItem("currentId", currentId) ? <div className="last-visit-container">Reprendre le visionnage à l'épisode <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentId", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentId", currentId)}</span></div> : ""
+          localStorage.getItem("currentIdEp", currentId) ? <div className="last-visit-container">Reprendre votre visionnage à l'épisode <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentIdEp", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentIdEp", currentId)}</span></div> : ""
         }
         {filteredData && (
           <ul className="chapter-container">
