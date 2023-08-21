@@ -43,8 +43,14 @@ const Menu = () => {
       <div className="menu-container">
         <Logo />
         <ul className="menu-center">
-          <Link onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">Rechercher des chapitres</Link>
-          <Link onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">Rechercher des épisodes</Link>
+          <Link onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">
+            <img className="imgmenucenter immc1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUSf7Pnu9pXGMCoMWR5V8dvBAA4VGG4Zx0iw&usqp=CAU" alt="Rechercher un chapitre" />
+            <span className="spanmenucenter spmc1">Rechercher un chapitre</span>
+          </Link>
+          <Link onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">
+            <img className="imgmenucenter immc2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUSf7Pnu9pXGMCoMWR5V8dvBAA4VGG4Zx0iw&usqp=CAU" alt="Rechercher un épisode" />
+            <span className="spanmenucenter spmc2">Rechercher un épisode</span>
+          </Link>
         </ul>
         <ul className="menu-foot">
           <li className='menu-c-o'>© Eiichiro Oda - One Piece</li>
