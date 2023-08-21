@@ -74,11 +74,16 @@
     align-items: center;
 }
 
+.menu-center *{
+    transition: all .1s ease-in-out;
+
+}
+
 .imgmenucenter{
     height: 160px;
     width: 230px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 20px;
     opacity: .9;
     filter: saturate(.7);
 }
@@ -103,12 +108,17 @@
     opacity: 1;
 }
 
+.menu-item:hover{
+    transform:scale(1.1);
+}
+
 .menu-item.active .spanmenucenter{
     color: #fcfcfce7 !important;}
 
 .menu-item:hover .imgmenucenter{
     filter: saturate(1);
     opacity: 1;
+    border-radius: 10px;
 }
 
 .menu-foot{
@@ -163,6 +173,19 @@
 @media screen and (max-width: 750px){
     .menu-center{
         margin-bottom: 100px;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .imgmenucenter{
+        height: 100px;
+        width: 300px;
+        filter: saturate(0) brightness(.6)
+        opacity(.7)
+    }
+    .spanmenucenter{
+        position: absolute;
+        color: rgb(255, 255, 255);
+        margin-bottom: 10px;
     }
     .linkapropos{
         font-size: .9rem !important;

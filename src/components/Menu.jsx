@@ -44,11 +44,11 @@ const Menu = () => {
         <Logo />
         <ul className="menu-center">
           <Link onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">
-            <img className="imgmenucenter immc1" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUSf7Pnu9pXGMCoMWR5V8dvBAA4VGG4Zx0iw&usqp=CAU" alt="Rechercher un chapitre" />
+            <img className="imgmenucenter immc1" src="https://criticalhits.com.br/wp-content/uploads/2021/01/one-piece.jpg" alt="Rechercher un chapitre" />
             <span className="spanmenucenter spmc1">Rechercher un chapitre</span>
           </Link>
           <Link onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">
-            <img className="imgmenucenter immc2" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUSf7Pnu9pXGMCoMWR5V8dvBAA4VGG4Zx0iw&usqp=CAU" alt="Rechercher un épisode" />
+            <img className="imgmenucenter immc2" src="https://images.justwatch.com/backdrop/249137539/s640" alt="Rechercher un épisode" />
             <span className="spanmenucenter spmc2">Rechercher un épisode</span>
           </Link>
         </ul>
