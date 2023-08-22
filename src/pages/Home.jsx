@@ -31,6 +31,7 @@ function Home() {
   }, [currentId]);
 
   const audioRef = useRef(null);
+  const coredaRef = useRef(null);
 
   useEffect(() => {
     setMaxChapter(data ? data[data.length - 1].id : null);
@@ -153,8 +154,24 @@ function Home() {
 
     setFilteredData(reversed ? filtered.reverse() : filtered);
 
-    if(document.querySelector(".searchbar").value.toLowerCase() === "pohnny") {
-      audioRef.current.play();
+    switch (document.querySelector(".searchbar").value.toLowerCase()) {
+      default:
+        break;
+      case "pohnny":
+        audioRef.current.play();
+        break;
+      case "gzmlucas":
+        window.open('https://www.youtube.com/watch?v=pSNn6DNtdS0&t=2s', '_blank');
+        break;
+      case 'littlexgarden':
+        window.open('https://littlexgarden.com/', '_blank');
+        break;
+      case 'franime':
+        window.open('https://franime.fr/', '_blank');
+        break;
+      case "wadeekt":
+        coredaRef.current.play();
+        window.open('https://twitter.com/WadeeKT', '_blank');
     }
   };
 
@@ -389,6 +406,10 @@ function Home() {
       <audio ref={audioRef}>
         <source src="/audios/pohnnyeaster.mp3" type="audio/mpeg" />
       </audio>
+      <audio ref={coredaRef}>
+        <source src="/audios/coreda.mp3" type="audio/mpeg" />
+      </audio>
+
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
       <p className="backupannonce">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p>
@@ -555,7 +576,9 @@ function Home() {
                 <img
                   className="backImage"
                   // isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] ? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"
-                  src={isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg'}
+                  // src={'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
+                  // src='https://prod-printler-front-as.azurewebsites.net/media/photo/125683.jpg?mode=crop&width=727&height=1024&rnd=0.0.1'
+                  src='https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'
                   alt={"One Piece chapitre n°" + dat.id.toString()}
                   loading={isLowBattery? "eager":"lazy"}
                 />
@@ -567,7 +590,6 @@ function Home() {
 
                   id={dat.chapter_number.slice(3, dat.chapter_number.length)}
                   className="chapter-description">
-
 
                   <div className="more-info-container micperso" id={dat.chapter_number.slice(3, dat.chapter_number.length)}>
                     <div className="mitperso mitactive" id={dat.chapter_number.slice(3, dat.chapter_number.length)} >

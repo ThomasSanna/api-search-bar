@@ -31,7 +31,7 @@ html{
 
 *::-webkit-scrollbar {
     width: 10px;
-    background-color: #1f242d;
+    background-color: #13171f;
     border-radius: 0.rem;
 }
 
@@ -64,7 +64,7 @@ body {
 }
 
 .night {
-    background: linear-gradient(200deg, #1f242d, #0a0d0e);
+    background: linear-gradient(200deg, #13171f, #0a0d0e);
 }
 
 
@@ -76,7 +76,7 @@ body {
     top: 0;
     width: 100vw;
     height: 90px;
-    background: linear-gradient(90deg, rgba(46, 67, 87, 0.678) 0%,  rgba(53, 89, 94, 0.678) 100%);
+    background: linear-gradient(90deg, #13171f,  rgba(53, 89, 94, 0.678) 100%);
     display: flex;
     padding: 10px 50px;
     flex-direction: row;
@@ -406,8 +406,8 @@ body {
 }
 
 .backImage {
-    height: 290px;
-    width: 450px;
+    height: 250px;
+    width: 426px;
     position: absolute;
     z-index: -1;
     border-radius: 0.5rem;
@@ -422,19 +422,18 @@ body {
     text-decoration: none;
     color: rgb(255, 255, 255);
     border-radius: 0.5rem;
-    height: 300px;
-    width: 450px;
+    height: 260px;
+    width: 430px;
     z-index: 1;
-    overflow: hidden;
+    overflow: hidden !important;
     margin: 0rem 0.8rem 2rem 0.8rem;
     transition: all 0.1s ease-in-out;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 0px solid rgba(15, 28, 46, 0.692);
-    /* box-shadow: 0px 0px 2px 2px rgba(172, 223, 255, 0.459); */
-    box-shadow: 10px 10px 0px -5px #d7dbdf;
+    border: 3px solid rgba(250, 250, 250, 0.692);
+    /* box-shadow: 0px 0px 2px 2px rgba(172, 223 , 255, 0.459); */
 }
 
 .chapter-link, .chapter-link *{
@@ -475,6 +474,9 @@ body {
     backdrop-filter: blur(5px);
 }
 
+.ladescriptionduchapitrebordel {
+    font-size: .9rem;
+}
 
 .chapter-description{
     display: none;
