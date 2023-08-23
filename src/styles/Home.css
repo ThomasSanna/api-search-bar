@@ -32,30 +32,30 @@ html{
 *::-webkit-scrollbar {
     width: 10px;
     background-color: #13171f;
-    border-radius: 0.rem;
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: rgb(192, 204, 222);
+    background-color: rgb(255, 255, 255);
     border: 1px solid rgb(41, 47, 55);
-    border-radius: 50px;
-    height: 92px;
+    height: 91.5px;
     cursor: pointer !important;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(234, 242, 255);
+    background-color: rgb(213, 220, 231);
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background-color: rgb(121, 132, 150);
+    background-color: rgb(183, 192, 206);
 }
 
 /* Don't work on Firefox */
 
 body {
     color: white;
-    background: linear-gradient(200deg, #ebebeb, #ffff);
+    animation: gradient 12s ease infinite;
+    background: linear-gradient(100deg, #ffffff, #fdffda, #b5ffdb, #ffffff, #fffab8);
+    background-size: 500% 100%;
     font-family: 'Rubik', serif;
     font-weight: 400;
     width: 100vw;
@@ -64,9 +64,23 @@ body {
 }
 
 .night {
-    background: linear-gradient(200deg, #13171f, #0a0d0e);
+    /* background: linear-gradient(200deg, #13171f, #0a0d0e); */
+    animation: gradient 12s ease infinite;
+    background: linear-gradient(100deg, #050313, #2f5e66, #428b8d, #060a1f, #0b312b);
+    background-size: 500% 100%;
 }
 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
 
 
 /* HEADER----------------------------------------------------------  */
@@ -168,7 +182,7 @@ body {
     padding: 0.5rem;
     font-size: 1.2rem;
     cursor: pointer;
-    filter: invert(100%) sepia(1%) saturate(6313%) hue-rotate(173deg) brightness(95%) contrast(96%);
+    filter: invert(100%) sepia(1%) saturate(3%) hue-rotate(173deg) brightness(195%) contrast(96%);
 
 }
 
@@ -333,7 +347,7 @@ body {
 .liste-tome{
     width: 100%;
     height: 100%;
-    background: linear-gradient(20deg, rgba(46, 67, 87, 0.678) 0%, rgba(53, 89, 94, 0.678) 100%);
+    background: linear-gradient(20deg, rgba(18, 28, 37, 0.678) 0%, rgba(42, 92, 99, 0.678) 100%);
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 0.5rem;
@@ -345,16 +359,15 @@ body {
     display: flex;
     list-style: none;
     margin: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    border-radius: .3rem;
     cursor: pointer;
     transition: all .05s ease-in-out;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    padding: 20px;
-    background-color: rgba(236, 239, 241, 0.903);
-    color: #304755;
+    padding: 13px;
+    background-color: rgb(255, 255, 255);
+    color: #2e4a5c;
     margin-top: 20px;
 }
 
@@ -367,33 +380,39 @@ body {
 
 .last-chap-container{
     position: fixed;
-    left: -176px;
+    left: -191px;
     top: 350px;
     transform: rotate(-90deg);
-    color: #a5a5a5;
+    color: #ffffff;
+    background-color: #09151d;
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 
 .lasts-chapters{
-    color: #4c9ac7;
+    color: #7dcfff;
     cursor: pointer;
 }
 
 .lasts-chapters:hover{
-    color: #e3f4ff;
+    color: #cae7ff;
 }
 
 .last-visit-container{
-    font-size: .9rem;
+    font-size: 1.1rem;
     position: absolute;
-    top: 92px;
+    top: 95px;
     right: 5px;
-    color: #a7a7a7;
+    color: #ffffff;
+    background-color: #060a1f;
+    padding: 3px 10px;
+    border-radius: 5px;
 }
 
 .chapter-container{
     -webkit-user-select: none;
     user-select: none;
-    margin-top: 5rem;
+    margin-top: 6rem;
     width: 100vw;
     height: auto;
     display: flex;
@@ -745,13 +764,13 @@ body {
     top: 50px;
     position: absolute;
     height: 190px;
-    width: 400px;
-    background-color: #454b59cc;
+    width: 380px;
+    background-color: #1c2029bb;
     padding: 1rem;
     border-radius: 5px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    border: #d5d6d6 1px solid;
+    border: #ffffff 2px solid;
     z-index: 10000;
     font-size: .95rem;
     display: none;
@@ -765,8 +784,8 @@ body {
     background-color: #2f343fcc;
     border: #ccdcdc 1px solid;
     border-radius: 10px;
-    width: 380px;
-    height: 230px;
+    width: 350px;
+    height: 200px;
     overflow: auto;
     transition: all 0.2s ease-in-out;
 }
@@ -787,7 +806,7 @@ body {
 }
 
 .more-info-tab *{
-    color: #d5d6d6;
+    color: #f7f7f7;
 }
 
 .listPerso {
@@ -907,11 +926,18 @@ body {
 
 @media screen and (max-width: 850px){
 
+    .header-container{
+        -webkit-backdrop-filter: blur(5px);
+        backdrop-filter: blur(5px);
+    }
+
     .lasts-chapters{
         font-size: .9rem;
         color: #97d9ff;
     }
     .last-chap-container{
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0) !important;
         font-size: .8rem;
         position: fixed;
         z-index: 1000;
@@ -927,8 +953,10 @@ body {
     .last-visit-container{
         text-align: start;
         position: absolute;
-        top: 100px;
         font-size: 1rem;
+        padding: 0;
+        background-color: none;
+        top: 100px;
         left: 10px;
         right: inherit;
         color: white;
@@ -944,6 +972,7 @@ body {
         padding-bottom: 100px;
     }
     .chapter-container{
+        margin-top: 5rem;
         padding: 50px 0px 10px 0 !important;
     }
 
@@ -1005,7 +1034,7 @@ body {
     }
 
     .more-info-tab{
-        max-width: 300px;
+        max-width: 280px;
     }
 
     .tel-filter-container{
@@ -1038,10 +1067,12 @@ body {
         display: none;
     }
     .chapter-link{
-        width: calc(100vh - 50px);
+        width: calc(100vw - 50px);
+        height: 230px;
     }
     .backImage{
-        width: calc(100vh - 50px);
+        width: calc(100vw - 54px);
+        height: 225px;
     }
     .chapter-container{
         overflow: hidden;
@@ -1118,7 +1149,7 @@ body {
     z-index: 1000;
     align-items: center;
     height: 0;
-    background: linear-gradient(90deg, rgba(46, 67, 87, 0.774) 0%,  rgba(53, 89, 94, 0.767) 100%);
+    background: linear-gradient(90deg, rgba(22, 35, 46, 0.774) 0%,  rgba(50, 86, 94, 0.767) 100%);
 }
 
 .tel-filter-container * {
@@ -1129,7 +1160,7 @@ body {
     position: absolute;
     right: 65px;
     width: 75px;
-    background-color: #192b31d0;
+    background-color: #04171dd0;
 }
 
 .tel-filter{

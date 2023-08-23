@@ -576,7 +576,6 @@ function Home() {
                 <img
                   className="backImage"
                   // isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] ? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"
-                  // src={'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
                   // src='https://prod-printler-front-as.azurewebsites.net/media/photo/125683.jpg?mode=crop&width=727&height=1024&rnd=0.0.1'
                   src='https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'
                   alt={"One Piece chapitre n°" + dat.id.toString()}

@@ -522,7 +522,7 @@ function Episode() {
 
                 <img
                   className="backImage"
-                  src={isLowBattery? 'https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png' : "https://i.imgur.com/U8Uo4co.png"}
+                  src={'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
                   alt={"One Piece episode n°" + dat.id.toString()}
                   loading={"lazy"}
                 />
