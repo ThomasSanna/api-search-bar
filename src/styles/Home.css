@@ -377,6 +377,9 @@ body {
 
 /* CHAPTERS CONTAINER------------------------------------------------------- */
 
+.chap_non_sorti{
+    color: rgb(255, 39, 39) !important;
+}
 
 .last-chap-container{
     position: fixed;
