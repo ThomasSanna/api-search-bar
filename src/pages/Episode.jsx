@@ -161,7 +161,7 @@ function Episode() {
     const filtered = data.filter((dat) => {
       const titleKeywords = withtitle.checked && searchText.every(keyword => dat.title.toLowerCase().includes(keyword));
       const descriptionKeywords = dat.description && withdescription.checked && searchText.every(keyword => dat.description.toLowerCase().includes(keyword));
-      const numberKeywords = withnumber.checked && searchText.every(keyword => dat.number.slice(2, dat.number.length).includes(keyword));
+      const numberKeywords = withnumber.checked && searchText.every(keyword => dat.id.toString().includes(keyword));
       const persoKeywords = persosParE[dat.id] && withperso.checked && searchText.every(keyword =>   Array.isArray(persosParE[dat.id])? persosParE[dat.id].join(' ').toLowerCase().includes(keyword) : false);
 
       return titleKeywords || descriptionKeywords || numberKeywords || persoKeywords;
@@ -523,40 +523,40 @@ function Episode() {
                 <img
                   className="backImage"
                   src={'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
-                  alt={"One Piece episode n°" + dat.id.toString()}
+                  alt={"One Piece episode n°" + dat.id}
                   loading={"lazy"}
                 />
                 <p className="chapter-number chapter-night">
-                  {dat.number.slice(2, dat.number.length)}
+                  {dat.id}
                 </p>
                 <p className="chapter-title chapter-night">{dat.title}</p>
                 <p
-                  id={dat.number.slice(2, dat.number.length)}
+                  id={dat.id}
                   className="chapter-description">
 
                     
-                  <div className="more-info-container micperso" id={dat.number.slice(2, dat.number.length)}>
-                    <div className="mitperso mitactive" id={dat.number.slice(2, dat.number.length)} >
-                      <ul className="listPerso" id={dat.number.slice(2, dat.number.length)}>
+                  <div className="more-info-container micperso" id={dat.id}>
+                    <div className="mitperso mitactive" id={dat.id} >
+                      <ul className="listPerso" id={dat.id}>
                         {
                           Array.isArray(persosParE[dat.id])
-                          ? persosParE[dat.id].sort().map((perso) => (<li id={dat.number.slice(2, dat.number.length)}>{perso}</li>)) 
+                          ? persosParE[dat.id].sort().map((perso) => (<li id={dat.id}>{perso}</li>)) 
                           : persosParE[dat.id]
                         }
                       </ul>
-                      <img className="mibperso" onClick={mita} id={dat.number.slice(2, dat.number.length)} src={characterIcon} alt="Icone de personnage" />
+                      <img className="mibperso" onClick={mita} id={dat.id} src={characterIcon} alt="Icone de personnage" />
                     </div>
                   </div>
 
 
                   <div className="more-info-container">
-                    <p className="more-info-button" id={dat.number.slice(2, dat.number.length)} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>
-                    <div className="more-info-tab" id={dat.number.slice(2, dat.number.length)} >
+                    <p className="more-info-button" id={dat.id} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>
+                    <div className="more-info-tab" id={dat.id} >
                       <p className="more-info-title">
-                        "<i>{dat.title}</i>", Ep. n°{dat.number.slice(2, dat.number.length)}
+                        "<i>{dat.title}</i>", Ep. n°{dat.id}
                       </p>
                       <p className='more-info-title'>
-                        {dat.saga_id && <div>Saga n°{dat.saga.saga_number} : "<i>{dat.saga.saga_title}</i>" </div>}
+                        {dat.saga_id && <div>Saga n°{dat.saga_id} : "<i>{dat.saga.saga_title}</i>" </div>}
                       </p>
                       <p className='more-info-title'>
                         Sortie le {dat.release_date} il y a {dat.release_date ? Math.floor((new Date() - new Date(dat.release_date)) / (1000 * 60 * 60 * 24 * 30 * 12)) : null} ans.
@@ -569,14 +569,14 @@ function Episode() {
                     </div>
                   </div>
                   <p 
-                  id={dat.number.slice(2, dat.number.length)}
+                  id={dat.id}
                   title={dat.description
                       ? dat.description
                       : "Cet épisode n'a pas de description."}>
                     {dat.description ? dat.description.length <300? dat.description : dat.description.slice(0, 300) + "..." : "Cet épisode n'a pas de description."}
                   </p>
                   <span 
-                  id={dat.number.slice(2, dat.number.length)}
+                  id={dat.id}
                   className="aall-link">
                     <a
                       className="alink color-link"
@@ -585,7 +585,7 @@ function Episode() {
                       href={
                         linksFR[dat.id]
                       }
-                      id={dat.number.slice(2, dat.number.length)}
+                      id={dat.id}
                     >
                       Voir l'épisode en VOSTFR.
                     </a>
@@ -596,7 +596,7 @@ function Episode() {
                       href={
                         linksVF[dat.id]
                       }
-                      id={dat.number.slice(2, dat.number.length)}
+                      id={dat.id}
                     >
                       Voir l'épisode en VF.
                     </a>

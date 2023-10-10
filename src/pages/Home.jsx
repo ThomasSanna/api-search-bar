@@ -146,7 +146,7 @@ function Home() {
     const filtered = data.filter((dat) => {
       const titleKeywords = withtitle.checked && searchText.every(keyword => dat.chapter_title.toLowerCase().includes(keyword));
       const descriptionKeywords = descRapide[dat.id] && withdescription.checked && searchText.every(keyword => descRapide[dat.id]? descRapide[dat.id].toLowerCase().includes(keyword) : false);
-      const numberKeywords = withnumber.checked && searchText.every(keyword => dat.chapter_number.slice(3, dat.chapter_number.length).includes(keyword));
+      const numberKeywords = withnumber.checked && searchText.every(keyword => dat.id.toString().includes(keyword));
       const persoKeywords = persoParC[dat.id] && withperso.checked && searchText.every(keyword =>   Array.isArray(persoParC[dat.id])? persoParC[dat.id].join(' ').toLowerCase().includes(keyword) : false);
 
       return titleKeywords || descriptionKeywords ||  numberKeywords || persoKeywords;
@@ -575,39 +575,39 @@ function Home() {
               <li onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
-                  // isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] ? coverArray[parseInt(dat.chapter_number.slice(3, dat.chapter_number.length))] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"
+                  // isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.id.toString())] ? coverArray[parseInt(dat.id.toString())] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"
                   // src='https://prod-printler-front-as.azurewebsites.net/media/photo/125683.jpg?mode=crop&width=727&height=1024&rnd=0.0.1'
                   src='https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'
-                  alt={"One Piece chapitre n°" + dat.id.toString()}
+                  alt={"One Piece chapitre n°" + dat.id}
                   loading={isLowBattery? "eager":"lazy"}
                 />
                 <p className="chapter-number chapter-night">
-                  {dat.chapter_number.slice(3, dat.chapter_number.length)}
+                  {dat.id}
                 </p>
                 <p className="chapter-title chapter-night">{dat.chapter_title}</p>
                 <p
 
-                  id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                  id={dat.id}
                   className="chapter-description">
 
-                  <div className="more-info-container micperso" id={dat.chapter_number.slice(3, dat.chapter_number.length)}>
-                    <div className="mitperso mitactive" id={dat.chapter_number.slice(3, dat.chapter_number.length)} >
-                      <ul className="listPerso" id={dat.chapter_number.slice(3, dat.chapter_number.length)}>
+                  <div className="more-info-container micperso" id={dat.id}>
+                    <div className="mitperso mitactive" id={dat.id} >
+                      <ul className="listPerso" id={dat.id}>
                         {
                           Array.isArray(persoParC[dat.id])
-                          ? persoParC[dat.id].sort().map((perso) => (<li id={dat.chapter_number.slice(3, dat.chapter_number.length)}>{perso}</li>)) 
+                          ? persoParC[dat.id].sort().map((perso) => (<li id={dat.id}>{perso}</li>)) 
                           : persoParC[dat.id]
                         }
                       </ul>
-                      <img className="mibperso" onClick={mita} id={dat.chapter_number.slice(3, dat.chapter_number.length)} src={characterIcon} alt="Icone de personnage" />
+                      <img className="mibperso" onClick={mita} id={dat.id} src={characterIcon} alt="Icone de personnage" />
                     </div>
                   </div>
 
-                  <div className="more-info-container">
-                    <p className="more-info-button" id={dat.chapter_number.slice(3, dat.chapter_number.length)} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>
-                    <div className="more-info-tab" id={dat.chapter_number.slice(3, dat.chapter_number.length)} >
+                  <div className="more-info-container" id={dat.id}>
+                    <p className="more-info-button" id={dat.id} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>
+                    <div className="more-info-tab" id={dat.id} >
                       <p className="more-info-title">
-                        "<i>{dat.chapter_title}</i>", Ch. n°{dat.chapter_number.slice(3, dat.chapter_number.length)}
+                        "<i>{dat.chapter_title}</i>", Ch. n°{dat.id}
                       </p>
 
                       <p className="more-info-tome">
@@ -624,14 +624,14 @@ function Home() {
 
                   <p 
                     className="ladescriptionduchapitrebordel"
-                    id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                    id={dat.id}
                     title={descRapide[dat.id]
                         ? descRapide[dat.id]
                         : "Ce chapitre n'a pas de description."}>
                       {descRapide[dat.id] ? descRapide[dat.id].length <300? descRapide[dat.id] : descRapide[dat.id].slice(0, 300) + "..." : "Ce chapitre n'a pas de description."}
                   </p>
                   <span
-                  id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                  id={dat.id}
                   className="aall-link">
                     <a
                       className="alink color-link"
@@ -640,7 +640,7 @@ function Home() {
                       href={
                         "https://littlexgarden.com/one-piece/" + dat.id + "/1"
                       }
-                      id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                      id={dat.id}
                     >
                       Lire en couleur (VF).
                     </a>
@@ -651,7 +651,7 @@ function Home() {
                       href={
                         "https://esj.tn/manga/one-piece-chapter-" + dat.id + "/"
                       }
-                      id={dat.chapter_number.slice(3, dat.chapter_number.length)}
+                      id={dat.id}
                     >
                       Lire en noir et blanc (VA).
                     </a>
