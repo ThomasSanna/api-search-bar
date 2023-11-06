@@ -17,6 +17,7 @@ import persosParE from '../scripts/persosParEp/AUPDATEpersosParEp';
 import characterIcon from "../assets/images/character.svg";
 import SwitchViewer from '../components/SwitchViewer';
 import numLink from '../scripts/numbersLink';
+import { imgSagas } from '../scripts/imgTome';
 
 
 function Episode() {
@@ -378,7 +379,7 @@ function Episode() {
       {/* polices : Noto Serif, Rubik */}
       <SwitchViewer />
       <p className='info-beta'>Beta</p>
-      <p className='backupannonce'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p>
+      {/* <p className='backupannonce'>Note: Certains épisodes affichés en dernier ne sont pas encore sorti ; Désolé pour ce problème.</p> */}
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery">
           <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
@@ -513,7 +514,7 @@ function Episode() {
         {maxChapter?<div className="last-chap-container">Les épisodes <span className="lasts-chapters" id={parseInt(maxChapter) + 1} onClick={iframeOpen}>{parseInt(maxChapter) + 1}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 2} onClick={iframeOpen}>{parseInt(maxChapter) + 2}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 3} onClick={iframeOpen}>{parseInt(maxChapter) + 3}</span> sont déjà sortis ?!</div>
         :""}
         {
-          localStorage.getItem("currentIdEp", currentId) ? <div className="last-visit-container">Reprendre votre visionnage à l'épisode <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentIdEp", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentIdEp", currentId)}</span></div> : ""
+          localStorage.getItem("currentIdEp", currentId) ? <div className="last-visit-container" id={parseInt(localStorage.getItem("currentIdEp", currentId))} onClick={iframeOpen}>Reprendre à l'épisode <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentIdEp", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentIdEp", currentId)}</span></div> : ""
         }
         {filteredData && (
           <ul className="chapter-container">
@@ -522,7 +523,7 @@ function Episode() {
 
                 <img
                   className="backImage"
-                  src={'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
+                  src={imgSagas[dat.saga_id] ? imgSagas[dat.saga_id] : 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
                   alt={"One Piece episode n°" + dat.id}
                   loading={"lazy"}
                 />

@@ -14,6 +14,7 @@ import descRapide from "../scripts/descRapideChapitres/AUPDATEdescRapideChap"
 import persoParC from "../scripts/persosParChap/AUPDATEpersosParChap.jsx"
 import characterIcon from "../assets/images/character.svg";
 import Music from "../components/Music";
+import { imgTomes } from "../scripts/imgTome.jsx";
 
 
 function Home() {
@@ -237,6 +238,8 @@ function Home() {
       headerTome.classList.add("arc-checked");
       if (window.innerWidth <= 850) {
         tomeContainer.style.height = "calc(100vh - 140px)";
+      } else if (window.innerWidth <= 1300) {
+        tomeContainer.style.height = "calc(100vh - 69px)";
       } else {
         tomeContainer.style.height = "calc(100vh - 90px)";
       }
@@ -386,7 +389,7 @@ function Home() {
 
   const lastVisited = () => {
     if (localStorage.getItem("currentId", currentId)) {
-      return <div className="last-visit-container">Reprendre votre lecture au chapitre <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentId", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentId", currentId)}</span></div>
+      return <div className="last-visit-container"id={parseInt(localStorage.getItem("currentId", currentId))} onClick={iframeOpen}>Reprendre votre lecture au chapitre <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentId", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentId", currentId)}</span></div>
     } else {
       return ''
     }
@@ -412,7 +415,7 @@ function Home() {
 
       {/* polices : Noto Serif, Rubik */}
       <p className='info-beta'>Beta</p>
-      <p className="backupannonce">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p>
+      {/* <p className="backupannonce">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p> */}
       <Music  />
       <header className="header-container">
         <span onClick={lowBatteryFunc} className="header-battery header-battery-active">
@@ -450,7 +453,7 @@ function Home() {
           </h5>
         </span>
         <span className="header-checkbox">
-          <div className="sme tri-par">Trier par :</div>
+          {/* <div className="sme tri-par">Trier par :</div> */}
           <div
             title="Trier par numéros des chapitres"
             checked
@@ -491,7 +494,7 @@ function Home() {
           >
             Persos
           </div>
-          <div title='Double-cliquez sur la catégorie que vous voulez pour selectionner seulement celle-ci.' className='info-i'>i</div>
+          <div title='Triez par numéro ou titre ou description ou personnage par chapitre. Double-cliquez sur la catégorie que vous voulez pour selectionner seulement celle-ci.' className='info-i'>i</div>
         </span>
         <span className="header-tome-tri-container">
           <span onClick={openArcTab} className="header-tome-tri header-tome-tri-pc">
@@ -575,9 +578,8 @@ function Home() {
               <li onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
-                  // isLowBattery? 'https://wallpaperaccess.in/public/uploads/preview/monkey-d-luffy-wano-wallpaper-one-piece-wano-arc-aesthetic-0.jpg' : coverArray[parseInt(dat.id.toString())] ? coverArray[parseInt(dat.id.toString())] : "https://miro.medium.com/v2/resize:fit:1200/1*bHiUeH6By-mQ0w8VE87yAA.png"
-                  // src='https://prod-printler-front-as.azurewebsites.net/media/photo/125683.jpg?mode=crop&width=727&height=1024&rnd=0.0.1'
-                  src='https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'
+                  src = {imgTomes[dat.tome.id] ? imgTomes[dat.tome.id] : 'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'}
+                  // src='https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'
                   alt={"One Piece chapitre n°" + dat.id}
                   loading={isLowBattery? "eager":"lazy"}
                 />

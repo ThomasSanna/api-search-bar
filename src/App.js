@@ -6,14 +6,14 @@ import Apropos from './pages/Apropos.jsx';
 function App() {
   return (
     <div className="App">
-      <HashRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path='/episodes' element={<Episode  />}></Route>
           <Route path='/apropos' element={<Apropos  />}></Route>
           <Route path='*' element={<Home  />}></Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </div>
   );
 }
