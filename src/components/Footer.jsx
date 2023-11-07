@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import '../styles/Footer.css'
 import moon from '../assets/images/moon.svg'
+import kofiImg from '../assets/images/kofi_s_logo_nolabel.png'
 
 function Footer() {
 
@@ -56,7 +57,7 @@ function Footer() {
 
       <footer className='credit-all credit-all-night'>
         <p className='credit-oda'>© Eiichiro Oda - One Piece</p>
-        <p className='credit-website'><a target="_blank" rel='noreferrer' href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</p>
+        <p className='credit-website'><a target="_blank" rel='noreferrer' href="https://ko-fi.com/wadeekt"><img className='kofiLogoFooter' src={kofiImg} alt="Logo Ko-Fi" /></a></p>
       </footer>
     </div>
   )

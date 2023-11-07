@@ -22,12 +22,12 @@ function Home() {
   const [filteredData, setFilteredData] = useState(null);
   const [currentId, setCurrentId] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
-  const [isLowBattery, setIsLowBattery] = useState(true);
+  const [isLowBattery, setIsLowBattery] = useState(false);
   const [maxChapter, setMaxChapter] = useState(null);
 
   useEffect(() => {
     if (currentId) {
-      localStorage.setItem("currentId", currentId)
+      localStorage.setItem("currentIdCh", currentId)
     }
   }, [currentId]);
 
@@ -387,16 +387,6 @@ function Home() {
     }
   }
 
-  const lastVisited = () => {
-    if (localStorage.getItem("currentId", currentId)) {
-      return <div className="last-visit-container"id={parseInt(localStorage.getItem("currentId", currentId))} onClick={iframeOpen}>Reprendre votre lecture au chapitre <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentId", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentId", currentId)}</span></div>
-    } else {
-      return ''
-    }
-  }
-  
-
-
   // ----°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-----------------------------------------------------------------
   return (
     <div>
@@ -418,8 +408,8 @@ function Home() {
       {/* <p className="backupannonce">Pour le déploiement, je n'ai pas mis d'images par chapitres pour économiser les données : ajout plus tard !</p> */}
       <Music  />
       <header className="header-container">
-        <span onClick={lowBatteryFunc} className="header-battery header-battery-active">
-          <img className="image-battery battery-image-active" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
+        <span onClick={lowBatteryFunc} className="header-battery">
+          <img className="image-battery" src={lowBatteryIcon} alt="logo save battery" title="Consommez moins de données avec en activant cette option." />
         </span>
         <span className="header-search">
           <Link className="sous-search" to="/episodes">Rechercher un épisode</Link>
@@ -570,7 +560,8 @@ function Home() {
         {maxChapter? <div className="last-chap-container">Les chapitres <span className="lasts-chapters" id={parseInt(maxChapter) + 1} onClick={iframeOpen}>{parseInt(maxChapter) + 1}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 2} onClick={iframeOpen}>{parseInt(maxChapter) + 2}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 3} onClick={iframeOpen}>{parseInt(maxChapter) + 3}</span> sont déjà sortis ?!</div>
         : ""}
         {
-          lastVisited()
+          localStorage.getItem("currentIdCh", currentId) ? <div className="last-visit-container" id={parseInt(localStorage.getItem("currentIdCh", currentId))} onClick={iframeOpen}>Reprendre au chapitre <span className="lasts-chapters" id={parseInt(localStorage.getItem("currentIdCh", currentId))} onClick={iframeOpen}> {localStorage.getItem("currentIdCh", currentId)}</span></div> : ""
+
         }
         {filteredData && (
           <ul className="chapter-container">
@@ -578,7 +569,7 @@ function Home() {
               <li onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
-                  src = {imgTomes[dat.tome.id] ? imgTomes[dat.tome.id] : 'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'}
+                  src = {isLowBattery?'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg':imgTomes[dat.tome.id] ? imgTomes[dat.tome.id] : 'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'}
                   // src='https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'
                   alt={"One Piece chapitre n°" + dat.id}
                   loading={isLowBattery? "eager":"lazy"}

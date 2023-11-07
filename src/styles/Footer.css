@@ -14,6 +14,7 @@
     font-size: 1rem;
 }
 
+
 .credit-all-night{
     background-color: #121316;
 }
@@ -33,10 +34,20 @@
     color: #363636;
 }
 
+.kofiLogoFooter{
+    margin-top: 10px;
+    height: 80px;
+    width: auto;
+    object-fit: cover;
+}
+
+.kofiLogoFooter:hover{
+    transform: scale(1.1);
+}
+
 .credit-website{
     position: absolute;
     right: 0;
-    padding-top: 70px;
     padding-right: 5px;
     font-size: .8rem;
 }

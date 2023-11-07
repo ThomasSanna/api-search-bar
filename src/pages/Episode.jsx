@@ -17,7 +17,7 @@ import persosParE from '../scripts/persosParEp/AUPDATEpersosParEp';
 import characterIcon from "../assets/images/character.svg";
 import SwitchViewer from '../components/SwitchViewer';
 import numLink from '../scripts/numbersLink';
-import { imgSagas } from '../scripts/imgTome';
+import { imgArcs } from '../scripts/imgTome';
 
 
 function Episode() {
@@ -35,14 +35,20 @@ function Episode() {
   const [isLowBattery, setIsLowBattery] = useState(false);
   const [countOpen, setCountOpen] = useState(0);
   const [dataArc, setDataArc] = useState(null);
-  const [countdown, setCountdown] = useState(60);
   const [maxChapter, setMaxChapter] = useState(null);
+
+  useEffect(() => {
+    if(window.innerWidth <= 1000){
+      setIsLowBattery(true)
+    }
+  }, [])
 
   useEffect(() => {
       if (currentId) {
         localStorage.setItem("currentIdEp", currentId)
       }
-    }, [currentId]);
+      localStorage.setItem('isLowBattery', isLowBattery)
+    }, [currentId, isLowBattery]);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/arcs")
@@ -171,11 +177,6 @@ function Episode() {
     setFilteredData(reversed ? filtered.reverse() : filtered);
   };
 
-  const closePopup = () => {
-    document.querySelector(".attention-player").style.display = "none";
-    document.querySelector(".attention-player").style.width = "0px";
-  }
-
 
   const iframeOpen = (e) => {
     if ((e.target && e.target.classList.contains("mibperso")) || (e.target.parentElement && e.target.parentElement.classList.contains('mitperso')) || (e.target.parentElement.parentElement && e.target.parentElement.parentElement.classList.contains('mitperso'))) {
@@ -188,18 +189,8 @@ function Episode() {
     const currId = e.target.id.toString();
     verifArrowOnClick(currId);
 
-    const attentionPlayer = document.querySelector(".attention-player");
     setCountOpen(countOpen + 1);
     if (!countOpen) {
-      attentionPlayer.style.display = "flex";
-      attentionPlayer.style.width = "500px";
-      setTimeout(() => {
-        attentionPlayer.style.display = "none";
-        attentionPlayer.style.width = "0px";
-      }, 60000);
-      setInterval(() => {
-        setCountdown(countdown => countdown - 1);
-      }, 1000);
       document.querySelector(".iframe-chap").focus();
     }
   };
@@ -232,6 +223,7 @@ function Episode() {
       headerTome.classList.add("arc-checked");
       tomeContainer.style.height = "calc(100vh - 90px)";
     }
+
     else {
       headerTome.classList.remove("arc-checked");
       tomeContainer.style.height = "0";
@@ -335,7 +327,7 @@ function Episode() {
     let hBattery = document.querySelector('.header-battery')
     let BatImage = document.querySelector('.image-battery')
     setIsLowBattery(!isLowBattery);
-    if (!isLowBattery){
+    if (!localStorage.getItem('isLowBattery')) {
       hBattery.classList.add("header-battery-active");
       BatImage.classList.add("battery-image-active");
     } else {
@@ -416,7 +408,6 @@ function Episode() {
           </h5>
         </span>
         <span className="header-checkbox">
-          <div className="sme tri-par">Trier par :</div>
           <div
             title="Trier par numéros des chapitres"
             checked
@@ -457,7 +448,7 @@ function Episode() {
           >
             Persos
           </div>
-          <div title='Double-cliquez sur la catégorie que vous voulez pour selectionner seulement celle-ci.' className='info-i'>i</div>
+          <div title='Triez par numéro ou titre ou description ou personnage par chapitre. Double-cliquez sur la catégorie que vous voulez pour selectionner seulement celle-ci.' className='info-i'>i</div>
         </span>
         <span className="header-tome-tri-container">
           <span onClick={openArcTab} className="header-tome-tri header-tome-tri-pc">
@@ -505,12 +496,6 @@ function Episode() {
       {/* CHAPTER VISUAL ---------------------------------------------------- */}
 
       <main className="main-container">
-        <div className='attention-player'>
-          <img onClick={closePopup} className='img-croix-popup' src={croixSVG} alt='fermer le popup' />
-          <p>Mettez un <a className='link-adblock' href="https://chrome.google.com/webstore/detail/ublock-origin/cjpalhdlnbpafiamejdnhcphjbkeiagm" title='uBlock Origin extension'>Ad Blocker</a> ! </p>
-          <p>Attention ! Si votre navigateur n'autorise pas la fenêtre, <a target="_blank" rel="noreferrer" href="https://twitter.com/messages/compose?recipient_id=1676561327903457281&text=La%20fenêtre%20d'épisodes%20ne%20marche%20pas,%20Je%20suis%20sur..">faites le moi savoir</a> !</p>
-          <p>Fermeture automatique dans {countdown} secondes</p>
-        </div>
         {maxChapter?<div className="last-chap-container">Les épisodes <span className="lasts-chapters" id={parseInt(maxChapter) + 1} onClick={iframeOpen}>{parseInt(maxChapter) + 1}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 2} onClick={iframeOpen}>{parseInt(maxChapter) + 2}</span> ou <span className="lasts-chapters" id={parseInt(maxChapter) + 3} onClick={iframeOpen}>{parseInt(maxChapter) + 3}</span> sont déjà sortis ?!</div>
         :""}
         {
@@ -523,7 +508,7 @@ function Episode() {
 
                 <img
                   className="backImage"
-                  src={imgSagas[dat.saga_id] ? imgSagas[dat.saga_id] : 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
+                  src={isLowBattery? 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg' : imgArcs[dat.arc_id] ? imgArcs[dat.arc_id] : 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
                   alt={"One Piece episode n°" + dat.id}
                   loading={"lazy"}
                 />

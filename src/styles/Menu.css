@@ -1,7 +1,10 @@
 .linkapropos{
-    color: rgba(255, 255, 255, 0.631) !important;
+    color: rgba(255, 255, 255, 0.718) !important;
+    font-size: 1.2rem;
 }
-
+.linkapropos:hover{
+    color: #fff !important;
+}
 
 .menu-icon{
     position: fixed;
@@ -75,7 +78,7 @@
 }
 
 .menu-center *{
-    transition: all .1s ease-in-out;
+    transition: all .15s ease-in-out;
 
 }
 
@@ -109,13 +112,14 @@
 }
 
 .menu-item:hover{
-    transform:scale(1.1);
+    transform:scale(1.05);
 }
 
 .menu-item.active .spanmenucenter{
     color: #fcfcfce7 !important;}
 
 .menu-item:hover .imgmenucenter{
+    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .8);
     filter: saturate(1);
     opacity: 1;
     border-radius: 10px;

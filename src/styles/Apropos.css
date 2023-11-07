@@ -5,28 +5,26 @@ body{
 h1{
     font-size: 2rem;
     margin-bottom: 1rem;
-    text-align: center;
+    text-align: start;
 }
 
 .apropos-cont{
     justify-content: center;
     padding: 4rem;
     width: 100vw;
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 100px);
     display: flex;
     flex-direction: column;
 }
 .apropos-cont * {
-    color: #1e2429;
+    color: #000000;
 }
 
-.apropos-cont *{
-    text-align: justify;
-}
+
 
 .apropos-cont p{
-    font-size: 1.2rem;
-    line-height: 1.5rem;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
     margin-bottom: 1rem;
 }
 
@@ -42,15 +40,74 @@ a{
     color: #fff !important;
 }
 
+.kofiframe{
+    border: none;
+    width: 350px;
+    height: 702px;
+    scale: 1.2;
+    padding: 4px;
+    margin-left: 250px;
+    background-color: #f9f9f9;
+    bottom: -400px;
+    left: 10px;
+    border-radius: .5rem;
+    filter: opacity(0.8);
+    transition: all .4s ease-in-out;
+
+}
+
+.kofiframe:hover{
+    filter: opacity(1);
+}
+
+.kofi-cont{
+    transition: all .4s ease-in-out;
+    position: fixed;
+    width: 100vw;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    bottom: -570px;
+}
+
 @media screen and (max-width: 1000px) {
+
+    .kofiframe{
+        filter: opacity(.8);
+        margin-left: 0;
+        left: 0;
+        bottom: 0;
+        width: 452px;
+        scale: inherit;
+        border-radius: 5rem;
+    }
+    .kofiframe:focus{
+        filter: opacity(1);
+    }
+    .kofi-cont{
+        margin-top: 10px;
+        align-items: center;
+        justify-content: center;
+        position: inherit;
+    }
     .apropos-cont{
-        padding: 80px 1rem 1rem 1rem;
+        padding: 80px 1.3rem 1rem 1.3rem;
+    }
+    a{
+        font-size: 1.25rem;
     }
     .apropos-cont p{
-        font-size: .9rem;
-        line-height: 1.2rem;
+        font-size: 1.2rem;
+        line-height: 1.3rem;
     }
     h1{
         font-size: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 700px){
+    .kofiframe{
+        width: 100vw;
+        border-radius: 7rem;
     }
 }

@@ -54,7 +54,8 @@ html{
 body {
     color: white;
     animation: gradient 12s ease infinite;
-    background: linear-gradient(100deg, #ffffff, #fdffda, #b5ffdb, #ffffff, #fffab8);
+    background: linear-gradient(100deg, #d0fff4, #ffd7d2, #ffc5cb, #eff2ff, #9694ff, #d0fff4, #ffa69b, #ff7583, #f6efff, #c5c4ff);
+    /* background: linear-gradient(100deg, #ffffff, #fdffda, #b5ffdb, #ffffff, #fffab8); */
     background-size: 500% 100%;
     font-family: 'Rubik', serif;
     font-weight: 400;
@@ -66,7 +67,8 @@ body {
 .night {
     /* background: linear-gradient(200deg, #13171f, #0a0d0e); */
     animation: gradient 12s ease infinite;
-    background: linear-gradient(100deg, #050313, #2f5e66, #428b8d, #060a1f, #0b312b);
+    background: linear-gradient(100deg, #050313, #0f454f, rgb(50, 143, 169), #060a1f, #0b312b, #050313, #0f454f, rgb(20, 139, 133), #060a1f, #0b312b);
+    /* background: linear-gradient(100deg, #050313, #2f5e66, rgb(103, 198, 136), #060a1f, #0b312b); */
     background-size: 500% 100%;
 }
 
@@ -102,18 +104,18 @@ body {
 /* HEADER SEARCH----------------------------------------------------------  */
 
 .header-battery{
+    z-index: -1 !important;
     cursor: pointer;
     position: fixed;
-    bottom: 30px;
-    right: 0;
-    height: 50px;
-    border-top-left-radius: 0.5rem;
-    border-bottom-left-radius: 0.5rem;
-    padding: 20px;
+    top: 90px;
+    left: 0;
+    height: 40px;
+    border-bottom-right-radius: 0.5rem;
+    padding: 0px 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #292e38b6;
+    background-color: #070f20b6;
 }
 
 .header-battery-active{
@@ -125,7 +127,7 @@ body {
 }
 
 .battery-image-active{
-    filter: invert(20%) !important;
+    filter: invert(10%) !important;
 }
 
 .header-battery:hover{
@@ -280,9 +282,9 @@ body {
 }
 
 
-.header-battery{
+/* .header-battery{
     display: none;
-}
+} */
 
 /* HEADER TOME----------------------------------------------------------  */
 
@@ -383,7 +385,7 @@ body {
 
 .last-chap-container{
     position: fixed;
-    left: -191px;
+    left: -181px;
     top: 350px;
     transform: rotate(-90deg);
     color: #ffffff;
@@ -448,7 +450,7 @@ body {
     cursor: pointer;
     text-decoration: none;
     color: rgb(255, 255, 255);
-    border-radius: 0.5rem;
+    border-radius: 0.7rem;
     height: 260px;
     width: 430px;
     z-index: 1;
@@ -459,8 +461,8 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    border: 3px solid rgba(250, 250, 250, 0.692);
-    /* box-shadow: 0px 0px 2px 2px rgba(172, 223 , 255, 0.459); */
+    border: 3px solid rgb(250, 250, 250);
+    box-shadow: 0px 0px 0px 3px rgb(2, 11, 49);
 }
 
 .chapter-link, .chapter-link *{
@@ -483,10 +485,16 @@ body {
     font-weight: 500;
     text-align: center;
     padding: 0.5rem;
-    background-color: rgba(15, 28, 46, 0.692);
+    background-color: rgba(12, 1, 40, 0.580);
     padding: 9px 0;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    border: 2px rgb(255, 255, 255);
+    border-top-right-radius: .4rem;
+    border-top-left-radius: .4rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    border-bottom: 8px rgb(255, 255, 255) double;
 }
 
 .chapter-title{
@@ -495,10 +503,15 @@ body {
     font-weight: 500;
     text-align: center;
     padding: 0.5rem;
-    background-color: rgba(15, 28, 46, 0.678);
+    background-color: rgba(12, 1, 40, 0.580);
     padding: 9px 5px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
+    border-top: 8px rgb(255, 255, 255) double;
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: .4rem;
+    border-bottom-right-radius: .4rem;
 }
 
 .ladescriptionduchapitrebordel {
@@ -831,6 +844,9 @@ body {
 /* RESPONSIVE -°-°-°-°-°-°-°-°-°°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-° */
 
 @media screen and (min-width: 1300px){
+    .header-battery{
+        top: 70px;
+    }
     .last-visit-container, .last-chap-container{
         border: .8px solid rgb(255, 255, 255);
     }
@@ -845,7 +861,7 @@ body {
     .last-chap-container{
         position: absolute;
         left: auto;
-        right: 390px;
+        right: 290px;
         top: 79px;
         text-align: end;
         transform: rotate(0deg);
@@ -990,6 +1006,10 @@ body {
 }
 
 @media screen and (max-width: 850px){
+    .header-battery{
+        border-top-right-radius: 0.5rem;
+        top: calc(150px);
+    }
 
     .header-container{
         -webkit-backdrop-filter: blur(5px);

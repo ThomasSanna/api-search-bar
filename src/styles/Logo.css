@@ -33,12 +33,16 @@
 .one-piec-container{
     text-decoration: none;
     padding: .5rem;
-    border-bottom-left-radius: .3rem;
-    border-bottom-right-radius: .3rem;
-    background-color: rgba(205, 244, 255, 0.429);
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .3s ease-in-out;
+}
+
+.one-piec-container:hover{
+    box-shadow: 0 0 50px 0 rgba(255, 255, 255, 1);
 }
 
 @media screen and (max-width: 768px) {
