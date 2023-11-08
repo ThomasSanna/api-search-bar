@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import '../styles/Episode.css'
 import '../styles/Menu.css'
 import croixSVG from "../assets/images/croix.svg";
@@ -28,6 +28,7 @@ function Episode() {
     metaDescription.content = 'Retrouvez vos épisodes préférés de One Piece en streaming VOSTFR!'
   }, [])
 
+  let { id } = useParams()
   const [data, setData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [currentId, setCurrentId] = useState(null);
@@ -36,6 +37,20 @@ function Episode() {
   const [countOpen, setCountOpen] = useState(0);
   const [dataArc, setDataArc] = useState(null);
   const [maxChapter, setMaxChapter] = useState(null);
+
+  useEffect(() => {
+    if (id) {
+      setCurrentId(id.toString());
+      new MutationObserver((mutations, observer) => {
+        const chapterContainer = document.querySelector(".chapter-container");
+        if (chapterContainer) {
+          document.querySelector(".iframe-container").style.display = "flex";
+          window.innerWidth <= 1000 ? chapterContainer.style.width = '100vw' : chapterContainer.style.width = "calc(100% - 500px)";
+          observer.disconnect(); // Stop observing when element is found
+        }
+      }).observe(document, { childList: true, subtree: true });
+    }
+  }, [id]);
 
   useEffect(() => {
       if (currentId) {

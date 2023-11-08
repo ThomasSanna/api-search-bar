@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "../styles/Home.css";
 import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
@@ -18,12 +18,27 @@ import { imgTomes } from "../scripts/imgTome.jsx";
 
 
 function Home() {
+  let { id } = useParams();
   const [data, setData] = useState(null);
   const [filteredData, setFilteredData] = useState(null);
   const [currentId, setCurrentId] = useState(null);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [isLowBattery, setIsLowBattery] = useState(false);
   const [maxChapter, setMaxChapter] = useState(null);
+
+  useEffect(() => {
+    if (id) {
+      setCurrentId(id.toString());
+      new MutationObserver((mutations, observer) => {
+        const chapterContainer = document.querySelector(".chapter-container");
+        if (chapterContainer) {
+          document.querySelector(".iframe-container").style.display = "flex";
+          window.innerWidth <= 1000 ? chapterContainer.style.width = '100vw' : chapterContainer.style.width = "calc(100% - 500px)";
+          observer.disconnect(); // Stop observing when element is found
+        }
+      }).observe(document, { childList: true, subtree: true });
+    }
+  }, [id]);
 
   useEffect(() => {
     if (currentId) {
