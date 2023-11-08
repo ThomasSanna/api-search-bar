@@ -38,17 +38,10 @@ function Episode() {
   const [maxChapter, setMaxChapter] = useState(null);
 
   useEffect(() => {
-    if(window.innerWidth <= 1000){
-      setIsLowBattery(true)
-    }
-  }, [])
-
-  useEffect(() => {
       if (currentId) {
         localStorage.setItem("currentIdEp", currentId)
       }
-      localStorage.setItem('isLowBattery', isLowBattery)
-    }, [currentId, isLowBattery]);
+    }, [currentId]);
 
   useEffect(() => {
     fetch("https://api.api-onepiece.com/arcs")
@@ -327,7 +320,7 @@ function Episode() {
     let hBattery = document.querySelector('.header-battery')
     let BatImage = document.querySelector('.image-battery')
     setIsLowBattery(!isLowBattery);
-    if (!localStorage.getItem('isLowBattery')) {
+    if (!isLowBattery) {
       hBattery.classList.add("header-battery-active");
       BatImage.classList.add("battery-image-active");
     } else {

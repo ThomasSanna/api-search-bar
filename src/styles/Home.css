@@ -485,7 +485,6 @@ body {
     font-weight: 500;
     text-align: center;
     padding: 0.5rem;
-    background-color: rgba(12, 1, 40, 0.580);
     padding: 9px 0;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
@@ -494,7 +493,7 @@ body {
     border-top-left-radius: .4rem;
     border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
-    border-bottom: 8px rgb(255, 255, 255) double;
+    border-bottom: 6px rgb(255, 255, 255) double;
 }
 
 .chapter-title{
@@ -503,15 +502,18 @@ body {
     font-weight: 500;
     text-align: center;
     padding: 0.5rem;
-    background-color: rgba(12, 1, 40, 0.580);
     padding: 9px 5px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    border-top: 8px rgb(255, 255, 255) double;
+    border-top: 7px rgb(255, 255, 255) double;
     border-top-right-radius: 1rem;
     border-top-left-radius: 1rem;
     border-bottom-left-radius: .4rem;
     border-bottom-right-radius: .4rem;
+}
+
+.chapter-title, .chapter-number{
+    background-color: rgba(1, 12, 40, 0.728);
 }
 
 .ladescriptionduchapitrebordel {
@@ -738,7 +740,7 @@ body {
     padding: 0.5rem;
     font-size: auto;
     color: #d5d6d6;
-    cursor: pointer;
+    cursor: help;
     transition: all 0.1s ease-in-out;
 }
 
@@ -843,23 +845,28 @@ body {
 
 /* RESPONSIVE -°-°-°-°-°-°-°-°-°°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-°-° */
 
-@media screen and (min-width: 1300px){
+@media screen and (min-width: 1000px){
     .header-battery{
         top: 70px;
     }
     .last-visit-container, .last-chap-container{
         border: .8px solid rgb(255, 255, 255);
+        background-color: #041722d7;
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
     }
     .last-visit-container{
+        z-index: 100;
+        position: fixed;
         color: #ffffff;
-        background-color: #041722;
         padding: 9.5px 20px;
         border-radius: 5px;
         top: 79px;
         right: 20px;
     }
     .last-chap-container{
-        position: absolute;
+        z-index: 100;
+        position: fixed;
         left: auto;
         right: 290px;
         top: 79px;
