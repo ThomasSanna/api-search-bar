@@ -53,6 +53,7 @@ function Episode() {
   }, [id]);
 
   useEffect(() => {
+    document.querySelector('body').classList.remove('jeu-body');
       if (currentId) {
         localStorage.setItem("currentIdEp", currentId)
       }

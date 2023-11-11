@@ -46,7 +46,7 @@ const Menu = () => {
           <div className="mitemjeu">
             <span className="spanmenucenter spmcjeu">Nouveau !</span>
             <NavLink to="/jeu" activeClassName="active" className="immcjeu">
-              <span className="spanmenucenter jeuOPonImg">Jeu One Piece</span>
+              <span className="spanmenucenter jeuOPonImg">Quiz One Piece</span>
             </NavLink>
           </div>
         </div>

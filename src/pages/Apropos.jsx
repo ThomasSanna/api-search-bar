@@ -10,6 +10,7 @@ import { NavLink } from 'react-router-dom'
 
 function Apropos() {
   useEffect(() => {
+    document.querySelector('body').classList.remove('jeu-body');
     document.title = 'One Piece - À propos'
     const metaDescription = document.querySelector('meta[name="description"]')
     metaDescription.content = 'Retrouvez vos épisodes préférés de One Piece en streaming VOSTFR!'
