@@ -36,7 +36,6 @@
 
 .one-piec-container{
     text-decoration: none;
-    padding: 3rem 2rem 2rem 2rem;
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
     display: flex;
@@ -46,7 +45,6 @@
 }
 
 .one-piec-container:hover{
-    box-shadow: 0 0 50px 0 rgba(255, 255, 255, 1);
 }
 
 @media screen and (max-width: 768px) {

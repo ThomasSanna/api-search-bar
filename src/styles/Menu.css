@@ -50,7 +50,7 @@
     background-color: rgba(35, 37, 41, 0.764);
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    transition: all 0.2s ease-in-out;
+    transition: all 0.1s ease-in-out;
     overflow: hidden;
 }
 
@@ -81,7 +81,7 @@
 }
 
 .menu-center *{
-    transition: all .15s ease-in-out;
+    transition: all .10s ease-in-out;
 
 }
 
@@ -128,7 +128,7 @@
 }
 
 .menu-item:hover .imgmenucenter{
-    box-shadow: 0 0 20px 0 rgba(255, 255, 255, .8);
+    animation: colorChange2 5s infinite alternate;
     filter: saturate(1);
     opacity: 1;
     border-radius: 10px;
@@ -155,6 +155,65 @@
     right: 20px;
     font-size: .9rem;
 }
+
+.mitemjeu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.mitemjeu *{
+    text-decoration: none;
+}
+
+.spmcjeu{
+    color: white !important;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    font-style: oblique;
+}
+
+.immcjeu {
+    transition: all .10s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://www.opfanpage.com/wp-content/uploads/2021/10/Chapter_1028-1024x747.png");
+    background-size: 120% auto;
+    background-position: -60px -90px;
+    height: 100px;
+    width: 500px;
+    border-radius: 20px;
+    filter: saturate(.7);
+}
+
+.immcjeu:hover {
+    filter: saturate(1);
+    opacity: 1;
+    border-radius: 10px;
+    animation: colorChange1 1.2s infinite alternate;
+}
+
+.immcjeu:hover .jeuOPonImg{
+    opacity: 1;
+}
+
+.jeuOPonImg {
+    opacity: 1;
+    transition: all .1s ease-in-out;
+    font-size: 1.5rem;
+    padding: 10px;
+    margin: 0;
+    color: #fff !important;
+    background-color: rgba(28, 28, 223, 0.541);
+    border-radius: 10px;
+    animation: hueChange .8s infinite alternate;
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+}
+
 
 @media screen and (max-width: 1000px) {
     .linkapropos{
@@ -203,5 +262,71 @@
     .linkapropos{
         font-size: .9rem !important;
         margin-bottom: 100px;
+    }
+}
+
+@keyframes colorChange1 {
+    0% {
+        box-shadow: 0 0 20px rgba(63, 191, 127, 0.8), 0 0 10px #ffcc00, 0 0 30px #3498db;
+    }
+    25% {
+        box-shadow: 0 0 20px #ffcc00, 0 0 10px #3498db, 0 0 30px rgba(63, 191, 127, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px #3498db, 0 0 10px rgba(63, 191, 127, 0.8), 0 0 30px #ffcc00;
+    }
+    75% {
+        box-shadow: 0 0 20px rgba(255, 129, 129, 0.8), 0 0 10px #00ff00, 0 0 30px #3939ff;
+    }
+    100% {
+        box-shadow: 0 0 20px #5050c7, 0 0 10px rgba(255, 71, 71, 0.8), 0 0 30px #00ff00;
+    }
+}
+
+@keyframes colorChange2 {
+    0% {
+        box-shadow: 0 0 20px rgba(255, 0, 150, 0.8), 0 0 10px #00ffcc, 0 0 30px #ff9900;
+    }
+    25% {
+        box-shadow: 0 0 20px #ff9900, 0 0 10px #ff00cc, 0 0 30px rgba(255, 0, 150, 0.8);
+    }
+    50% {
+        box-shadow: 0 0 20px #ff00cc, 0 0 10px rgba(255, 0, 150, 0.8), 0 0 30px #ff9900;
+    }
+    75% {
+        box-shadow: 0 0 20px rgba(0, 150, 255, 0.8), 0 0 10px #ffcc00, 0 0 30px #00ccff;
+    }
+    100% {
+        box-shadow: 0 0 20px #00ccff, 0 0 10px rgba(0, 150, 255, 0.8), 0 0 30px #ffcc00;
+    }
+}
+
+@keyframes backgroundColorChange {
+    0% {
+        background-color: rgba(45, 94, 70, 0.747);
+    }
+    25% {
+        background-color: rgba(90, 41, 21, 0.723);
+    }
+    50% {
+        background-color: #244d68bd;
+    }
+    75% {
+        background-color: rgba(104, 29, 48, 0.747);
+    }
+    100% {
+        background-color: #1d1d58b2;
+    }
+}
+
+@keyframes hueChange {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    50% {
+        filter: hue-rotate(180deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
     }
 }

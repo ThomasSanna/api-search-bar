@@ -42,10 +42,15 @@ const Menu = () => {
       </picture>
       <div className="menu-container">
         <Logo />
+        <div>
+          <div className="mitemjeu">
+            <span className="spanmenucenter spmcjeu">Nouveau !</span>
+            <NavLink to="/jeu" activeClassName="active" className="immcjeu">
+              <span className="spanmenucenter jeuOPonImg">Jeu One Piece</span>
+            </NavLink>
+          </div>
+        </div>
         <ul className="menu-center">
-          <NavLink>
-
-          </NavLink>
           <NavLink onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">
             <img className="imgmenucenter immc1" src="https://criticalhits.com.br/wp-content/uploads/2021/01/one-piece.jpg" alt="Rechercher un chapitre" />
             <span className="spanmenucenter spmc1">Rechercher un chapitre</span>
