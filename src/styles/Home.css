@@ -119,11 +119,11 @@ body {
 }
 
 .header-battery-active{
-    background-color: #cfd9f0ce;
+    background-color: rgba(237, 243, 255, 0.684);
 }
 
 .header-battery-active:hover{
-    background-color: #cfd9f0eb !important;
+    background-color: #f5f8ffbc !important;
 }
 
 .battery-image-active{

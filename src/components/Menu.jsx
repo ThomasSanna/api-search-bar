@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import iconMenu from "../assets/images/iconMenu.svg";
 import "../styles/Menu.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Logo from '../components/Logo'
 
 
@@ -43,20 +43,23 @@ const Menu = () => {
       <div className="menu-container">
         <Logo />
         <ul className="menu-center">
-          <Link onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">
+          <NavLink>
+
+          </NavLink>
+          <NavLink onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">
             <img className="imgmenucenter immc1" src="https://criticalhits.com.br/wp-content/uploads/2021/01/one-piece.jpg" alt="Rechercher un chapitre" />
             <span className="spanmenucenter spmc1">Rechercher un chapitre</span>
-          </Link>
-          <Link onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">
+          </NavLink>
+          <NavLink onClick={verifDoublon} to="/episodes" activeClassName="active" className="menu-item">
             <img className="imgmenucenter immc2" src="https://images.justwatch.com/backdrop/249137539/s640" alt="Rechercher un épisode" />
             <span className="spanmenucenter spmc2">Rechercher un épisode</span>
-          </Link>
+          </NavLink>
         </ul>
         <ul className="menu-foot">
           <li className='menu-c-o'>© Eiichiro Oda - One Piece</li>
           <li className='menu-c-w'><a target="_blank" rel='noreferrer' href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</li>
         </ul>
-        <Link className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</Link>
+        <NavLink className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</NavLink>
       </div> 
     </div>
   );

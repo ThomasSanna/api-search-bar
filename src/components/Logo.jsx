@@ -1,5 +1,6 @@
 import React from 'react'
-import logoOP from '../assets/images/logoop.png'
+import logoOP from '../assets/images/luffywanologo.jpg'
+// import logoOP from '../assets/images/logoop.png'
 import { NavLink } from 'react-router-dom'
 import '../styles/Logo.css'
 

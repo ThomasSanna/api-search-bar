@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import Episode from './pages/Episode.jsx';
 import Apropos from './pages/Apropos.jsx';
+import Jeu from './pages/Jeu.jsx';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route path='/episodes' element={<Episode  />}></Route>
           <Route path='/episodes/:id' element={<Episode  />}></Route>
           <Route path='/apropos' element={<Apropos  />}></Route>
+          <Route path='/jeu' element={<Jeu  />}></Route>
           <Route path='*' element={<Home  />}></Route>
         </Routes>
       </BrowserRouter>

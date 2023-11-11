@@ -6,6 +6,11 @@
     color: #fff !important;
 }
 
+.linkapropos.active {
+    color: #fff !important;
+
+}
+
 .menu-icon{
     position: fixed;
     top: 35px;
@@ -26,8 +31,6 @@
 .menu-icon:hover{
     transform: scale(1.1);
 }
-
-
 
 .menu-container{
     z-index: 100000;
@@ -117,6 +120,12 @@
 
 .menu-item.active .spanmenucenter{
     color: #fcfcfce7 !important;}
+
+.menu-item.active .imgmenucenter{
+    filter: saturate(1);
+    opacity: 1;
+    scale: 1.05;
+}
 
 .menu-item:hover .imgmenucenter{
     box-shadow: 0 0 20px 0 rgba(255, 255, 255, .8);
