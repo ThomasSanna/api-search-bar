@@ -30,7 +30,119 @@
     z-index: 1;
 }
 
+/* JEU MAIN */
+
 .jeu1-main{
+    width: 100vw;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 120px;
+}
+
+.jeu1-container{
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.363);
+    border-radius: 10px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.jeu1-main h1{
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 1rem;
+}
+.jeu1-main p{
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 100;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.horizontalLine{
+    width: 75%;
+    height: 1px;
+    background-color: white;
+    margin: 2rem;
+}
+
+.recherche-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.recherchePerso{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+#inputPerso{
+    padding-top: 2px;
+    width: 62%;
+    height: 2.5rem;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border: none;
+    outline: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: 100;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.852);
+}
+
+#inputPerso::placeholder{
+    color: rgba(0, 0, 0, 0.811);
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+#inputPerso:focus{
+    background-color: rgba(255, 255, 255);
+}
+#inputPerso:hover{
+    background-color: rgba(255, 255, 255);
+}
+#inputPerso:focus::placeholder{
+    opacity: 0;
+}
+
+.searchIcon{
+    padding: .2rem;
+    margin-bottom: 17px;
+    height: 2.55rem;
+    filter: invert(1);
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: all 0.15s ease-in-out;
+}
+
+.searchIcon:hover{
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: .25rem;
+}   
+
+@media  (max-width: 768px) {
+    .jeu1-main{
+        margin-top: 70px;
+    }
 }

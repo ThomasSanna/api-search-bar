@@ -121,7 +121,7 @@
 .menu-item.active .spanmenucenter{
     color: #fcfcfce7 !important;}
 
-.menu-item.active .imgmenucenter{
+.menu-item.active .imgmenucenter, .immcjeu.active{
     filter: saturate(1);
     opacity: 1;
     scale: 1.05;
@@ -243,12 +243,24 @@
 }
 
 @media screen and (max-width: 750px){
+    .mitemjeu:hover{
+        transform:scale(1.05);
+    }
+    .mitemjeu{
+        margin-top: 100px;
+    }
+    .menu-center{
+        margin-top: 40px;
+    }
     .menu-center{
         margin-bottom: 100px;
         flex-direction: column;
         justify-content: space-around;
     }
-    .imgmenucenter{
+    .spmcjeu{
+        display: none;
+    }
+    .imgmenucenter, .immcjeu{
         height: 100px;
         width: 300px;
         filter: saturate(0) brightness(.6)

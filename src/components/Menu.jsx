@@ -42,13 +42,11 @@ const Menu = () => {
       </picture>
       <div className="menu-container">
         <Logo />
-        <div>
-          <div className="mitemjeu">
-            <span className="spanmenucenter spmcjeu">Nouveau !</span>
-            <NavLink to="/jeu" activeClassName="active" className="immcjeu">
-              <span className="spanmenucenter jeuOPonImg">Quiz One Piece</span>
-            </NavLink>
-          </div>
+        <div className="mitemjeu">
+          <span className="spanmenucenter spmcjeu">Nouveau !</span>
+          <NavLink to="/jeu" activeClassName="active" className="immcjeu">
+            <span className="spanmenucenter jeuOPonImg">Quiz One Piece</span>
+          </NavLink>
         </div>
         <ul className="menu-center">
           <NavLink onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">
