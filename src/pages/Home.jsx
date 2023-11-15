@@ -42,7 +42,8 @@ function Home() {
 
   useEffect(() => {
     document.querySelector('body').classList.remove('jeu-body');
-    if (currentId) {
+    document.querySelector('html').classList.remove('jeu-html');
+        if (currentId) {
       localStorage.setItem("currentIdCh", currentId)
     }
   }, [currentId]);

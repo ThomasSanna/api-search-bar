@@ -1,18 +1,34 @@
 import React, { useEffect } from 'react';
 import { useRef } from 'react';
 import "../styles/Jeu.css";
+import "../styles/Jeubis.css";
 import Menu from "../components/Menu";
 import Logo from "../components/Logo";
 import videoBack from "../assets/videos/videoJeuBack.mp4";
+import imgPersoJeu from '../scripts/imgPersoJeu';
 
 const Jeu = () => {
+
     const [data, setData] = React.useState(null);
     const [dataFiltered, setDataFiltered] = React.useState(null);
     const [dataFilteredInput, setDataFilteredInput] = React.useState(null);
+    const [persoAFind, setPersoAFind] = React.useState(null);
+    const [idAFind, setIdAFind] = React.useState(null);
+    const [persoTest, setPersoTest] = React.useState([]);
+    const [persoTestAsc, setPersoTestAsc] = React.useState([]);
+    const [isWin, setIsWin] = React.useState(false);
+
+    const [dataCrew, setDataCrew] = React.useState(null);
 
     useEffect(() => {
         document.title = "One Piece - Jeu";
     });
+
+    useEffect(() => {
+        fetch('https://api.api-onepiece.com/crews')
+            .then((res) => res.json())
+            .then((res) => setDataCrew(res));
+    }, []);
 
     useEffect(() => {
         fetch('https://api.api-onepiece.com/characters')
@@ -23,6 +39,8 @@ const Jeu = () => {
     useEffect(() => {
         if (data) {
             // correction des noms
+            data[590].french_name = 'Rock (Yeti Cool Brothers)'
+            data[591].french_name = 'Scotch (Yeti Cool Brothers)'
             data[96].french_name = 'Charlotte Katakuri'
             data[663].french_name = 'Karasu'
             data[179].french_name = 'Tamago'
@@ -32,12 +50,32 @@ const Jeu = () => {
             data[39].french_name = 'Don Krieg'
             data[52].french_name = 'Charlotte Laura'
             data[367].french_name = 'Pika'
+            data[346].french_name = 'Barbe Brune'
+            
+            // correction du crew_id
+            data[689].crew_id = 130;
+
+            // correction des bounties
+            data[0].bounty = "3.000.000.000";
+            data[1].bounty = "1.111.000.000";
+            data[2].bounty = "366.000.000";
+            data[4].bounty = "1.032.000.000";
+            data[3].bounty = "500.000.000";
+            data[5].bounty = "1.000";
+            data[6].bounty = "930.000.000";
+            data[7].bounty = "394.000.000";
+            data[8].bounty = "383.000.000";
+            data[9].bounty = "1.100.000.000";
+            data[53].bounty = "3.000.000.000";
+            data[58].bounty = "3.000.000.000";
+            data[31].bounty = "3.189.000.000"
 
             // -------
             setDataFiltered(data.filter(
                 (item) => {
                     return (item.size !== null && item.size !== '') && 
                            (item.bounty !== null && item.bounty !== '') &&
+                        //    (item.bounty === null || item.bounty === '') &&
                            (item.age !== null && item.age !== '') &&
                            (item.job !== null && item.job !== '') &&
                            (item.status !== null && item.status !== '') &&
@@ -63,22 +101,20 @@ const Jeu = () => {
             return searchText.every(letter => item.french_name.toLowerCase().includes(letter));
         });
         // order by item.french_name
-        setDataFilteredInput(filteredInput.sort((a, b) => {
-            if (a.french_name > b.french_name) {
-                return 1;
-            }
-            if (a.french_name < b.french_name) {
-                return -1;
-            }
-            return 0;
-        }));
-    }
-
-    useEffect(() => {
-        if (dataFiltered){
-            console.log(dataFiltered);
+        if (searchText === '' || searchText.length === 0) {
+            setDataFilteredInput(dataFiltered);
+        } else {
+            setDataFilteredInput(filteredInput.sort((a, b) => {
+                if (a.french_name > b.french_name) {
+                    return 1;
+                }
+                if (a.french_name < b.french_name) {
+                    return -1;
+                }
+                return 0;
+            }));
         }
-    }, []);
+    }
 
     const videoRef = useRef(null);
 
@@ -94,7 +130,186 @@ const Jeu = () => {
     useEffect(() => {
         const bodyElement = document.querySelector('body');
         bodyElement.classList.add('jeu-body');
+        document.querySelector('html').classList.add('jeu-html');
     }, []);
+
+    const showSuggestion = () => {
+        const suggestionPerso = document.querySelector('.suggestion-perso');
+        suggestionPerso.classList.add('show');
+    }
+
+    useEffect(() => {
+        const suggestionPerso = document.querySelector('.suggestion-perso');
+        document.addEventListener('click', (e)=> {
+            if (e.target.id === 'inputPerso' || e.target.id === 'suggIDPerso' || e.target.id === 'googleSearch') {
+                return;
+            } else {
+                suggestionPerso.classList.remove('show');
+            }
+        });
+    }, []);
+
+
+    const searchPerso = (e) => {
+        if (e.target.id === 'googleSearch') {
+            return;
+        }
+        const suggestionPerso = document.querySelector('.suggestion-perso');
+        suggestionPerso.classList.remove('show');
+        const inputPerso = document.querySelector('#inputPerso');
+        inputPerso.value = ""
+        filterInput()
+        const idPerso = e.target.id;
+        addTestPerso(idPerso);
+        if (testIsWin(idPerso)) {
+            setIsWin(true);
+        }
+    }
+
+    const testIsWin = (id) => {
+        return parseInt(id) === parseInt(idAFind);
+    }
+
+    const addTestPerso = (id) => {
+        const persoObjetTest = dataFiltered.filter((item) => {
+            return parseInt(item.id) === parseInt(id);
+        })
+        setPersoTestAsc([...persoTestAsc, persoObjetTest]);
+        setPersoTest([...persoTestAsc, persoObjetTest].reverse());
+        const premierEnfant = document.querySelector('.test-perso-container:nth-child(2)');
+        if (premierEnfant) {
+            premierEnfant.style.scale = '1.1';
+            premierEnfant.style.transition = 'all 0.1s ease-in-out';
+            setTimeout(() => {
+                premierEnfant.style.scale = '1';
+                premierEnfant.style.transition = 'all 0.25s ease-in-out';
+            }, 200);
+        }
+    }
+
+    useEffect(() => {
+        if (dataFiltered) {
+            const longData = Object.keys(dataFiltered).length;
+            const randomPerso = Math.floor(Math.random() * longData);
+            setPersoAFind(dataFiltered[randomPerso]);
+            setIdAFind(dataFiltered[randomPerso].id);
+        }
+    }, [dataFiltered]);
+
+    // Fonction age = n ans to n, n entier
+    const ageToNumber = (age) => {
+        const ageSplit = age.split(' ');
+        return parseInt(ageSplit[0]);
+    }
+
+    // Fonction taille = 132cm (without space) to 132
+    const sizeToNumber = (size) => {
+        let sizeSplitCM = size.split('cm')[0];
+        sizeSplitCM = sizeSplitCM.split(' ')
+        let strSize = ''
+        for (let i = 0; i < sizeSplitCM.length; i++) {
+            strSize += sizeSplitCM[i].toString()
+        }
+        return parseInt(strSize);
+    }
+
+    // Fonction bounty = 1.000.000.000 to 1000000000
+    const bountyToNumber = (bounty) => {
+        if (bounty !== null) {
+            let bountySplit = bounty.split('.');
+            let strBounty = '';
+            for (let i = 0; i < bountySplit.length; i++) {
+                strBounty += bountySplit[i].toString();
+            }
+            return parseInt(strBounty);
+        }
+        return null
+    }
+
+    const testAge = (age) => {
+        if(age === persoAFind.age) {
+            return 'testPersoTrue';
+        } else {
+            let strCompareAge = '';
+            if (estPlusGrand(ageToNumber(age), ageToNumber(persoAFind.age))) {
+                strCompareAge = 'estPlusPetit';
+            } else {
+                strCompareAge = 'estPlusGrand';
+            }
+            return 'testPersoFalse ' + strCompareAge;
+        }
+    }
+
+    const testSize = (size) => {
+        if(size === persoAFind.size) {
+            return 'testPersoTrue';
+        } else {
+            let strCompareSize = '';
+            if (estPlusGrand(sizeToNumber(size), sizeToNumber(persoAFind.size))) {
+                strCompareSize = 'estPlusPetit';
+            } else {
+                strCompareSize = 'estPlusGrand';
+            }
+            return 'testPersoFalse ' + strCompareSize;
+        }
+    }
+
+    const testJob = (job) => {
+        if(job === persoAFind.job) {
+            return 'testPersoTrue';
+        } else {
+            return 'testPersoFalse';
+        }
+    }
+
+    const testStatus = (status) => {
+        if(status === persoAFind.status) {
+            return 'testPersoTrue';
+        } else {
+            return 'testPersoFalse';
+        }
+    }
+
+    const testBounty = (bounty) => {
+        if(bounty === persoAFind.bounty) {
+            return 'testPersoTrue';
+        } else {
+            let strCompareBounty = '';
+            if (estPlusGrand(bountyToNumber(bounty), bountyToNumber(persoAFind.bounty))) {
+                strCompareBounty = 'estPlusPetit';
+            } else {
+                strCompareBounty = 'estPlusGrand';
+            }
+            return 'testPersoFalse ' + strCompareBounty;
+        }
+    }
+
+    const testCrew = (crew) => {
+        if(crew === persoAFind.crew_id) {
+            return 'testPersoTrue';
+        } else {
+            return 'testPersoFalse';
+        }
+    }
+
+    const testFruit = (fruit) => {
+        if((Number.isInteger(parseInt(fruit)) && Number.isInteger(parseInt(persoAFind.fruit_id))) || (!Number.isInteger(parseInt(fruit)) && !Number.isInteger(parseInt(persoAFind.fruit_id)))) {
+            return 'testPersoTrue';
+        } else {
+            return 'testPersoFalse';
+        }
+    }
+
+    const estPlusGrand = (a, b) => {
+        return a > b;
+    }
+
+    const crewName = (id) => {
+        const crewName = dataCrew.filter((item)=>{
+            return parseInt(id) === parseInt(item.id)
+        })
+        return crewName[0].french_name;
+    }
 
     return (
         <div className="jeu1">
@@ -122,22 +337,110 @@ const Jeu = () => {
                     <div className='horizontalLine'></div>
                     <div className='recherche-container'>
                         <div className="recherchePerso">
-                            <input onChange={filterInput} placeholder='Monkey D. Luffy...' type="text" name="inputPerso" id="inputPerso" />
-                            <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="search" className="searchIcon" />
+                            <input onFocus={showSuggestion} onChange={filterInput} placeholder='Monkey D. Luffy...' type="text" name="inputPerso" id="inputPerso" />
                         </div>
-                        <div className='suggestion-perso'>
+                        <div className='suggestion-perso' id='suggIDPerso'>
                             {
                                 dataFilteredInput && dataFilteredInput.map((item) => {
+                                    const idPersoTest = persoTest.map((item) => {
+                                        return item[0].id;
+                                    });
+                                    if (idPersoTest.indexOf(item.id)>=0){
+                                        return null;
+                                    }
                                     return (
-                                        <div className='suggestion-perso-item' id={item.id}>
-                                            <p>{item.french_name}</p>
-                                        </div>
+                                        <ul onClick={searchPerso} className='suggestion-perso-item' id={item.id}>
+                                            <li id={item.id} onClick={searchPerso}>
+                                                <span className='suggImSpan' id={item.id}>
+                                                    {/* {dataFiltered.findIndex((element) => element.id === item.id)} */}
+                                                    <img id={item.id} className='imgSuggPerso' 
+                                                        src={imgPersoJeu[dataFiltered.findIndex((element) => element.id === item.id)] ?
+                                                                imgPersoJeu[dataFiltered.findIndex((element) => element.id === item.id)] :
+                                                                "https://static.vecteezy.com/system/resources/previews/020/765/399/original/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"}
+                                                        alt="Illustration du personnage" />
+                                                    <span id={item.id}>{item.french_name}</span>
+                                                </span>
+                                                <a id='googleSearch' title='Recherchez sur internet qui est ce personnage si vous ne le connaissez pas.' href={"https://www.google.com/search?q=" + item.french_name + ' One Piece'} rel='noreferrer' target="_blank"> ? </a>
+                                            </li>
+                                        </ul>
                                     );
                                 })
                             }
                         </div>
                     </div>
                 </div>
+                {/* only for screen > 1080px */}
+                { (window.innerWidth > 1080) ?
+                    <div className='test-container'>
+                        {
+                            persoTest && persoTest.length !== 0 &&
+                            <div className='legende-test'>
+                                <div></div>
+                                <span className='legende-test-span'>Age <div className="linehori"></div></span>
+                                <span className='legende-test-span'>Taille<div className="linehori"></div></span>
+                                <span className='legende-test-span'>Métier<div className="linehori"></div></span>
+                                <span className='legende-test-span'>Statut<div className="linehori"></div></span>
+                                <span className='legende-test-span'>Prime<div className="linehori"></div></span>
+                                <span className='legende-test-span'>Crew<div className="linehori"></div></span>
+                                <span className='legende-test-span'>Fruit<div className="linehori"></div></span>
+                            </div>
+                        }
+                        {
+                            persoTest && persoTest.map((item) => {
+                                return (
+                                    <div className='test-perso-container' id={item[0].id}>
+                                        <img className='testPersoImg' src={imgPersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] ?
+                                                    imgPersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] :
+                                                    "https://static.vecteezy.com/system/resources/previews/020/765/399/original/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"}
+                                            alt="Illustration du personnage" />
+                                        <span className={testAge(item[0].age)}>{item[0].age}</span>
+                                        <span className={testSize(item[0].size)}>{item[0].size}</span>
+                                        <span className={testJob(item[0].job)}>{item[0].job}</span>
+                                        <span className={testStatus(item[0].status)}>{item[0].status[0].toUpperCase() + item[0].status.slice(1)}</span>
+                                        <span className={testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
+                                        <span className={testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
+                                        <span className={testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div> 
+                    :
+                    <div className='test-container2'>
+                        {
+                            persoTest && persoTest.length !== 0 &&
+                            <div className='legende-test2'>
+                                <div></div>
+                                <span className='legende-test-span2'>Age <div className="linehori2"></div></span>
+                                <span className='legende-test-span2'>Taille<div className="linehori2"></div></span>
+                                <span className='legende-test-span2'>Métier<div className="linehori2"></div></span>
+                                <span className='legende-test-span2'>Statut<div className="linehori2"></div></span>
+                                <span className='legende-test-span2'>Prime<div className="linehori2"></div></span>
+                                <span className='legende-test-span2'>Crew<div className="linehori2"></div></span>
+                                <span className='legende-test-span2'>Fruit<div className="linehori2"></div></span>
+                            </div>
+                        }
+                        {
+                            persoTest && persoTest.map((item) => {
+                                return (
+                                    <div className='test-perso-container2' id={item[0].id}>
+                                        <img className='testPersoImg2' src={imgPersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] ?
+                                                    imgPersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] :
+                                                    "https://static.vecteezy.com/system/resources/previews/020/765/399/original/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"}
+                                            alt="Illustration du personnage" />
+                                        <span className={testAge(item[0].age)}>{item[0].age}</span>
+                                        <span className={testSize(item[0].size)}>{item[0].size}</span>
+                                        <span className={testJob(item[0].job)}>{item[0].job}</span>
+                                        <span className={testStatus(item[0].status)}>{item[0].status[0].toUpperCase() + item[0].status.slice(1)}</span>
+                                        <span className={testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
+                                        <span className={testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
+                                        <span className={testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div> 
+                }
             </main>
         </div>
     );    

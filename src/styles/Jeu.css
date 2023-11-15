@@ -1,3 +1,8 @@
+.jeu1 *::selection {
+    background-color: rgba(255, 255, 255, 0.498);
+    color: rgba(0, 0, 0, 0.804);
+}
+
 .jeu-body, .jeu-body.night{
     background: none;
 }
@@ -34,6 +39,7 @@
 
 .jeu1-main{
     width: 100vw;
+    min-height: 80vh;
     height: 100%; 
     display: flex;
     flex-direction: column;
@@ -83,6 +89,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 
 .recherchePerso{
@@ -95,17 +102,21 @@
 
 #inputPerso{
     padding-top: 2px;
-    width: 62%;
+    width: 70%;
     height: 2.5rem;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    border-radius: 10px;
     border: none;
     outline: none;
     padding: 0.5rem;
     font-size: 1.2rem;
     font-weight: 100;
     margin-bottom: 1rem;
-    background-color: rgba(255, 255, 255, 0.852);
+    background-color: rgba(255, 255, 255, 0.952);
+}
+
+#inputPerso::selection{
+    background-color: rgba(0, 0, 0, 0.881);
+    color: rgba(255, 255, 255, 0.804);
 }
 
 #inputPerso::placeholder{
@@ -124,25 +135,175 @@
     opacity: 0;
 }
 
-.searchIcon{
-    padding: .2rem;
-    margin-bottom: 17px;
-    height: 2.55rem;
-    filter: invert(1);
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.5);
-    transition: all 0.15s ease-in-out;
+.suggestion-perso {
+    display: none;
+    border: 5px solid rgba(255, 255, 255);
+    background-color: rgb(255, 255, 255);
+    height: 190px;
+    max-height: 450px;
+    position: absolute;
+    top: 260px;
+    width: 63%;
+    border-radius: 10px;
+    overflow-y: scroll;
+    resize: vertical;
+    z-index: 30;
 }
 
-.searchIcon:hover{
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: .25rem;
-}   
+.suggestion-perso.show {
+    display: block;
+}
 
-@media  (max-width: 768px) {
-    .jeu1-main{
-        margin-top: 70px;
+.suggImSpan{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.imgSuggPerso{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 20%;
+    margin-right: 1rem;
+    box-shadow: 0px 0px 0px 1px rgb(0, 0, 0);
+}
+
+.suggestion-perso li {
+    padding: 10px 15px;
+    margin: 0;
+    color: rgb(0, 0, 0);
+    font-size: 1.2rem;
+    margin-bottom: 2px;
+    border-bottom: 1px solid rgba(0, 0, 0, .7);
+    font-weight: 100;
+    cursor: pointer;
+    transition: all 0.05s ease-in-out;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.suggestion-perso li:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
+
+.suggestion-perso * {
+    text-decoration: none;
+    list-style: none;
+}
+
+.suggestion-perso a{
+    height: 100%;
+    color: rgb(51, 51, 51);
+    cursor: help;
+    padding: 0px 5px;
+}
+
+/* TEST PERSO -------------------------------------------------------- */
+
+.test-container {
+    z-index: -1;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.test-perso-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    z-index: 0;
+}
+
+.test-perso-container span {
+    width: 10%;
+    min-height: 110px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1.3rem;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.testPersoImg {
+    width: 100px; 
+    height: 100px;
+    object-fit: cover;
+    border-radius: 20%;
+}
+
+.testPersoTrue{
+    background-color: rgba(255, 255, 255) !important;
+    color: rgb(13, 13, 13) !important;
+    font-weight: 500 !important;
+}
+
+.testPersoFalse{
+    background-color: rgba(0, 0, 0, 0.382) !important;
+}
+
+.estPlusPetit::after {
+    position: absolute;
+    content: "▼";
+    color: rgba(255, 255, 255, 0.334);
+    font-size: 5rem;
+    font-weight: 100;
+}
+
+.estPlusGrand::after {
+    position: absolute;
+    content: "▲";
+    color: rgba(255, 255, 255, 0.334);
+    font-size: 5rem;
+    font-weight: 100;
+}
+
+.legende-test{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px;
+    padding: 0 20px;
+}
+
+.legende-test div{
+    width: 100px;
+}
+
+.legende-test span{
+    text-align: center;
+    font-size: 1.1rem;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.linehori{
+    width: 100%;
+    height: 1px;
+    background-color: rgba(255, 255, 255);
+    margin-top: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+    .jeu1-container{
+        width: 90%;
     }
 }
