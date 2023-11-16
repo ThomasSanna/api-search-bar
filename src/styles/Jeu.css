@@ -1,6 +1,27 @@
+.jeu1 *::-webkit-selection {
+    background-color: #000000;
+    color: rgb(252, 252, 252);
+}
+
+.jeu1 *::-webkit-scrollbar {
+    width: 10px;
+    background-color: #3f3f3f;
+}
+
+.jeu1 *::-webkit-scrollbar-thumb {
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(0, 0, 0);
+    height: 91.5px;
+    cursor: pointer !important;
+}
+
+.jeu1 *::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(81, 81, 81);
+}
+
 .jeu1 *::selection {
-    background-color: rgba(255, 255, 255, 0.498);
-    color: rgba(0, 0, 0, 0.804);
+    background-color: rgba(0, 0, 0, 0.498);
+    color: rgba(255, 255, 255, 0.804);
 }
 
 .jeu-body, .jeu-body.night{
@@ -20,7 +41,7 @@
     height: 100vh;
     object-fit: cover;
     filter: blur(5px) saturate(0) brightness(0.75) contrast(1.1);
-    z-index: -1;
+    z-index: -10000000000;
 }
 
 .creditArtist{
@@ -222,12 +243,16 @@
     margin: 10px;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
+    border-radius: 8px;
     z-index: 0;
 }
 
+.test-perso-container:last-child{
+    margin-bottom: 50vh;
+}
+
 .test-perso-container span {
-    width: 10%;
+    width: 12%;
     min-height: 110px;
     display: flex;
     flex-direction: row;
@@ -236,14 +261,14 @@
     text-align: center;
     font-size: 1.3rem;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 
 .testPersoImg {
-    width: 100px; 
-    height: 100px;
+    width: 110px; 
+    height: 110px;
     object-fit: cover;
-    border-radius: 20%;
+    border-radius: 3px;
 }
 
 .testPersoTrue{
@@ -283,13 +308,13 @@
 }
 
 .legende-test div{
-    width: 100px;
+    width: 110px;
 }
 
 .legende-test span{
     text-align: center;
     font-size: 1.1rem;
-    width: 10%;
+    width: 12%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -302,8 +327,44 @@
     margin-top: 10px;
 }
 
+.marginBot{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #474747;
+    text-align: center;
+}
+
 @media screen and (max-width: 1000px) {
     .jeu1-container{
         width: 90%;
+        height: 200px;
+    }
+    .jeu1-main{
+        margin-top: 50px;
+    }
+    .recherche-container{
+        height: 0px;
+    }
+    .creditArtist a{
+        font-size: 0.8rem;
+    }
+    .suggestion-perso, .suggestion-perso *{
+        z-index: 1000000;
+        top: -10px;
+        resize: none;
+    }
+}
+
+@media screen and (max-width: 478px) {
+    .suggestion-perso {
+        top: 12px;
+        width: 80%;
+        resize: none;
+    }
+    #inputPerso{
+        width: 100%;
     }
 }

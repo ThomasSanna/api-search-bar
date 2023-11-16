@@ -243,6 +243,9 @@
 }
 
 @media screen and (max-width: 750px){
+    .jeuOPonImg{
+        margin-top: 15px;
+    }
     .mitemjeu:hover{
         transform:scale(1.05);
     }

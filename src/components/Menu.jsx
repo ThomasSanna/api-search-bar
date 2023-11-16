@@ -44,8 +44,8 @@ const Menu = () => {
         <Logo />
         <div className="mitemjeu">
           <span className="spanmenucenter spmcjeu">Nouveau !</span>
-          <NavLink to="/jeu" activeClassName="active" className="immcjeu">
-            <span className="spanmenucenter jeuOPonImg">Quiz One Piece</span>
+          <NavLink to="/enigme" activeClassName="active" className="immcjeu">
+            <span className="spanmenucenter jeuOPonImg">L'énigme One Piece !</span>
           </NavLink>
         </div>
         <ul className="menu-center">

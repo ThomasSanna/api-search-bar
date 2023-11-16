@@ -1,0 +1,139 @@
+/* reset */
+
+.jeu-html, .jeu-body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    overflow-y: visible;
+    overflow-x: visible;
+}
+
+/* I JUST WANT TO CUT THE EXTRA WORDS LIKE THEY GO TO THE LINE BELOW WHEN THEY ARE TOO LONG .*/
+
+.scrollmenu{
+    position: absolute;
+    z-index: 0;
+    top: 320px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    margin: 0;
+    width: 95%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.scrollmenu::-webkit-scrollbar {
+    display: none;
+}
+
+.div-test{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-width: 150%;
+}
+
+.img-test{
+    max-width: 80px;
+    min-width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin: 5px;
+}
+
+.legende-test2>div{
+    height: 0;
+}
+
+.span-test{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 1rem;
+    min-width: 80px;
+    width: 80px;
+    max-width: 80px;
+    min-height: 80px;
+    height: 80px;
+    max-height: 80px;
+    margin: 5px 5px 0 5px;
+    padding: 20px;
+}
+
+.st-g{
+    word-wrap: break-word;
+    word-break: break-word !important;
+    text-align: center;
+    font-size: 1rem;
+    min-width: 120px;
+    width: 120px;
+    max-width: 120px;
+    font-size: 0.8rem;
+    display: flex;
+}
+
+.test-perso-container2 .span-test,.test-perso-container2 .img-test{
+    border-radius: 4%;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.legende-test-span2{
+    font-size: .9rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.linehori2{
+    width: 50px;
+    height: 1px;
+    background-color: rgba(255, 255, 255);
+    margin-top: 5px;
+    margin-bottom: -20px;
+}
+
+.cont-slider{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.arr-slider{
+    position: fixed;
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+    height: 1px;
+    width: 250px;
+    height: 2px;
+    object-fit: cover;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.arr-slider::before{
+    content: '<';
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+.arr-slider::after{
+    content: '>';
+    font-size: 1rem;
+    color: rgb(255, 255, 255);
+}
+
+.text-slider{
+    position: fixed;
+    margin-top: 32px;
+    font-size: .8rem;
+}

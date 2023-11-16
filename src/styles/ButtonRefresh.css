@@ -1,0 +1,17 @@
+.btn-refresh{
+    cursor: pointer;
+    position: absolute;
+    margin: 20px;
+    height: 40px;
+    filter: invert(1);
+    left: 0;
+    top: 0;
+    transition: all 0s ease-in-out;
+    transition: scale 0.3s ease-in-out;
+}
+
+.btn-refresh:hover{
+    transform: rotate(360deg);
+    scale: 1.1;
+    transition: all 0.5s ease-in-out;
+}

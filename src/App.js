@@ -10,11 +10,27 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path='/chapitre' element={<Home  />}></Route>
+          <Route path='/chapitres' element={<Home  />}></Route>
+          <Route path='/chapitre/:id' element={<Home  />}></Route>
+          <Route path='/chapitres/:id' element={<Home  />}></Route>
+          <Route path='/chap' element={<Home  />}></Route>
+          <Route path='/chap/:id' element={<Home  />}></Route>
           <Route path='/:id' element={<Home  />}></Route>
           <Route path='/episodes' element={<Episode  />}></Route>
+          <Route path='/episode' element={<Episode  />}></Route>
+          <Route path='/episode/:id' element={<Episode  />}></Route>
+          <Route path='/ep' element={<Episode  />}></Route>
+          <Route path='/ep/:id' element={<Episode  />}></Route>
           <Route path='/episodes/:id' element={<Episode  />}></Route>
           <Route path='/apropos' element={<Apropos  />}></Route>
+          <Route path='/a-propos' element={<Apropos  />}></Route>
+          <Route path='/about' element={<Apropos  />}></Route>
           <Route path='/jeu' element={<Jeu  />}></Route>
+          <Route path='/enigme' element={<Jeu  />}></Route>
+          <Route path='/enigmes' element={<Jeu  />}></Route>
+          <Route path='/jeux' element={<Jeu  />}></Route>
+          <Route path='/game' element={<Jeu  />}></Route>
           <Route path='*' element={<Home  />}></Route>
         </Routes>
       </BrowserRouter>

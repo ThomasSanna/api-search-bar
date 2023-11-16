@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react';
 import { useRef } from 'react';
+import { NavLink } from 'react-router-dom';
 import "../styles/Jeu.css";
 import "../styles/Jeubis.css";
+import "../styles/winWindow.css";
 import Menu from "../components/Menu";
 import Logo from "../components/Logo";
+import ButtonRefresh from "../components/ButtonRefresh.jsx";
 import videoBack from "../assets/videos/videoJeuBack.mp4";
 import imgPersoJeu from '../scripts/imgPersoJeu';
 
@@ -17,11 +20,12 @@ const Jeu = () => {
     const [persoTest, setPersoTest] = React.useState([]);
     const [persoTestAsc, setPersoTestAsc] = React.useState([]);
     const [isWin, setIsWin] = React.useState(false);
+    const [totalWin, setTotalWin] = React.useState(0);
 
     const [dataCrew, setDataCrew] = React.useState(null);
 
     useEffect(() => {
-        document.title = "One Piece - Jeu";
+        document.title = "One Piece - Enigme";
     });
 
     useEffect(() => {
@@ -35,6 +39,20 @@ const Jeu = () => {
             .then((res) => res.json())
             .then((res) => setData(res));
     }, []);
+
+    useEffect(() => {
+        if(localStorage.getItem('totalWinEnigme')) {
+            setTotalWin(parseInt(localStorage.getItem('totalWinEnigme')));
+        } else {
+            localStorage.setItem('totalWinEnigme', 0);
+        }
+    }, []);
+
+    useEffect(() => {
+        if (totalWin > 0) {
+            localStorage.setItem('totalWinEnigme', totalWin);
+        }
+    }, [totalWin]);
 
     useEffect(() => {
         if (data) {
@@ -70,6 +88,9 @@ const Jeu = () => {
             data[58].bounty = "3.000.000.000";
             data[31].bounty = "3.189.000.000"
 
+            // correction des sizes
+            data[77].size = "520cm";
+
             // -------
             setDataFiltered(data.filter(
                 (item) => {
@@ -90,7 +111,7 @@ const Jeu = () => {
                     return -1;
                 }
                 return 0;
-            }));
+            }).slice(0, 3 + totalWin));
             setDataFilteredInput(dataFiltered);
         }
     }, [data]);
@@ -162,6 +183,7 @@ const Jeu = () => {
         const idPerso = e.target.id;
         addTestPerso(idPerso);
         if (testIsWin(idPerso)) {
+            setTotalWin(totalWin + 1);
             setIsWin(true);
         }
     }
@@ -177,6 +199,7 @@ const Jeu = () => {
         setPersoTestAsc([...persoTestAsc, persoObjetTest]);
         setPersoTest([...persoTestAsc, persoObjetTest].reverse());
         const premierEnfant = document.querySelector('.test-perso-container:nth-child(2)');
+        const premierEnfant2 = document.querySelector('.test-perso-container2:nth-child(2)');
         if (premierEnfant) {
             premierEnfant.style.scale = '1.1';
             premierEnfant.style.transition = 'all 0.1s ease-in-out';
@@ -185,12 +208,20 @@ const Jeu = () => {
                 premierEnfant.style.transition = 'all 0.25s ease-in-out';
             }, 200);
         }
+        if (premierEnfant2) {
+            premierEnfant2.style.scale = '1.1';
+            premierEnfant2.style.transition = 'all 0.1s ease-in-out';
+            setTimeout(() => {
+                premierEnfant2.style.scale = '1';
+                premierEnfant2.style.transition = 'all 0.25s ease-in-out';
+            }, 200);
+        }
     }
 
     useEffect(() => {
         if (dataFiltered) {
-            const longData = Object.keys(dataFiltered).length;
-            const randomPerso = Math.floor(Math.random() * longData);
+            // const longData = Object.keys(dataFiltered).length;
+            const randomPerso = Math.floor(Math.random() * 3+totalWin);
             setPersoAFind(dataFiltered[randomPerso]);
             setIdAFind(dataFiltered[randomPerso].id);
         }
@@ -312,9 +343,28 @@ const Jeu = () => {
     }
 
     return (
+        
         <div className="jeu1">
             <Logo />
             <Menu />
+            <ButtonRefresh />
+
+            { isWin &&
+                <div className="win-window">
+                    <div className='newperso-container'>
+                        <h3>Nouveau Personnage !</h3>
+                        <img className='new-perso-img' src={imgPersoJeu[totalWin+2]} alt="" />
+                    </div>
+                    <div>
+                        <h1>Bravo ! <br /> Trouvé en {persoTest.length <= 1 ? persoTest.length + " essai" : persoTest.length + " essais"}</h1>
+                        <h2>Un total de {totalWin <= 1 ? totalWin + ' victoire' : totalWin + ' victoires'} !</h2>
+                    </div>
+                    <div className='buttons-fin-jeu'>
+                        <button className="button-retry" onClick={() => window.location.reload(false)}>Rejouer</button>
+                    </div>
+                </div>
+            }
+
             <div className="jeu-background">
                 <video
                     ref={videoRef}
@@ -331,7 +381,7 @@ const Jeu = () => {
             <main className='jeu1-main'>
                 <div className='jeu1-container'>
                     <div className='presentationJeu'>
-                        <h1 className='h1jeu'>Quiz One Piece</h1>
+                        <h1 className='h1jeu'>One Piece</h1>
                         <p className='pjeu'>Trouvez le personnage que j'ai choisis à l'aide de ses caractéristiques !</p>
                     </div>
                     <div className='horizontalLine'></div>
@@ -366,10 +416,10 @@ const Jeu = () => {
                                     );
                                 })
                             }
+                            <div className='marginBot'>Débloquez + de personnages <br /> en gagnant !</div>
                         </div>
                     </div>
                 </div>
-                {/* only for screen > 1080px */}
                 { (window.innerWidth > 1080) ?
                     <div className='test-container'>
                         {
@@ -406,39 +456,46 @@ const Jeu = () => {
                         }
                     </div> 
                     :
-                    <div className='test-container2'>
+                    <div className='scrollmenu'>
                         {
                             persoTest && persoTest.length !== 0 &&
-                            <div className='legende-test2'>
-                                <div></div>
-                                <span className='legende-test-span2'>Age <div className="linehori2"></div></span>
-                                <span className='legende-test-span2'>Taille<div className="linehori2"></div></span>
-                                <span className='legende-test-span2'>Métier<div className="linehori2"></div></span>
-                                <span className='legende-test-span2'>Statut<div className="linehori2"></div></span>
-                                <span className='legende-test-span2'>Prime<div className="linehori2"></div></span>
-                                <span className='legende-test-span2'>Crew<div className="linehori2"></div></span>
-                                <span className='legende-test-span2'>Fruit<div className="linehori2"></div></span>
+                            <div className='div-test legende-test2'>
+                                <span className='span-test legende-test-span2'>Perso<div className="linehori2"></div></span>
+                                <span className='span-test legende-test-span2'>Age <div className="linehori2"></div></span>
+                                <span className='span-test legende-test-span2'>Taille<div className="linehori2"></div></span>
+                                <span className='span-test st-g legende-test-span2'>Métier<div className="linehori2"></div></span>
+                                <span className='span-test legende-test-span2'>Statut<div className="linehori2"></div></span>
+                                <span className='span-test st-g legende-test-span2'>Prime<div className="linehori2"></div></span>
+                                <span className='span-test st-g legende-test-span2'>Crew<div className="linehori2"></div></span>
+                                <span className='span-test legende-test-span2'>Fruit<div className="linehori2"></div></span>
                             </div>
                         }
                         {
                             persoTest && persoTest.map((item) => {
                                 return (
-                                    <div className='test-perso-container2' id={item[0].id}>
-                                        <img className='testPersoImg2' src={imgPersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] ?
+                                    <div className='div-test test-perso-container2' id={item[0].id}>
+                                        <img className='img-test testPersoImg2' src={imgPersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] ?
                                                     imgPersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] :
                                                     "https://static.vecteezy.com/system/resources/previews/020/765/399/original/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"}
                                             alt="Illustration du personnage" />
-                                        <span className={testAge(item[0].age)}>{item[0].age}</span>
-                                        <span className={testSize(item[0].size)}>{item[0].size}</span>
-                                        <span className={testJob(item[0].job)}>{item[0].job}</span>
-                                        <span className={testStatus(item[0].status)}>{item[0].status[0].toUpperCase() + item[0].status.slice(1)}</span>
-                                        <span className={testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
-                                        <span className={testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
-                                        <span className={testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
+                                        <span className={'span-test stest ' + testAge(item[0].age)}>{item[0].age}</span>
+                                        <span className={'span-test stest ' + testSize(item[0].size)}>{item[0].size}</span>
+                                        <span className={'span-test stest st-g ' + testJob(item[0].job)}>{item[0].job}</span>
+                                        <span className={'span-test stest ' + testStatus(item[0].status)}>{item[0].status[0].toUpperCase() + item[0].status.slice(1)}</span>
+                                        <span className={'span-test stest st-g ' + testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
+                                        <span className={'span-test stest st-g ' + testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
+                                        <span className={'span-test stest ' + testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
                                     </div>
                                 );
                             })
                         }
+                        { 
+                        persoTest && persoTest.length !== 0 &&
+                            <div className="cont-slider">
+                                <div className="arr-slider"></div>
+                                <div className="text-slider">Défiler pour révéler des informations</div>
+                            </div>
+                        }   
                     </div> 
                 }
             </main>
