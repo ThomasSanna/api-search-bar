@@ -1,5 +1,3 @@
-/* reset */
-
 .jeu-html, .jeu-body{
     margin: 0;
     padding: 0;
@@ -8,8 +6,6 @@
     overflow-y: visible;
     overflow-x: visible;
 }
-
-/* I JUST WANT TO CUT THE EXTRA WORDS LIKE THEY GO TO THE LINE BELOW WHEN THEY ARE TOO LONG .*/
 
 .scrollmenu{
     position: absolute;
