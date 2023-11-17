@@ -491,9 +491,6 @@ body {
     border: 2px rgb(255, 255, 255);
     border-top-right-radius: .4rem;
     border-top-left-radius: .4rem;
-    border-bottom-left-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    border-bottom: 6px rgb(255, 255, 255) double;
 }
 
 .chapter-title{
@@ -505,15 +502,12 @@ body {
     padding: 9px 5px;
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
-    border-top: 7px rgb(255, 255, 255) double;
-    border-top-right-radius: 1rem;
-    border-top-left-radius: 1rem;
     border-bottom-left-radius: .4rem;
     border-bottom-right-radius: .4rem;
 }
 
 .chapter-title, .chapter-number{
-    background-color: rgba(1, 12, 40, 0.728);
+    background-color: rgba(19, 34, 58, 0.74);
 }
 
 .ladescriptionduchapitrebordel {

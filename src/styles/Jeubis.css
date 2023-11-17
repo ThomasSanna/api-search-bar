@@ -118,6 +118,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    animation: slider 3s infinite;
+}
+
+/* animation translate gauche droite centre, pause, gauche droite centre... */
+@keyframes slider{
+    0%{
+        transform: translateX(0);
+    }
+    10%{
+        transform: translateX(-20px);
+    }
+    20%{
+        transform: translateX(20px);
+    }
+    30%{
+        transform: translateX(0);
+    }
 }
 
 .arr-slider::before{

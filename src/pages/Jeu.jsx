@@ -170,6 +170,27 @@ const Jeu = () => {
         });
     }, []);
 
+    useEffect(() => {
+        console.log(persoTest);
+    }
+    , [persoTest]);
+
+    const searchPersoWithObject = (id) => {
+        const suggestionPerso = document.querySelector('.suggestion-perso');
+        suggestionPerso.classList.remove('show');
+        const inputPerso = document.querySelector('#inputPerso');
+        inputPerso.value = ""
+        inputPerso.blur();
+        filterInput()
+        const idPerso = id;
+        suggestionPerso.focus();
+        addTestPerso(idPerso);
+        if (testIsWin(idPerso)) {
+            setTotalWin(totalWin + 1);
+            setIsWin(true);
+        }
+    }
+
 
     const searchPerso = (e) => {
         if (e.target.id === 'googleSearch') {
@@ -420,7 +441,7 @@ const Jeu = () => {
                         </div>
                     </div>
                 </div>
-                { (window.innerWidth > 1080) ?
+                { (window.innerWidth > 850) ?
                     <div className='test-container'>
                         {
                             persoTest && persoTest.length !== 0 &&
