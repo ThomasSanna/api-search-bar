@@ -4,14 +4,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, .8);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 100;
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
 }
 
 .win-window h1{
@@ -29,18 +26,35 @@
     text-align: center;
 }
 
+.buttons-fin-jeu{
+    margin-top: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 .button-retry{
     padding: 20px;
     width: 200px;
     cursor: pointer;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 1.3rem;
     border: none;
     background-color: rgba(255, 255, 255);
     color: black;
     text-decoration: none;
 }
+
+.button-resultat{
+    font-size: 1rem;
+    padding: 0px;
+    width: 150px;
+    color: white;
+    background:none;
+    text-decoration: underline white;
+}
+
 
 .new-perso-img{
     width: 150px;
@@ -84,10 +98,6 @@
 }
 
 @media screen and (max-width: 750px){
-
-    .win-window{
-        background-color: rgba(0, 0, 0, .9);
-    }
 
     .win-window h1{
         font-size: 2.4rem;

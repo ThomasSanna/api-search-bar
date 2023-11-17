@@ -8,6 +8,7 @@ import Menu from "../components/Menu";
 import Logo from "../components/Logo";
 import ButtonRefresh from "../components/ButtonRefresh.jsx";
 import videoBack from "../assets/videos/videoJeuBack.mp4";
+import luffyG5Win from "../assets/videos/luffyG5Win.mp4";
 import imgPersoJeu from '../scripts/imgPersoJeu';
 
 const Jeu = () => {
@@ -137,6 +138,7 @@ const Jeu = () => {
         }
     }
 
+    const coredaRef = useRef(null);
     const videoRef = useRef(null);
 
     useEffect(() => {
@@ -170,28 +172,6 @@ const Jeu = () => {
         });
     }, []);
 
-    useEffect(() => {
-        console.log(persoTest);
-    }
-    , [persoTest]);
-
-    const searchPersoWithObject = (id) => {
-        const suggestionPerso = document.querySelector('.suggestion-perso');
-        suggestionPerso.classList.remove('show');
-        const inputPerso = document.querySelector('#inputPerso');
-        inputPerso.value = ""
-        inputPerso.blur();
-        filterInput()
-        const idPerso = id;
-        suggestionPerso.focus();
-        addTestPerso(idPerso);
-        if (testIsWin(idPerso)) {
-            setTotalWin(totalWin + 1);
-            setIsWin(true);
-        }
-    }
-
-
     const searchPerso = (e) => {
         if (e.target.id === 'googleSearch') {
             return;
@@ -206,6 +186,9 @@ const Jeu = () => {
         if (testIsWin(idPerso)) {
             setTotalWin(totalWin + 1);
             setIsWin(true);
+            if (totalWin && totalWin < 2) {
+                coredaRef.current.play();
+            }
         }
     }
 
@@ -363,25 +346,52 @@ const Jeu = () => {
         return crewName[0].french_name;
     }
 
+    const voirResultat = () => {
+        setIsWin(false)
+        const inputPerso = document.querySelector('#inputPerso');
+        inputPerso.style.display = 'none';
+    }
+
     return (
         
         <div className="jeu1">
             <Logo />
             <Menu />
             <ButtonRefresh />
-
-            { isWin &&
+            <audio ref={coredaRef}>
+                <source src="/audios/coreda.mp3" type="audio/mpeg" />
+            </audio>
+            { 
+            isWin &&
                 <div className="win-window">
-                    <div className='newperso-container'>
-                        <h3>Nouveau Personnage !</h3>
-                        <img className='new-perso-img' src={imgPersoJeu[totalWin+2]} alt="" />
-                    </div>
+                    <video
+                        ref={videoRef}
+                        className="luffyg5video videojeuback"
+                        autoPlay
+                        loop
+                        muted
+                        onEnded={handleVideoEnd}
+                    >
+                        <source src={luffyG5Win} type="video/mp4" />
+                    </video>
+                    <span className='creditArtist'>Background Editor : <a href="https://www.youtube.com/@Molob" target="_blank" rel="noreferrer">Molob</a></span>
+                        { imgPersoJeu[totalWin+2] ?
+                            <div className='newperso-container'>
+                                <h3>Nouveau Personnage !</h3>
+                                <img className='new-perso-img' src={imgPersoJeu[totalWin+2]} alt="" /> 
+                            </div>
+                            :
+                            <div className='newperso-container'>
+                                <h3>Vous avez débloqué tous les personnages !</h3>
+                            </div>
+                        }
                     <div>
                         <h1>Bravo ! <br /> Trouvé en {persoTest.length <= 1 ? persoTest.length + " essai" : persoTest.length + " essais"}</h1>
                         <h2>Un total de {totalWin <= 1 ? totalWin + ' victoire' : totalWin + ' victoires'} !</h2>
                     </div>
                     <div className='buttons-fin-jeu'>
-                        <button className="button-retry" onClick={() => window.location.reload(false)}>Rejouer</button>
+                        <button className="bretr button-retry" onClick={() => window.location.reload(false)}>Rejouer</button>
+                        <button className="button-resultat button-retry" onClick={voirResultat}>Voir le résultat</button>
                     </div>
                 </div>
             }

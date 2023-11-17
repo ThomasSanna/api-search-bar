@@ -40,8 +40,12 @@
     width: 100vw;
     height: 100vh;
     object-fit: cover;
-    filter: blur(5px) saturate(0) brightness(0.75) contrast(1.1);
+    filter: brightness(0.2) blur(2px);
     z-index: -10000000000;
+}
+
+.luffyg5video{
+    filter: brightness(0.2);
 }
 
 .creditArtist{
@@ -160,8 +164,7 @@
     display: none;
     border: 5px solid rgba(255, 255, 255);
     background-color: rgb(255, 255, 255);
-    height: 250px;
-    max-height: 450px;
+    max-height: 250px;
     position: absolute;
     top: 260px;
     width: 63%;
