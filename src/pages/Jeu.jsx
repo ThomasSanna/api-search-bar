@@ -10,6 +10,7 @@ import ButtonRefresh from "../components/ButtonRefresh.jsx";
 import videoBack from "../assets/videos/videoJeuBack.mp4";
 import luffyG5Win from "../assets/videos/luffyG5Win.mp4";
 import imgPersoJeu from '../scripts/imgPersoJeu';
+import genrePersoJeu from '../scripts/genrePersoJeu.jsx';
 
 const Jeu = () => {
 
@@ -18,11 +19,11 @@ const Jeu = () => {
     const [dataFilteredInput, setDataFilteredInput] = React.useState(null);
     const [persoAFind, setPersoAFind] = React.useState(null);
     const [idAFind, setIdAFind] = React.useState(null);
+    const [indexPersoAFind, setIndexPersoAFind] = React.useState(null);
     const [persoTest, setPersoTest] = React.useState([]);
     const [persoTestAsc, setPersoTestAsc] = React.useState([]);
     const [isWin, setIsWin] = React.useState(false);
     const [totalWin, setTotalWin] = React.useState(0);
-
     const [dataCrew, setDataCrew] = React.useState(null);
 
     useEffect(() => {
@@ -42,16 +43,16 @@ const Jeu = () => {
     }, []);
 
     useEffect(() => {
-        if(localStorage.getItem('totalWinEnigme')) {
-            setTotalWin(parseInt(localStorage.getItem('totalWinEnigme')));
+        if(localStorage.getItem('totalWin')) {
+            setTotalWin(parseInt(localStorage.getItem('totalWin')));
         } else {
-            localStorage.setItem('totalWinEnigme', 0);
+            localStorage.setItem('totalWin', 0);
         }
     }, []);
 
     useEffect(() => {
         if (totalWin > 0) {
-            localStorage.setItem('totalWinEnigme', totalWin);
+            localStorage.setItem('totalWin', totalWin);
         }
     }, [totalWin]);
 
@@ -157,6 +158,7 @@ const Jeu = () => {
     }, []);
 
     const showSuggestion = () => {
+        filterInput()
         const suggestionPerso = document.querySelector('.suggestion-perso');
         suggestionPerso.classList.add('show');
     }
@@ -297,8 +299,8 @@ const Jeu = () => {
         }
     }
 
-    const testStatus = (status) => {
-        if(status === persoAFind.status) {
+    const testGenre = (genre) => {
+        if(genre === genrePersoJeu[indexPersoAFind]) {
             return 'testPersoTrue';
         } else {
             return 'testPersoFalse';
@@ -351,6 +353,12 @@ const Jeu = () => {
         const inputPerso = document.querySelector('#inputPerso');
         inputPerso.style.display = 'none';
     }
+
+    useEffect(() => {
+        if(persoAFind && dataFilteredInput) {
+            setIndexPersoAFind(dataFilteredInput.findIndex((element) => element.id === persoAFind.id))
+        }
+    }, [dataFilteredInput, persoAFind]);
 
     return (
         
@@ -477,7 +485,9 @@ const Jeu = () => {
                                         <span className={testAge(item[0].age)}>{item[0].age}</span>
                                         <span className={testSize(item[0].size)}>{item[0].size}</span>
                                         <span className={testJob(item[0].job)}>{item[0].job}</span>
-                                        <span className={testStatus(item[0].status)}>{item[0].status[0].toUpperCase() + item[0].status.slice(1)}</span>
+                                        <span className={testGenre(genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] ? genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]:0)}>
+                                            {genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]? genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]===0? 'Homme':'Femme' : 'Homme'}
+                                        </span>
                                         <span className={testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
                                         <span className={testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
                                         <span className={testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
@@ -512,7 +522,9 @@ const Jeu = () => {
                                         <span className={'span-test stest ' + testAge(item[0].age)}>{item[0].age}</span>
                                         <span className={'span-test stest ' + testSize(item[0].size)}>{item[0].size}</span>
                                         <span className={'span-test stest st-g ' + testJob(item[0].job)}>{item[0].job}</span>
-                                        <span className={'span-test stest ' + testStatus(item[0].status)}>{item[0].status[0].toUpperCase() + item[0].status.slice(1)}</span>
+                                        <span className={'span-test stest ' + testGenre(genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)] ? genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]:0)}>
+                                            {genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]? genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]===0? 'Homme':'Femme' : 'Homme'}
+                                        </span>
                                         <span className={'span-test stest st-g ' + testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
                                         <span className={'span-test stest st-g ' + testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
                                         <span className={'span-test stest ' + testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
