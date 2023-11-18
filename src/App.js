@@ -3,6 +3,7 @@ import Home from './pages/Home.jsx'
 import Episode from './pages/Episode.jsx';
 import Apropos from './pages/Apropos.jsx';
 import Jeu from './pages/Jeu.jsx';
+import Jeu2 from './pages/Jeu2.jsx';
 
 function App() {
   return (
@@ -26,11 +27,9 @@ function App() {
           <Route path='/apropos' element={<Apropos  />}></Route>
           <Route path='/a-propos' element={<Apropos  />}></Route>
           <Route path='/about' element={<Apropos  />}></Route>
-          <Route path='/jeu' element={<Jeu  />}></Route>
+          <Route path='/jeu' element={<Jeu2  />}></Route>
           <Route path='/enigme' element={<Jeu  />}></Route>
           <Route path='/enigmes' element={<Jeu  />}></Route>
-          <Route path='/jeux' element={<Jeu  />}></Route>
-          <Route path='/game' element={<Jeu  />}></Route>
           <Route path='*' element={<Home  />}></Route>
         </Routes>
       </BrowserRouter>

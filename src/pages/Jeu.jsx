@@ -227,7 +227,7 @@ const Jeu = () => {
     useEffect(() => {
         if (dataFiltered) {
             // const longData = Object.keys(dataFiltered).length;
-            const randomPerso = Math.floor(Math.random() * 3+totalWin);
+            const randomPerso = totalWin>103 ? Math.floor(Math.random() * 103) : Math.floor(Math.random() * (3+totalWin));
             setPersoAFind(dataFiltered[randomPerso]);
             setIdAFind(dataFiltered[randomPerso].id);
         }
@@ -300,7 +300,7 @@ const Jeu = () => {
     }
 
     const testGenre = (genre) => {
-        if(genre === genrePersoJeu[indexPersoAFind]) {
+        if(indexPersoAFind !== null && genre === genrePersoJeu[indexPersoAFind]) {
             return 'testPersoTrue';
         } else {
             return 'testPersoFalse';
@@ -468,7 +468,7 @@ const Jeu = () => {
                                 <span className='legende-test-span'>Age <div className="linehori"></div></span>
                                 <span className='legende-test-span'>Taille<div className="linehori"></div></span>
                                 <span className='legende-test-span'>Métier<div className="linehori"></div></span>
-                                <span className='legende-test-span'>Statut<div className="linehori"></div></span>
+                                <span className='legende-test-span'>Genre<div className="linehori"></div></span>
                                 <span className='legende-test-span'>Prime<div className="linehori"></div></span>
                                 <span className='legende-test-span'>Crew<div className="linehori"></div></span>
                                 <span className='legende-test-span'>Fruit<div className="linehori"></div></span>
@@ -505,7 +505,7 @@ const Jeu = () => {
                                 <span className='span-test legende-test-span2'>Age <div className="linehori2"></div></span>
                                 <span className='span-test legende-test-span2'>Taille<div className="linehori2"></div></span>
                                 <span className='span-test st-g legende-test-span2'>Métier<div className="linehori2"></div></span>
-                                <span className='span-test legende-test-span2'>Statut<div className="linehori2"></div></span>
+                                <span className='span-test legende-test-span2'>Genre<div className="linehori2"></div></span>
                                 <span className='span-test st-g legende-test-span2'>Prime<div className="linehori2"></div></span>
                                 <span className='span-test st-g legende-test-span2'>Crew<div className="linehori2"></div></span>
                                 <span className='span-test legende-test-span2'>Fruit<div className="linehori2"></div></span>
