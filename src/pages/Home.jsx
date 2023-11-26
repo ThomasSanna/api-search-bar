@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import "../styles/Home.css";
+import "../styles/Home2.css";
 import croixSVG from "../assets/images/croix.svg";
 import reverseImage from "../assets/images/reverse.png";
 import arrowDown from "../assets/images/down.png";
@@ -15,6 +15,7 @@ import persoParC from "../scripts/persosParChap/AUPDATEpersosParChap.jsx"
 import characterIcon from "../assets/images/character.svg";
 import Music from "../components/Music";
 import { imgTomes } from "../scripts/imgTome.jsx";
+import { coverArray } from "../scripts/coverChap.jsx";
 
 
 function Home() {
@@ -260,13 +261,11 @@ function Home() {
       } else {
         tomeContainer.style.height = "calc(100vh - 90px)";
       }
-      tomeContainer.style.border = "1px solid #fff";
       tomeContainer.style.paddingBottom = "50px";
     }
     else {
       headerTome.classList.remove("arc-checked");
       tomeContainer.style.height = "0";
-      tomeContainer.style.border = "none";
       tomeContainer.style.padding = "0";
     }
   }
@@ -586,10 +585,9 @@ function Home() {
               <li onClick={iframeOpen} className="chapter-link">
                 <img
                   className="backImage"
-                  src = {isLowBattery?'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg':imgTomes[dat.tome.id] ? imgTomes[dat.tome.id] : 'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'}
+                  src = {isLowBattery?'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg': filteredData.length <= 30 ? coverArray[dat.id] ? coverArray[dat.id] : 'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg' : imgTomes[dat.tome.id] ? imgTomes[dat.tome.id] : 'https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'}
                   // src='https://ih0.redbubble.net/image.4686278250.7799/raf,360x360,075,t,fafafa:ca443f4786.jpg'
                   alt={"One Piece chapitre n°" + dat.id}
-                  loading={isLowBattery? "eager":"lazy"}
                 />
                 <p className="chapter-number chapter-night">
                   {dat.id}

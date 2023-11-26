@@ -20,6 +20,7 @@ function Footer() {
     const aproposcontenu = document.querySelector('.apropos-cont')
     const logomonsite = document.querySelector('.logo-monsite')
     const menuIcon = document.querySelector('.menu-icon')
+    const lastVisited = document.querySelector('.last-visit-container')
     if (body.classList.contains('night')) {
       if(menuIcon && aproposcontenu){
         menuIcon.classList.remove('menu-icon-night')
@@ -29,6 +30,9 @@ function Footer() {
       }
       if (aproposcontenu){
         aproposcontenu.classList.remove('apropos-cont-night')
+      }
+      if (lastVisited){
+        lastVisited.classList.add('police-noire')
       }
       body.classList.remove('night')
       html.classList.remove('night-html')
@@ -43,6 +47,9 @@ function Footer() {
       }
       if (aproposcontenu){
         aproposcontenu.classList.add('apropos-cont-night')
+      }
+      if (lastVisited){
+        lastVisited.classList.remove('police-noire')
       }
       body.classList.add('night')
       html.classList.add('night-html')

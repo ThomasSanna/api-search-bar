@@ -5,7 +5,7 @@ html{
 }
 
 .night-html {
-    background-color: #1f242d;
+    background-color: #212121;
 }
 
 * {
@@ -15,17 +15,17 @@ html{
 }
 
 *::selection {
-    background-color: #55738f;
+    background-color: #1f1f1f;
     color: rgb(252, 252, 252);
 }
 
 *::-moz-selection {
-    background-color: #55738f;
+    background-color: #1f1f1f;
     color: rgb(252, 252, 252);
 }
 
 *::-webkit-selection {
-    background-color: #55738f;
+    background-color: #1f1f1f;
     color: rgb(252, 252, 252);
 }
 
@@ -36,7 +36,7 @@ html{
 
 *::-webkit-scrollbar-thumb {
     background-color: rgb(255, 255, 255);
-    border: 1px solid rgb(41, 47, 55);
+    border: 1px solid rgb(44, 44, 44);
     height: 91.5px;
     cursor: pointer !important;
 }
@@ -46,7 +46,7 @@ html{
 }
 
 *::-webkit-scrollbar-thumb:active {
-    background-color: rgb(183, 192, 206);
+    background-color: rgb(222, 222, 222);
 }
 
 /* Don't work on Firefox */
@@ -54,9 +54,7 @@ html{
 
 body {
     color: white;
-    animation: gradient 12s ease infinite;
-    background: linear-gradient(100deg, #d0fff4, #ffd7d2, #ffc5cb, #eff2ff, #9694ff, #d0fff4, #ffa69b, #ff7583, #f6efff, #c5c4ff);
-    background-size: 500% 100%;
+    background-color: rgb(255, 255, 255);
     font-family: 'Rubik', serif;
     font-weight: 400;
     width: 100vw;
@@ -65,10 +63,15 @@ body {
 }
 
 .night {
+    background-color: #000000;
     /* background: linear-gradient(200deg, #13171f, #0a0d0e); */
-    animation: gradient 12s ease infinite;
-    background: linear-gradient(100deg, #050313, #0f454f, rgb(50, 143, 169), #060a1f, #0b312b, #050313, #0f454f, rgb(20, 139, 133), #060a1f, #0b312b);
-    background-size: 500% 100%;
+}
+
+.police-noire {
+    color: #ffffff;
+}
+.police-bleue{
+    color: #7dcfff;
 }
 
 @keyframes gradient {
@@ -91,13 +94,13 @@ body {
     top: 0;
     width: 100vw;
     height: 90px;
-    background: linear-gradient(90deg, #13171f,  rgba(53, 89, 94, 0.678) 100%);
     display: flex;
     padding: 10px 50px;
     flex-direction: row;
     justify-content: space-between;
+    background-color: #000000e7;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.486);
     z-index: 1000;
-    border-bottom: 1px solid rgb(255, 255, 255);
 }
 
 /* HEADER SEARCH----------------------------------------------------------  */
@@ -114,15 +117,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #070f20b6;
+    background-color: #101010b6;
 }
 
 .header-battery-active{
-    background-color: rgba(237, 243, 255, 0.684);
+    background-color: rgba(255, 255, 255, 0.655);
 }
 
 .header-battery-active:hover{
-    background-color: #f5f8ffbc !important;
+    background-color: #ffffffcc !important;
 }
 
 .battery-image-active{
@@ -130,14 +133,14 @@ body {
 }
 
 .header-battery:hover{
-    background-color: #292e38;
+    background-color: #000000;
 }
 
 .image-battery{
     cursor: pointer;
     width: 50px;
     object-fit: cover;
-    filter: invert(100%) sepia(1%) saturate(6313%) hue-rotate(173deg) brightness(95%) contrast(96%);
+    filter: invert(100%);
 }
 
 .header-search{
@@ -147,7 +150,7 @@ body {
 .reverse-back{
     margin-left: 3px;
     border-radius: 0.5rem;
-    background-color: rgb(75, 85, 100);
+    background-color: #17181c;
     transition: all 0.2s ease-in-out;
     display: flex;
     align-items: center;
@@ -163,7 +166,7 @@ body {
 }
 
 .reverse-checked .button-reverse{
-    filter: invert(22%) sepia(11%) saturate(1597%) hue-rotate(159deg) brightness(98%) contrast(86%) !important;
+    filter: invert(22%) sepia(11%) saturate(1597%) hue-rotate(159deg) brightness(98%) saturate(0) contrast(86%) !important;
 }
 
 .buttons-search{
@@ -183,7 +186,7 @@ body {
     padding: 0.5rem;
     font-size: 1.2rem;
     cursor: pointer;
-    filter: invert(100%) sepia(1%) saturate(3%) hue-rotate(173deg) brightness(195%) contrast(96%);
+    filter: invert(100%) sepia(1%) saturate(0) hue-rotate(173deg) brightness(195%) contrast(96%);
 
 }
 
@@ -262,8 +265,8 @@ body {
 }
 
 .filter-checked {
-    background-color: rgb(229, 235, 235) !important;
-    color: #304755 !important;
+    background-color: rgb(238, 238, 238) !important;
+    color: #454545 !important;
 }
 
 .filter-checked:hover {
@@ -272,7 +275,7 @@ body {
 
 .check {
     border-radius: 5px;
-    background-color: rgb(75, 85, 100);
+    background-color: #17181c;
     color: rgb(231, 235, 238);
     padding: 2px 7px;
     -webkit-user-select: none;
@@ -332,8 +335,6 @@ body {
 
 .tome-select-container{
     padding: 0 !important;
-    border-left: white 1px solid;
-    border-top: white 1px solid;
     -webkit-user-select: none;
     user-select: none;
     width: 380px;
@@ -348,7 +349,6 @@ body {
 .liste-tome{
     width: 100%;
     height: 100%;
-    background: linear-gradient(20deg, rgba(18, 28, 37, 0.678) 0%, rgba(42, 92, 99, 0.678) 100%);
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 0.5rem;
@@ -367,9 +367,11 @@ body {
     white-space: nowrap;
     text-overflow: ellipsis;
     padding: 13px;
-    background-color: rgb(255, 255, 255);
-    color: #2e4a5c;
+    background-color: rgba(255, 255, 255, 0.768);
+    color: #000000f6;
     margin-top: 20px;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
 }
 
 .liste-tome li:hover{
@@ -378,9 +380,6 @@ body {
 
 /* CHAPTERS CONTAINER------------------------------------------------------- */
 
-.chap_non_sorti{
-    color: rgb(255, 39, 39) !important;
-}
 
 .last-chap-container{
     position: fixed;
@@ -388,7 +387,7 @@ body {
     top: 350px;
     transform: rotate(-90deg);
     color: #ffffff;
-    background-color: #041722;
+    background-color: #17181c;
     padding: 10px 20px;
     border-radius: 5px;
 }
@@ -409,7 +408,7 @@ body {
     top: 95px;
     right: 5px;
     color: #ffffff;
-    background-color: #060a1f;
+    background-color: #040404;
     padding: 3px 10px;
     border-radius: 5px;
 }
@@ -506,7 +505,7 @@ body {
 }
 
 .chapter-title, .chapter-number{
-    background-color: rgba(19, 34, 58, 0.74);
+    background-color: rgba(21, 32, 48, 0.74);
 }
 
 .ladescriptionduchapitrebordel {
@@ -649,7 +648,7 @@ body {
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     border-radius: 2px;
-    border: #304755 2px solid;
+    border: #000000 2px solid;
 }
 
 .arrow-tri{
@@ -658,7 +657,7 @@ body {
     object-fit: cover;
     cursor: pointer;
     transition: filter 0.1s ease-in-out;
-    filter: invert(22%) sepia(11%) saturate(1597%) hue-rotate(159deg) brightness(98%) contrast(86%) !important;
+    filter: invert(22%) sepia(11%) saturate(800%) hue-rotate(159deg) brightness(88%) contrast(86%) !important;
 }
 
 .arrow-tri:hover{
@@ -676,10 +675,10 @@ body {
 
 .full-screen-icon{
     filter: invert(100%);
-    height: 50px;
+    height: 35px;
     border-radius: 10px;
-    background-color: rgba(228, 173, 145, 0.678);
-    width: 50px;
+    background-color: rgb(255, 255, 255);
+    width: 35px;
     padding: 0.5rem;
     font-size: 1.2rem;
     color: #d5d6d6;
@@ -713,7 +712,7 @@ body {
 
 .micperso *::-webkit-scrollbar {
     width: 5px;
-    background-color: rgb(46, 53, 66);
+    background-color: rgb(51, 51, 51);
     border-radius: 0.rem;
 }
 
@@ -766,8 +765,8 @@ body {
 }
 
 .more-info-button:hover{
-    background-color: #5064708c;
-    border: #e9eef28c 2px solid;
+    background-color: #2c2c2c8c;
+    border: #ffffff8c 2px solid;
 }
 
 .mibperso:hover{
@@ -843,12 +842,15 @@ body {
         top: 70px;
     }
     .last-visit-container, .last-chap-container{
-        border: .8px solid rgb(255, 255, 255);
-        background-color: #041722d7;
+        /* shadow only bot and right */
+        box-shadow: 0px;
+        background-color: #17191fd6;
+        border-radius: 200px;
         backdrop-filter: blur(3px);
         -webkit-backdrop-filter: blur(3px);
     }
     .last-visit-container{
+        border-radius: 200px !important;
         z-index: 100;
         position: fixed;
         color: #ffffff;
@@ -1006,6 +1008,11 @@ body {
 }
 
 @media screen and (max-width: 850px){
+
+    .police-noire {
+        color: #3c3c3c !important;
+    }
+    
     .header-battery{
         border-top-right-radius: 0.5rem;
         top: calc(150px);
@@ -1054,8 +1061,22 @@ body {
         display: none;
     }
     .liste-tome{
+        background-color: #00000056;
+        backdrop-filter: blur(5px) saturate(80%) brightness(70%);
+        -webkit-backdrop-filter: blur(5px) saturate(80%) brightness(70%);
         padding-bottom: 100px;
     }
+    
+    .liste-tome li{
+        background-color: rgb(246, 246, 246);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 60px;
+        padding: 40px;
+        border-radius: 2000px;
+    }
+
     .chapter-container{
         margin-top: 5rem;
         padding: 50px 0px 10px 0 !important;
@@ -1233,8 +1254,10 @@ body {
     width: 100vw;
     z-index: 1000;
     align-items: center;
+    background-color: #00000056;
+    backdrop-filter: blur(5px) saturate(80%) brightness(70%);
+    -webkit-backdrop-filter: blur(5px) saturate(80%) brightness(70%);
     height: 0;
-    background: linear-gradient(90deg, rgba(22, 35, 46, 0.774) 0%,  rgba(50, 86, 94, 0.767) 100%);
 }
 
 .tel-filter-container * {
@@ -1283,7 +1306,7 @@ body {
     filter: invert(1);
     cursor: pointer;
     border-radius: 50%;
-    background-color: rgb(231, 178, 171);
+    background-color: rgb(255, 76, 52);
     border: rgb(0, 0, 0) solid .5px;
 }
 
