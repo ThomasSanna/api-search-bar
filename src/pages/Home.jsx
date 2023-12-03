@@ -640,14 +640,14 @@ function Home() {
                         "<i>{dat.title}</i>", Ch. n°{dat.id}
                       </p>
 
-                      <p className="more-info-tome">
-                        Tome n°{dat.tome.id}: "<i>{dat.tome.tome_title}</i>"
-                      </p>
-                      <p className="more-info-sortie">
+                      {dat.tome && <p className="more-info-tome">
+                        Tome n°{dat.tome.id}: "<i>{dat.tome.title}</i>"
+                      </p>}
+                      {dat.tome && <p className="more-info-sortie">
                         <div>Sortie du Tome :</div>
                         <div>&nbsp;&nbsp;- Japon: {dat.tome.tome_japan_date_publish} (il y a {countAnnee(dat.tome.tome_japan_date_publish)} ans) </div>
                         <div>&nbsp;&nbsp;- France: {dat.tome.tome_french_date_publish} (il y a {countAnnee(dat.tome.tome_french_date_publish)} ans) </div>
-                      </p>
+                      </p>}
                     </div>
                   </div>
 
