@@ -4,6 +4,7 @@ import Episode from './pages/Episode.jsx';
 import Apropos from './pages/Apropos.jsx';
 import Jeu from './pages/Jeu.jsx';
 import Jeu2 from './pages/Jeu2.jsx';
+import RoadToPiece from './pages/RoadToPiece.jsx';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path='/enigme' element={<Jeu  />}></Route>
           <Route path='/enigmes' element={<Jeu  />}></Route>
           <Route path='*' element={<Home  />}></Route>
+          <Route path='/road-to-piece' element={<RoadToPiece  />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

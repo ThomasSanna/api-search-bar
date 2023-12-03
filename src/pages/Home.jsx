@@ -57,13 +57,35 @@ function Home() {
   }, [data]);
 
   useEffect(() => {
-    fetch("https://api.api-onepiece.com/chapters")
-      .then((res) => res.json())
+    // fetch("https://api.api-onepiece.com/chapters")
+    fetch("https://api2.api-onepiece.com/v2/chapters/fr")
+    .then((res) => res.json())
       .then((data) => {
         setData(data);
         setFilteredData(data);
       });
   }, []);
+
+  // useEffect(() => {
+  //   fetch("https://api2.api-onepiece.com/v2/chapters/fr", {
+  //   // fetch("https://api.api-onepiece.com/chapters", {
+  //     method: 'GET',
+  //     mode: 'cors',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     credentials: 'same-origin',
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setData(data);
+  //     setFilteredData(data);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
+  // }, []);
+  
 
   useEffect(() => {
     document.title = "One Piece - Chapitres";
@@ -163,7 +185,7 @@ function Home() {
     const reversed = document.querySelector(".reverse-back").checked;
 
     const filtered = data.filter((dat) => {
-      const titleKeywords = withtitle.checked && searchText.every(keyword => dat.chapter_title.toLowerCase().includes(keyword));
+      const titleKeywords = withtitle.checked && searchText.every(keyword => dat.title.toLowerCase().includes(keyword));
       const descriptionKeywords = descRapide[dat.id] && withdescription.checked && searchText.every(keyword => descRapide[dat.id]? descRapide[dat.id].toLowerCase().includes(keyword) : false);
       const numberKeywords = withnumber.checked && searchText.every(keyword => dat.id.toString().includes(keyword));
       const persoKeywords = persoParC[dat.id] && withperso.checked && searchText.every(keyword =>   Array.isArray(persoParC[dat.id])? persoParC[dat.id].join(' ').toLowerCase().includes(keyword) : false);
@@ -592,7 +614,7 @@ function Home() {
                 <p className="chapter-number chapter-night">
                   {dat.id}
                 </p>
-                <p className="chapter-title chapter-night">{dat.chapter_title}</p>
+                <p className="chapter-title chapter-night">{dat.title}</p>
                 <p
 
                   id={dat.id}
@@ -615,7 +637,7 @@ function Home() {
                     <p className="more-info-button" id={dat.id} onMouseOut={moreInfoTabDisappear} onMouseOver={moreInfoTabAppear}>i</p>
                     <div className="more-info-tab" id={dat.id} >
                       <p className="more-info-title">
-                        "<i>{dat.chapter_title}</i>", Ch. n°{dat.id}
+                        "<i>{dat.title}</i>", Ch. n°{dat.id}
                       </p>
 
                       <p className="more-info-tome">
@@ -657,7 +679,7 @@ function Home() {
                       rel="noreferrer"
                       target="_blank"
                       href={
-                        "https://esj.tn/manga/one-piece-chapter-" + dat.id + "/"
+                        "https://manga-read.online/one-piece/one-piece-chapter-" + dat.id + "/"
                       }
                       id={dat.id}
                     >

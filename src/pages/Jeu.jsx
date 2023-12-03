@@ -31,13 +31,13 @@ const Jeu = () => {
     });
 
     useEffect(() => {
-        fetch('https://api.api-onepiece.com/crews')
+        fetch('https://api2.api-onepiece.com/v2/crews/fr')
             .then((res) => res.json())
             .then((res) => setDataCrew(res));
     }, []);
 
     useEffect(() => {
-        fetch('https://api.api-onepiece.com/characters')
+        fetch('https://api2.api-onepiece.com/v2/characters/fr')
             .then((res) => res.json())
             .then((res) => setData(res));
     }, []);
@@ -59,21 +59,21 @@ const Jeu = () => {
     useEffect(() => {
         if (data) {
             // correction des noms
-            data[590].french_name = 'Rock (Yeti Cool Brothers)'
-            data[591].french_name = 'Scotch (Yeti Cool Brothers)'
-            data[96].french_name = 'Charlotte Katakuri'
-            data[663].french_name = 'Karasu'
-            data[179].french_name = 'Tamago'
-            data[77].french_name = 'Fisher Tiger'
-            data[40].french_name = 'Gin'
-            data[677].french_name = 'Gem'
-            data[39].french_name = 'Don Krieg'
-            data[52].french_name = 'Charlotte Laura'
-            data[367].french_name = 'Pika'
-            data[346].french_name = 'Barbe Brune'
+            data[590].name = 'Rock (Yeti Cool Brothers)'
+            data[591].name = 'Scotch (Yeti Cool Brothers)'
+            data[96].name = 'Charlotte Katakuri'
+            data[663].name = 'Karasu'
+            data[179].name = 'Tamago'
+            data[77].name = 'Fisher Tiger'
+            data[40].name = 'Gin'
+            data[677].name = 'Gem'
+            data[39].name = 'Don Krieg'
+            data[52].name = 'Charlotte Laura'
+            data[367].name = 'Pika'
+            data[346].name = 'Barbe Brune'
             
-            // correction du crew_id
-            data[689].crew_id = 130;
+            // correction du crew.id
+            data[689].crew.id = 130;
 
             // correction des bounties
             data[0].bounty = "3.000.000.000";
@@ -96,20 +96,20 @@ const Jeu = () => {
             // -------
             setDataFiltered(data.filter(
                 (item) => {
-                    return (item.size !== null && item.size !== '') && 
-                           (item.bounty !== null && item.bounty !== '') &&
+                    return (item.size && item.size !== null && item.size !== '') && 
+                           (item.bounty && item.bounty !== null && item.bounty !== '') &&
                         //    (item.bounty === null || item.bounty === '') &&
-                           (item.age !== null && item.age !== '') &&
-                           (item.job !== null && item.job !== '') &&
-                           (item.status !== null && item.status !== '') &&
-                           (item.crew_id !== null) &&
-                           (item.french_name !== 'Kelly Funk' && item.french_name !== 'Orlombus')
+                           (item.age && item.age !== null && item.age !== '') &&
+                           (item.job && item.job !== null && item.job !== '') &&
+                           (item.status && item.status !== null && item.status !== '') &&
+                           (item.crew && item.crew !== null) &&
+                           (item.name && item.name !== 'Kelly Funk' && item.name !== 'Orlombus' && item.name !== 'Karazu')
                 }
             ).sort((a, b) => {
-                if (a.french_name > b.french_name) {
+                if (a.name > b.name) {
                     return 1;
                 }
-                if (a.french_name < b.french_name) {
+                if (a.name < b.name) {
                     return -1;
                 }
                 return 0;
@@ -121,17 +121,17 @@ const Jeu = () => {
     const filterInput = () => {
         const searchText = document.querySelector('#inputPerso').value.toLowerCase().split(' ');
         const filteredInput = dataFiltered.filter((item) => {
-            return searchText.every(letter => item.french_name.toLowerCase().includes(letter));
+            return searchText.every(letter => item.name.toLowerCase().includes(letter));
         });
-        // order by item.french_name
+        // order by item.name
         if (searchText === '' || searchText.length === 0) {
             setDataFilteredInput(dataFiltered);
         } else {
             setDataFilteredInput(filteredInput.sort((a, b) => {
-                if (a.french_name > b.french_name) {
+                if (a.name > b.name) {
                     return 1;
                 }
-                if (a.french_name < b.french_name) {
+                if (a.name < b.name) {
                     return -1;
                 }
                 return 0;
@@ -322,7 +322,7 @@ const Jeu = () => {
     }
 
     const testCrew = (crew) => {
-        if(crew === persoAFind.crew_id) {
+        if(crew === persoAFind.crew.id) {
             return 'testPersoTrue';
         } else {
             return 'testPersoFalse';
@@ -345,7 +345,7 @@ const Jeu = () => {
         const crewName = dataCrew.filter((item)=>{
             return parseInt(id) === parseInt(item.id)
         })
-        return crewName[0].french_name;
+        return crewName[0].name;
     }
 
     const voirResultat = () => {
@@ -447,9 +447,9 @@ const Jeu = () => {
                                                                 imgPersoJeu[dataFiltered.findIndex((element) => element.id === item.id)] :
                                                                 "https://static.vecteezy.com/system/resources/previews/020/765/399/original/default-profile-account-unknown-icon-black-silhouette-free-vector.jpg"}
                                                         alt="Illustration du personnage" />
-                                                    <span id={item.id}>{item.french_name}</span>
+                                                    <span id={item.id}>{item.name}</span>
                                                 </span>
-                                                <a id='googleSearch' title='Recherchez sur internet qui est ce personnage si vous ne le connaissez pas.' href={"https://www.google.com/search?q=" + item.french_name + ' One Piece'} rel='noreferrer' target="_blank"> ? </a>
+                                                <a id='googleSearch' title='Recherchez sur internet qui est ce personnage si vous ne le connaissez pas.' href={"https://www.google.com/search?q=" + item.name + ' One Piece'} rel='noreferrer' target="_blank"> ? </a>
                                             </li>
                                         </ul>
                                     );
@@ -489,7 +489,7 @@ const Jeu = () => {
                                             {genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]? genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]===0? 'Homme':'Femme' : 'Homme'}
                                         </span>
                                         <span className={testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
-                                        <span className={testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
+                                        <span className={testCrew(item[0].crew.id)}>{crewName(item[0].crew.id)}</span>
                                         <span className={testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
                                     </div>
                                 );
@@ -526,7 +526,7 @@ const Jeu = () => {
                                             {genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]? genrePersoJeu[dataFiltered.findIndex((element) => element.id === item[0].id)]===0? 'Homme':'Femme' : 'Homme'}
                                         </span>
                                         <span className={'span-test stest st-g ' + testBounty(item[0].bounty)}>{item[0].bounty} ฿</span>
-                                        <span className={'span-test stest st-g ' + testCrew(item[0].crew_id)}>{crewName(item[0].crew_id)}</span>
+                                        <span className={'span-test stest st-g ' + testCrew(item[0].crew.id)}>{crewName(item[0].crew.id)}</span>
                                         <span className={'span-test stest ' + testFruit(item[0].fruit_id)}>{item[0].fruit_id ? 'Oui' : 'Non'}</span>
                                     </div>
                                 );

@@ -61,7 +61,7 @@ function Episode() {
     }, [currentId]);
 
   useEffect(() => {
-    fetch("https://api.api-onepiece.com/arcs")
+    fetch("https://api2.api-onepiece.com/v2/arcs/fr")
       .then((res) => res.json())
       .then((data) => {
         setDataArc(data);
@@ -74,11 +74,13 @@ function Episode() {
   }, [data]);
 
   useEffect(() => {
-    fetch("https://api.api-onepiece.com/episodes")
+    // fetch("https://api.api-onepiece.com/episodes")
+    fetch("https://api2.api-onepiece.com/v2/episodes/fr")
       .then((res) => res.json())
       .then((data) => {
         setData(data);
         setFilteredData(data);
+        console.log(data[0].arc.id);
       });
   }, []);
 
@@ -220,7 +222,11 @@ function Episode() {
     const reversed = document.querySelector(".reverse-back").checked;
     const arcF = parseInt(e.target.id + e.target.parentElement.id)
     const filtered = data.filter((dat) => {
-      return dat.arc_id === arcF
+      if (dat.arc) {
+        return dat.arc.id === arcF;
+      } else {
+        return false;
+      }
     })
     setFilteredData(reversed ? filtered.reverse() : filtered);
   };
@@ -470,9 +476,9 @@ function Episode() {
           <div className="tome-select-container">
             <ul className="liste-tome">
               {
-                dataArc && dataArc.filter((arc) => {return arc.arc_title!=='Arc Roi acide carbonique'}).map((arc) => {
+                dataArc && dataArc.filter((arc) => {return arc.title!=='Arc Roi acide carbonique'}).map((arc) => {
                   return (
-                    <li onClick={arcFilter} id={arc.id} title={arc.arc_title + " : " + arc.arc_description}><b>{arc.arc_title}</b></li>
+                    <li onClick={arcFilter} id={arc.id} title={arc.title + " : " + arc.description}><b>{arc.title}</b></li>
                   )
                 })
               }
@@ -518,7 +524,7 @@ function Episode() {
 
                 <img
                   className="backImage"
-                  src={isLowBattery? 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg' : imgArcs[dat.arc_id] ? imgArcs[dat.arc_id] : 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
+                  src={isLowBattery || !dat.arc ? 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg' : imgArcs[dat.arc.id] ? imgArcs[dat.arc.id] : 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2023/05/onepiece_luffybirthdayillustration2023-e1683256027150.jpg'}
                   alt={"One Piece episode n°" + dat.id}
                   loading={"lazy"}
                 />
@@ -552,7 +558,7 @@ function Episode() {
                         "<i>{dat.title}</i>", Ep. n°{dat.id}
                       </p>
                       <p className='more-info-title'>
-                        {dat.saga_id && <div>Saga n°{dat.saga_id} : "<i>{dat.saga.saga_title}</i>" </div>}
+                        {dat.saga && <div>Saga n°{dat.saga.id} : "<i>{dat.saga.title}</i>" </div>}
                       </p>
                       <p className='more-info-title'>
                         Sortie le {dat.release_date} il y a {dat.release_date ? Math.floor((new Date() - new Date(dat.release_date)) / (1000 * 60 * 60 * 24 * 30 * 12)) : null} ans.
