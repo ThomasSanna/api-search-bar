@@ -31,13 +31,13 @@ const Jeu = () => {
     });
 
     useEffect(() => {
-        fetch('https://api2.api-onepiece.com/v2/crews/fr')
+        fetch('https://api.api-onepiece.com/v2/crews/fr')
             .then((res) => res.json())
             .then((res) => setDataCrew(res));
     }, []);
 
     useEffect(() => {
-        fetch('https://api2.api-onepiece.com/v2/characters/fr')
+        fetch('https://api.api-onepiece.com/v2/characters/fr')
             .then((res) => res.json())
             .then((res) => setData(res));
     }, []);

@@ -61,7 +61,7 @@ function Episode() {
     }, [currentId]);
 
   useEffect(() => {
-    fetch("https://api2.api-onepiece.com/v2/arcs/fr")
+    fetch("https://api.api-onepiece.com/v2/arcs/fr")
       .then((res) => res.json())
       .then((data) => {
         setDataArc(data);
@@ -75,7 +75,7 @@ function Episode() {
 
   useEffect(() => {
     // fetch("https://api.api-onepiece.com/episodes")
-    fetch("https://api2.api-onepiece.com/v2/episodes/fr")
+    fetch("https://api.api-onepiece.com/v2/episodes/fr")
       .then((res) => res.json())
       .then((data) => {
         setData(data);

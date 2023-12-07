@@ -58,7 +58,7 @@ function Home() {
 
   useEffect(() => {
     // fetch("https://api.api-onepiece.com/chapters")
-    fetch("https://api2.api-onepiece.com/v2/chapters/fr")
+    fetch("https://api.api-onepiece.com/v2/chapters/fr")
     .then((res) => res.json())
       .then((data) => {
         setData(data);
@@ -67,7 +67,7 @@ function Home() {
   }, []);
 
   // useEffect(() => {
-  //   fetch("https://api2.api-onepiece.com/v2/chapters/fr", {
+  //   fetch("https://api.api-onepiece.com/v2/chapters/fr", {
   //   // fetch("https://api.api-onepiece.com/chapters", {
   //     method: 'GET',
   //     mode: 'cors',
