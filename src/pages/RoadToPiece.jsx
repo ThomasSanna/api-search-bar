@@ -1,5 +1,5 @@
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 import Menu from "../components/Menu";
 import "../styles/RoadToPiece.css";
@@ -7,6 +7,7 @@ import AOS from 'aos';
 import { imgArcsBis } from "../scripts/imgTome";
 
 const RoadToPiece = () => {
+    const [actualElement, setActualElement] = useState(null);
 
     const arcs = [ 
         ["Romance Dawn", "RomanceDown", "East Blue"],
@@ -29,9 +30,9 @@ const RoadToPiece = () => {
         ["Thriller Bark", "ThrillerBark", "Thriller Bark"],
     ];
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    // }, []);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     useEffect(() => {
         document.title = "One Piece - Road To Piece";
@@ -59,13 +60,49 @@ const RoadToPiece = () => {
         const popupImg = document.querySelector('.popup-image-img');
         const popupClose = document.querySelector('.popup-image-close');
 
-        popup.style.display = "flex";
-        popupImg.src = e.target.previousSibling.src;
+        if (!e.target.classList.contains('cred-auteur')){
+            setActualElement(e.target);
+            popup.style.display = "flex";
+            popupImg.src = e.target.previousSibling.src;
+        }
 
         popupClose.addEventListener('click', () => {
             popup.style.display = "none";
         });
     }
+
+useEffect(() => {
+    const popup = document.querySelector('.popup-image');
+    const popupImg = document.querySelector('.popup-image-img');
+
+    const handleKeyDown = (e) => {
+        if (actualElement && actualElement.parentElement && popup.style.display === "flex") {
+            const liElt = actualElement.parentElement;
+            
+            if (e.key === "ArrowRight" && liElt.nextSibling) {
+                const NextImg = liElt.nextSibling.querySelector('.rtp-arc-img');
+                if (NextImg) { 
+                    popupImg.src = NextImg.src;
+                    setActualElement(NextImg);
+                }
+            } else if (e.key === "ArrowLeft" && liElt.previousSibling) {
+                const PrevImg = liElt.previousSibling.querySelector('.rtp-arc-img');
+                if (PrevImg) {
+                    popupImg.src = PrevImg.src;
+                    setActualElement(PrevImg);
+                }
+            }
+        }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Cleanup function to remove the event listener
+    return () => {
+        window.removeEventListener('keydown', handleKeyDown);
+    };
+}, [actualElement]);
+
 
     useEffect(() => {
         const popup = document.querySelector('.popup-image');
@@ -87,20 +124,24 @@ const RoadToPiece = () => {
 
             <div className="rtp-presentation">
                 <h1 data-aos="fade-in" className="rtp-title">Road To Piece</h1>
-                <p data-aos="fade-in" className="rtp-text">Projet pensé et organisé par <a href="https://twitter.com/Kawamatsu95" target="_blank" rel="noreferrer">Young Cap</a></p>
+                <p data-aos="fade-in" className="rtp-text">Projet pensé et réalisé par <a href="https://twitter.com/Kawamatsu95" target="_blank" rel="noreferrer" className="youngcap">Young Cap</a></p>
             </div>
-            <div className="rtp-som-contcont">
+            <div data-aos="fade-in" className="rtp-som-contcont">
                 <h1>Sommaire - Arcs</h1>
                 <div className="rtp-sommaire-container">
                     {
                         arcs.map((arc, index) => (
-                            <a href={"#" + arc[1]} className="rtp-sommaire">
+                            <a data-aos="fade-in" href={"#" + arc[1]} className="rtp-sommaire">
                                 <div className="link-sommaire">{arc[0]}</div>
                                 <img className="img-sommaire" src={imgArcsBis[index+1]} alt="" />
                             </a>
                         ))
                     }
                 </div>
+            </div>
+
+            <div className="remerciementYoen">
+                Recherches et tri des illustrations avec l'aide de&nbsp;<a href="https://twitter.com/yoenbs" target="_blank" rel="noreferrer" className="youngcap">Yoen</a>&nbsp;
             </div>
 
             <div className="road-to-piece-container">
@@ -114,7 +155,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/East Blue/Romance Dawn/' + image.replace('./', '')} alt="Romance Dawn" loading="lazy" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -132,7 +173,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/East Blue/Orange Town/' + image.replace('./', '')} alt="Orange Town" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -150,7 +191,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/East Blue/Baratie/' + image.replace('./', '')} loading="lazy" alt="Baratie" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -168,7 +209,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/East Blue/Arlong Park/' + image.replace('./', '')} loading="lazy" alt="Arlong Park" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -186,7 +227,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/East Blue/LogueTown/' + image.replace('./', '')} loading="lazy" alt="Logue Town" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -204,7 +245,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Alabasta/Reverse Mountain/' + image.replace('./', '')} loading="lazy" alt="Logue Town" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -222,7 +263,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Alabasta/Whiskey Peak/' + image.replace('./', '')} loading="lazy" alt="Whiskey Peak" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -240,7 +281,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Alabasta/Little Garden/' + image.replace('./', '')} loading="lazy" alt="Little Garden" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -258,7 +299,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Alabasta/Drum Island/' + image.replace('./', '')} loading="lazy" alt="Drum Island" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -276,7 +317,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Alabasta/Alabasta/' + image.replace('./', '')} loading="lazy" alt="Alabasta" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -294,7 +335,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Skypiea/Jaya/' + image.replace('./', '')} loading="lazy" alt="Jaya" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -312,7 +353,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Skypiea/Skypiea/' + image.replace('./', '')} loading="lazy" alt="Skypiea" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -330,7 +371,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Water Seven/Long Ring Long Land/' + image.replace('./', '')} loading="lazy" alt="Long Ring Long Land" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -348,6 +389,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Water Seven/Davy Back Fight/' + image.replace('./', '')} loading="lazy" alt="Davy Back Fight" />
                                         <span className="rtp-auteur">
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                             <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
                                         </span>
                                     </li>
@@ -366,7 +408,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Water Seven/Water Seven/' + image.replace('./', '')} loading="lazy" alt="Water Seven" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -384,7 +426,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Water Seven/Enies Lobby/' + image.replace('./', '')} loading="lazy" alt="Enies Lobby" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -402,7 +444,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Water Seven/Post Enies Lobby/' + image.replace('./', '')} loading="lazy" alt="Post Enies Lobby" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))
@@ -420,7 +462,7 @@ const RoadToPiece = () => {
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
                                         <img className="rtp-arc-img" src={'RoadToPiece/Thriller Bark/Thriller Bark/' + image.replace('./', '')} loading="lazy" alt="Thriller Bark" />
                                         <span className="rtp-auteur">
-                                            <span className="cred-auteur">Artiste : <a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur">{getName(image)}</a></span>
+                                            <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
                                     </li>
                                 ))

@@ -1,3 +1,12 @@
+/* if body contain class night : */
+body:not(.night) .road-to-piece h1, body:not(.night) .rtp-text, body:not(.night) .rtp-saga-title, body:not(.night) .youngcap{
+    color: #000;
+}
+
+body:not(.night) .road-to-piece .menu-icon{
+    filter: invert(0) !important;
+}
+
 .rtp-presentation{
     width: 100vw;
     height: 100vh;
@@ -29,7 +38,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 100px;
 }
 
 .rtp-arc-container * {
@@ -99,6 +108,10 @@
     height: 400px;
 }
 
+.cred-auteur-span{
+    background: none !important;
+}
+
 .rtp-auteur{
     position: absolute;
     display: flex;
@@ -131,6 +144,7 @@
 
 .popup-image-img{
     height: 90vh;
+    max-width: 90vw;
     width: auto;
     object-fit: cover;
     border-radius: 5px;
@@ -187,6 +201,7 @@
     overflow: hidden;
     border-radius: 10px;
     margin: 20px;
+    box-shadow: 1px 1px 0px 2px #000000;
 }
 
 .rtp-sommaire:hover .img-sommaire{
@@ -219,13 +234,45 @@
 }
 
 
-.img-sommaire, .link-sommaire, .img-sommaire{
+.img-sommaire, .link-sommaire, .rtp-sommaire{
     width: 150px;
     height: 150px;
 }
 
+.remerciementYoen{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
 
 @media screen and (max-width: 668px){
+
+    *{
+        -webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .cred-auteur a{
+        font-size: 1rem;
+    }
+
+    .rtp-arc-img{
+        width: 300px;
+        height: 300px;
+    }
+
+    .rtp-li, .rtp-auteur {
+        width: 40vw;
+        height: 200px;
+    }
 
     .popup-image-img{
         height: auto;
@@ -238,11 +285,11 @@
     }
 
     .rtp-sommaire{
-        margin: 5px;
+        margin: 10px;
     }
 
-    .img-sommaire, .link-sommaire, .img-sommaire{
-        width: 100px;
+    .rtp-sommaire, .link-sommaire, .img-sommaire{
+        width: 25vw;
         height: 100px;
     }
 
