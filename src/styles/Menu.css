@@ -109,6 +109,7 @@
     animation: colorChange1 1s infinite alternate;
 }
 
+
 .spanmenucenter {
     font-size: 1.2rem;
     font-weight: 600;
@@ -142,8 +143,14 @@
     scale: 1.05;
 }
 
-.menu-item:hover .imgmenucenter{
+.menu-item:hover .imgmenucenter:not(.newestImg){
     animation: colorChange2 5s infinite alternate;
+    filter: saturate(1);
+    opacity: 1;
+    border-radius: 10px;
+}
+
+.menu-item:hover .newestImg{
     filter: saturate(1);
     opacity: 1;
     border-radius: 10px;
@@ -191,32 +198,6 @@
     padding: 0;
     font-style: oblique;
 }
-
-.immcjeu {
-    transition: all .10s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url("https://www.opfanpage.com/wp-content/uploads/2021/10/Chapter_1028-1024x747.png");
-    background-size: 120% auto;
-    background-position: -60px -90px;
-    height: 100px;
-    width: 500px;
-    border-radius: 20px;
-    filter: saturate(.7);
-}
-
-.immcjeu:hover {
-    filter: saturate(1);
-    opacity: 1;
-    border-radius: 10px;
-    animation: colorChange1 1.2s infinite alternate;
-}
-
-.immcjeu:hover .jeuOPonImg{
-    opacity: 1;
-}
-
 
 @media screen and (max-width: 1000px) {
     .linkapropos{
