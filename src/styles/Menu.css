@@ -1,6 +1,7 @@
 .linkapropos{
     color: rgba(255, 255, 255, 0.718) !important;
     font-size: 1.2rem;
+    margin-bottom: 50px;
 }
 .linkapropos:hover{
     color: #fff !important;
@@ -36,7 +37,6 @@
     z-index: 100000;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
@@ -51,7 +51,7 @@
     -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     transition: all 0.1s ease-in-out;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .menu-container *{
@@ -60,24 +60,25 @@
 }
 
 .menu-item{
+    margin: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    text-decoration: none
-     !important;
+    text-decoration: none !important;
 }
 
 
 .menu-center{
+    margin-top: 150px;
     font-size: 2rem;
-    width: 600px;
-    height: 300px;
+    width: 40vw;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: start;
 }
 
 .menu-center *{
@@ -92,6 +93,20 @@
     border-radius: 20px;
     opacity: .9;
     filter: saturate(.7);
+}
+
+.spanOnImg{
+    position: absolute;
+    height: 160px;
+    padding: 10px;
+    margin-bottom: 50px;
+    color:#ffcc00ea;
+    animation: hueChange 1s infinite alternate;
+    font-weight: 700;
+}
+
+.newestImg{
+    animation: colorChange1 1s infinite alternate;
 }
 
 .spanmenucenter {
@@ -135,25 +150,27 @@
 }
 
 .menu-foot{
-    position: absolute;
     width: 100vw;
-    height: 100px;
-    bottom: 0px;
+    height: 20px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .menu-c-o{
     width: 100vw !important;
-    position: absolute !important;
-    bottom: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .menu-c-w{
     position: absolute;
     bottom: 10px;
-    right: 20px;
+    right: 10px;
     font-size: .9rem;
+    width: 100vw;
+    display: flex;
+    justify-content: end;
 }
 
 .mitemjeu{
@@ -200,27 +217,10 @@
     opacity: 1;
 }
 
-.jeuOPonImg {
-    opacity: 1;
-    transition: all .1s ease-in-out;
-    font-size: 1.5rem;
-    padding: 10px;
-    margin: 0;
-    color: #fff !important;
-    background-color: rgba(28, 28, 223, 0.541);
-    border-radius: 10px;
-    animation: hueChange .8s infinite alternate;
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-}
-
 
 @media screen and (max-width: 1000px) {
     .linkapropos{
         font-size: .9rem !important;
-    }
-    .menu-c-o{
-        bottom: 100px !important;
     }
     .menu-container *{
         font-size: 1.5rem ;
@@ -243,36 +243,29 @@
 }
 
 @media screen and (max-width: 750px){
-    .jeuOPonImg{
-        margin-top: 15px;
+
+    .menu-item{
+        margin: 10px;
     }
-    .mitemjeu:hover{
-        transform:scale(1.05);
+
+    .menu-container{
+        margin: 0;
     }
-    .mitemjeu{
+    .menu-center{
         margin-top: 100px;
+        width: 600px;
     }
-    .menu-center{
-        margin-top: 40px;
-    }
-    .menu-center{
-        margin-bottom: 100px;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-    .spmcjeu{
-        display: none;
-    }
-    .imgmenucenter, .immcjeu{
-        height: 100px;
-        width: 300px;
+    .imgmenucenter{
+        height: 150px;
+        width: 35vw;
         filter: saturate(0) brightness(.6)
         opacity(.7)
     }
     .spanmenucenter{
-        position: absolute;
         color: rgb(255, 255, 255);
         margin-bottom: 10px;
+        width: 40vw;
+        font-size: 1.2rem;
     }
     .linkapropos{
         font-size: .9rem !important;

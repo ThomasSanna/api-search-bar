@@ -14,7 +14,7 @@ const Menu = () => {
     setIsMenuOpen(!isMenuOpen);
     if (isMenuOpen) {
       menuIcon.style.rotate = '90deg';
-      menu.style.height = '100vh';
+      menu.style.minHeight = '100vh';
       menu.style.width = '100vw';
       menu.style.borderRadius = '0 0 0 0';
       menu.style.pointerEvents = 'all';
@@ -42,12 +42,6 @@ const Menu = () => {
       </picture>
       <div className="menu-container">
         <Logo />
-        <div className="mitemjeu">
-          <span className="spanmenucenter spmcjeu">Nouveau !</span>
-          <NavLink to="/enigme" activeClassName="active" className="immcjeu">
-            <span className="spanmenucenter jeuOPonImg">L'énigme One Piece !</span>
-          </NavLink>
-        </div>
         <ul className="menu-center">
           <NavLink onClick={verifDoublon} to="/" activeClassName="active" className="menu-item">
             <img className="imgmenucenter immc1" src="https://criticalhits.com.br/wp-content/uploads/2021/01/one-piece.jpg" alt="Rechercher un chapitre" />
@@ -57,12 +51,21 @@ const Menu = () => {
             <img className="imgmenucenter immc2" src="https://images.justwatch.com/backdrop/249137539/s640" alt="Rechercher un épisode" />
             <span className="spanmenucenter spmc2">Rechercher un épisode</span>
           </NavLink>
+          <NavLink onClick={verifDoublon} to="/enigme" activeClassName="active" className="menu-item">
+            <img className="imgmenucenter immc2" src="https://www.opfanpage.com/wp-content/uploads/2021/10/Chapter_1028-1024x747.png" alt="Rechercher un épisode" />
+            <span className="spanmenucenter spmc2">L'énigme One Piece</span>
+          </NavLink>
+          <NavLink onClick={verifDoublon} to="/road-to-piece" activeClassName="active" className="menu-item">
+            <img className="newestImg imgmenucenter immc2" src="https://manga-universe.net/wp-content/uploads/2023/03/2fJfeodRtKA-HD.jpg" alt="Rechercher un épisode" />
+            <span className="spanOnImg">Nouveau !</span>
+            <span className="spanmenucenter spmc2">Le Road To Piece</span>
+          </NavLink>
         </ul>
+        <NavLink className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</NavLink>
         <ul className="menu-foot">
           <li className='menu-c-o'>© Eiichiro Oda - One Piece</li>
           <li className='menu-c-w'><a target="_blank" rel='noreferrer' href="https://ko-fi.com/wadeekt">Me soutenir sur Ko-Fi</a> ❤️</li>
         </ul>
-        <NavLink className='link-adblock linkapropos' activeClassName='active' to="/apropos">À propos du site</NavLink>
       </div> 
     </div>
   );
