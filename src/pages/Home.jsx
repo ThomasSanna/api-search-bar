@@ -185,7 +185,7 @@ function Home() {
     const reversed = document.querySelector(".reverse-back").checked;
 
     const filtered = data.filter((dat) => {
-      const titleKeywords = withtitle.checked && searchText.every(keyword => dat.title.toLowerCase().includes(keyword));
+      const titleKeywords = withtitle.checked && dat.title && searchText.every(keyword => dat.title.toLowerCase().includes(keyword));
       const descriptionKeywords = descRapide[dat.id] && withdescription.checked && searchText.every(keyword => descRapide[dat.id]? descRapide[dat.id].toLowerCase().includes(keyword) : false);
       const numberKeywords = withnumber.checked && searchText.every(keyword => dat.id.toString().includes(keyword));
       const persoKeywords = persoParC[dat.id] && withperso.checked && searchText.every(keyword =>   Array.isArray(persoParC[dat.id])? persoParC[dat.id].join(' ').toLowerCase().includes(keyword) : false);
