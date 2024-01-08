@@ -147,7 +147,7 @@ useEffect(() => {
             <div className="road-to-piece-container">
 
                 <div className="rtp-arc-container">
-                    <h1 data-aos="fade-in" className="rtp-saga-title" id="RomanceDown">Romance Down</h1>
+                    <h1 data-aos="fade-in" className="rtp-saga-title" id="RomanceDown">Romance Dawn</h1>
                     <div className="rtp-arc-list-cont">
                         <ul className="rtp-arc-list">
                             {
@@ -171,7 +171,7 @@ useEffect(() => {
                             {
                                 require.context('../../public/RoadToPiece/East Blue/Orange Town/', true).keys().map((image) => (
                                     <li onClick={openImage} data-aos="zoom-in" className="rtp-li">
-                                        <img className="rtp-arc-img" src={'RoadToPiece/East Blue/Orange Town/' + image.replace('./', '')} alt="Orange Town" />
+                                        <img className="rtp-arc-img" src={'RoadToPiece/East Blue/Orange Town/' + image.replace('./', '')} loading="lazy" alt="Orange Town" />
                                         <span className="rtp-auteur">
                                             <span className="cred-auteur"><a href={"https://twitter.com/" + getName(image)} target="_blank" rel="noreferrer" className="cred-auteur cred-auteur-link">{getName(image)}</a></span>
                                         </span>
